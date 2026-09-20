@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Zinlea Night — Private Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#0A1730;
+    --navy-900:#0F1F3D;
+    --gold-600:#A9822F;
+    --gold-500:#C0A24A;
+    --paper:#F6F4EE;
+    --ink:#12192B;
+    --ink-soft:#5C6478;
+    --hairline:#E3DECF;
+    --rust:#8B4A3C;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:linear-gradient(180deg,var(--navy-950),var(--navy-900));
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;
+  }
+  .card{
+    width:100%;max-width:380px;
+    background:var(--paper);
+    border-radius:16px;
+    border-top:3px solid var(--gold-500);
+    padding:32px 28px 28px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.35);
+  }
+  .wordmark{color:var(--gold-600);font-size:12px;letter-spacing:.16em;font-weight:600;margin:0 0 8px;text-align:center;}
+  h1{font-family:'Fraunces',serif;color:var(--navy-900);font-weight:600;font-size:22px;margin:0 0 6px;text-align:center;}
+  p.sub{color:var(--ink-soft);font-size:13px;margin:0 0 24px;text-align:center;line-height:1.5;}
+  .field label{display:block;font-size:11.5px;font-weight:600;color:var(--ink-soft);margin-bottom:6px;}
+  .field input{
+    width:100%;font-family:'Inter',sans-serif;font-size:15px;padding:11px 12px;
+    border:1px solid var(--hairline);border-radius:8px;background:#fff;color:var(--ink);
+  }
+  .field input:focus{outline:2px solid var(--gold-500);outline-offset:1px;}
+  button{
+    width:100%;margin-top:16px;padding:12px;border-radius:8px;border:none;
+    background:var(--navy-900);color:#fff;font-family:'Inter',sans-serif;
+    font-size:14.5px;font-weight:600;cursor:pointer;
+  }
+  button:disabled{opacity:.6;cursor:default;}
+  .error{
+    display:none;margin-top:14px;padding:9px 12px;border-radius:8px;
+    background:#F1E3DF;color:var(--rust);font-size:12.5px;text-align:center;
+  }
+  .error.show{display:block;}
+</style>
+</head>
+<body>
+  <div class="card">
+    <p class="wordmark">ZINLEA NIGHT</p>
+    <h1>Private Portal</h1>
+    <p class="sub">This area is restricted. Enter the portal passcode to continue.</p>
+    <form id="loginForm">
+      <div class="field">
+        <label for="password">Passcode</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" autofocus required>
+      </div>
+      <button type="submit" id="submitBtn">Enter</button>
+      <div class="error" id="error">Incorrect passcode. Try again.</div>
+    </form>
+  </div>
+
+<script>
+const form = document.getElementById('loginForm');
+const btn = document.getElementById('submitBtn');
+const errorEl = document.getElementById('error');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  errorEl.classList.remove('show');
+  btn.disabled = true;
+  btn.textContent = 'Checking…';
+
+  const password = document.getElementById('password').value;
+
+  try {
+    const res = await fetch('/.netlify/functions/auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password })
+    });
+
+    if (res.ok) {
+      const params = new URLSearchParams(window.location.search);
+      window.location.href = params.get('next') || '/';
+      return;
+    }
+
+    errorEl.textContent = res.status === 401 ? 'Incorrect passcode. Try again.' : 'Something went wrong. Try again.';
+    errorEl.classList.add('show');
+  } catch (err) {
+    errorEl.textContent = 'Could not reach the server. Try again.';
+    errorEl.classList.add('show');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Enter';
+  }
+});
+</script>
+</body>
+</html>
