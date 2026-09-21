@@ -57,6 +57,9 @@
     color:var(--gold-500);font-size:11px;font-weight:600;letter-spacing:.03em;
     padding:5px 10px;border-radius:20px;white-space:nowrap;
   }
+  .who-box{flex-shrink:0;text-align:right;}
+  .who-name{color:#fff;font-size:12.5px;font-weight:600;margin:0 0 4px;}
+  .logged-by-note{font-size:11.5px;color:var(--ink-soft);margin-bottom:12px;}
 
   .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 16px 4px;}
   .stat{background:var(--paper-card);border:1px solid var(--hairline);border-radius:10px;padding:12px 14px;}
@@ -154,7 +157,10 @@
         <h1>Partnership CRM</h1>
         <p class="sub">Strategic partnerships tracker</p>
       </div>
-      <a href="/.netlify/functions/logout" class="private-pill" style="text-decoration:none;">🔒 Sign out</a>
+      <div class="who-box">
+        <p class="who-name" id="whoName"></p>
+        <a href="/.netlify/functions/logout" class="private-pill" style="text-decoration:none;">🔒 Sign out</a>
+      </div>
     </div>
   </header>
 
@@ -215,7 +221,20 @@ const TIERS = [
 
 let records = [];
 let editingId = null;
+let editingRecordLoggedBy = '';
 let currentLog = [];
+let currentUser = null;
+
+async function loadWhoAmI(){
+  try {
+    const res = await fetch('/.netlify/functions/whoami');
+    if (!res.ok) throw new Error('not authenticated');
+    currentUser = await res.json();
+    document.getElementById('whoName').textContent = 'Signed in as ' + currentUser.name;
+  } catch (e) {
+    window.location.href = '/login.html';
+  }
+}
 
 function stageMeta(v){ return STAGES.find(s=>s.v===v) || STAGES[0]; }
 function tierMeta(v){ return TIERS.find(t=>t.v===v) || TIERS[1]; }
@@ -349,8 +368,7 @@ function addLogEntry(){
   const input = document.getElementById('logInput');
   const text = input.value.trim();
   if (!text) return;
-  const byField = document.getElementById('f-loggedBy');
-  const by = byField ? byField.value.trim() : '';
+  const by = currentUser ? currentUser.name : '';
   currentLog.push({date: new Date().toLocaleDateString('en-GB'), text, by});
   input.value = '';
   renderLogList();
@@ -358,11 +376,9 @@ function addLogEntry(){
 
 function formHtml(r){
   r = r || {};
+  const loggedByName = r.loggedBy || (currentUser ? currentUser.name : '');
   return `
-    <div class="field">
-      <label>Logged by</label>
-      <input type="text" id="f-loggedBy" value="${escapeHtml(r.loggedBy||'')}" placeholder="Your name">
-    </div>
+    <p class="logged-by-note">Logged by <b>${escapeHtml(loggedByName)}</b></p>
     <div class="section-label">Organisation</div>
     <div class="field">
       <label>Organisation name</label>
@@ -485,6 +501,7 @@ function formHtml(r){
 
 function openAdd(){
   editingId = null;
+  editingRecordLoggedBy = '';
   currentLog = [];
   document.getElementById('sheetTitle').textContent = 'Add record';
   document.getElementById('formFields').innerHTML = formHtml({stage:'lead', tier:'standard', contractStatus:'Not started', paymentStatus:'Awaiting payment'});
@@ -498,6 +515,7 @@ function openEdit(id){
   const r = records.find(x=>x.id===id);
   if (!r) return;
   editingId = id;
+  editingRecordLoggedBy = r.loggedBy || '';
   currentLog = (r.engagementLog || []).slice();
   document.getElementById('sheetTitle').textContent = 'Edit record';
   document.getElementById('formFields').innerHTML = formHtml(r);
@@ -514,7 +532,7 @@ async function handleSave(){
   if (!org){ showToast('Organisation name is required'); return; }
   const data = {
     org,
-    loggedBy: document.getElementById('f-loggedBy').value.trim(),
+    loggedBy: editingId ? editingRecordLoggedBy : (currentUser ? currentUser.name : ''),
     orgType: document.getElementById('f-orgType').value,
     location: document.getElementById('f-location').value.trim(),
     leadSource: document.getElementById('f-leadSource').value,
@@ -566,7 +584,10 @@ document.getElementById('saveBtn').addEventListener('click', handleSave);
 document.getElementById('deleteBtn').addEventListener('click', handleDelete);
 document.getElementById('overlay').addEventListener('click', (e)=>{ if (e.target.id === 'overlay') closeSheet(); });
 
-loadData();
+(async () => {
+  await loadWhoAmI();
+  await loadData();
+})();
 </script>
 </body>
 </html>

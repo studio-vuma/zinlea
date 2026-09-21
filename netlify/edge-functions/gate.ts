@@ -32,27 +32,30 @@ function getCookie(req: Request, name: string): string | null {
   return null;
 }
 
-async function isValidSession(req: Request): Promise<boolean> {
+async function validSessionUsername(req: Request): Promise<string | null> {
   const secret = Netlify.env.get("SESSION_SECRET");
-  if (!secret) return false;
+  if (!secret) return null;
 
   const cookie = getCookie(req, COOKIE_NAME);
-  if (!cookie) return false;
+  if (!cookie) return null;
 
-  const dot = cookie.indexOf(".");
-  if (dot === -1) return false;
+  const firstDot = cookie.indexOf(".");
+  const lastDot = cookie.lastIndexOf(".");
+  if (firstDot === -1 || lastDot === -1 || firstDot === lastDot) return null;
 
-  const expiryStr = cookie.slice(0, dot);
-  const sig = cookie.slice(dot + 1);
+  const expiryStr = cookie.slice(0, firstDot);
+  const username = cookie.slice(firstDot + 1, lastDot);
+  const sig = cookie.slice(lastDot + 1);
   const expiry = Number(expiryStr);
-  if (!Number.isFinite(expiry) || expiry <= Date.now()) return false;
+  if (!Number.isFinite(expiry) || expiry <= Date.now() || !username) return null;
 
-  const expectedSig = await sign(secret, expiryStr);
-  return expectedSig === sig;
+  const payload = `${expiryStr}.${username}`;
+  const expectedSig = await sign(secret, payload);
+  return expectedSig === sig ? username : null;
 }
 
 export default async (req: Request, context: Context) => {
-  if (await isValidSession(req)) {
+  if (await validSessionUsername(req)) {
     return context.next();
   }
 

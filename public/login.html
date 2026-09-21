@@ -41,12 +41,13 @@
   .wordmark{color:var(--gold-600);font-size:12px;letter-spacing:.16em;font-weight:600;margin:0 0 8px;text-align:center;}
   h1{font-family:'Fraunces',serif;color:var(--navy-900);font-weight:600;font-size:22px;margin:0 0 6px;text-align:center;}
   p.sub{color:var(--ink-soft);font-size:13px;margin:0 0 24px;text-align:center;line-height:1.5;}
+  .field{margin-bottom:14px;}
   .field label{display:block;font-size:11.5px;font-weight:600;color:var(--ink-soft);margin-bottom:6px;}
-  .field input{
+  .field input,.field select{
     width:100%;font-family:'Inter',sans-serif;font-size:15px;padding:11px 12px;
     border:1px solid var(--hairline);border-radius:8px;background:#fff;color:var(--ink);
   }
-  .field input:focus{outline:2px solid var(--gold-500);outline-offset:1px;}
+  .field input:focus,.field select:focus{outline:2px solid var(--gold-500);outline-offset:1px;}
   button{
     width:100%;margin-top:16px;padding:12px;border-radius:8px;border:none;
     background:var(--navy-900);color:#fff;font-family:'Inter',sans-serif;
@@ -64,14 +65,22 @@
   <div class="card">
     <p class="wordmark">ZINLEA NIGHT</p>
     <h1>Private Portal</h1>
-    <p class="sub">This area is restricted. Enter the portal passcode to continue.</p>
+    <p class="sub">This area is restricted. Choose your name and enter your passcode to continue.</p>
     <form id="loginForm">
       <div class="field">
+        <label for="username">Who are you?</label>
+        <select id="username" name="username" required>
+          <option value="" disabled selected>Select…</option>
+          <option value="blessings">Blessings</option>
+          <option value="francis">Francis</option>
+        </select>
+      </div>
+      <div class="field">
         <label for="password">Passcode</label>
-        <input type="password" id="password" name="password" autocomplete="current-password" autofocus required>
+        <input type="password" id="password" name="password" autocomplete="current-password" required>
       </div>
       <button type="submit" id="submitBtn">Enter</button>
-      <div class="error" id="error">Incorrect passcode. Try again.</div>
+      <div class="error" id="error">Incorrect name or passcode. Try again.</div>
     </form>
   </div>
 
@@ -86,13 +95,14 @@ form.addEventListener('submit', async (e) => {
   btn.disabled = true;
   btn.textContent = 'Checking…';
 
+  const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
 
   try {
     const res = await fetch('/.netlify/functions/auth', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password })
+      body: JSON.stringify({ username, password })
     });
 
     if (res.ok) {
@@ -101,7 +111,7 @@ form.addEventListener('submit', async (e) => {
       return;
     }
 
-    errorEl.textContent = res.status === 401 ? 'Incorrect passcode. Try again.' : 'Something went wrong. Try again.';
+    errorEl.textContent = res.status === 401 ? 'Incorrect name or passcode. Try again.' : 'Something went wrong. Try again.';
     errorEl.classList.add('show');
   } catch (err) {
     errorEl.textContent = 'Could not reach the server. Try again.';
