@@ -97,7 +97,7 @@ form.addEventListener('submit', async (e) => {
 
     if (res.ok) {
       const params = new URLSearchParams(window.location.search);
-      window.location.href = params.get('next') || '/portal/';
+      window.location.href = params.get('next') || '/';
       return;
     }
 

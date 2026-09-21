@@ -56,7 +56,7 @@ export default async (req: Request, context: Context) => {
     return context.next();
   }
 
-  const loginUrl = new URL("/portal/login.html", req.url);
+  const loginUrl = new URL("/login.html", req.url);
   return new Response(null, {
     status: 302,
     headers: { Location: loginUrl.toString() }
@@ -64,6 +64,6 @@ export default async (req: Request, context: Context) => {
 };
 
 export const config: Config = {
-  path: ["/portal", "/portal/*", "/.netlify/functions/records"],
-  excludedPath: ["/portal/login.html"]
+  path: "/*",
+  excludedPath: ["/login.html", "/.netlify/functions/auth"]
 };

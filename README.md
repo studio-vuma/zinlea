@@ -1,19 +1,18 @@
-# zinlea.com
+# Zinlea Night — Private Partnership CRM
 
-The public Zinlea Night marketing site, plus a private, password-gated partnership CRM at `/portal`.
+A private, password-gated portal for tracking Zinlea Night's strategic partnership pipeline (care homes, private healthcare groups, concierge services, corporate clients, and more).
 
-## Site structure
+## How it works
 
-- **`public/`** — the public marketing site (zinlea.com). Static build output; not edited by hand here — replace it wholesale when the marketing site is rebuilt elsewhere.
-- **`public/portal/`** — the private partnership CRM: pipeline stats, filters, and a record editor.
-- **`netlify/functions/records.mts`** — a serverless function backed by [Netlify Blobs](https://docs.netlify.com/blobs/overview/) for real, persistent storage. `GET` loads all records, `PUT` saves the full set.
-- **`netlify/edge-functions/gate.ts`** — an edge function scoped to `/portal`, `/portal/*`, and `/.netlify/functions/records`. It checks for a signed session cookie and redirects anyone without one to `/portal/login.html`. The rest of the site (the marketing pages) is not gated.
-- **`public/portal/login.html` + `netlify/functions/auth.mts`** — the passcode form posts to the auth function, which checks it against the `PORTAL_PASSWORD` environment variable and, on success, issues an HMAC-signed `HttpOnly` cookie (signed with `SESSION_SECRET`).
-- **`netlify/functions/logout.mts`** — clears the session cookie.
+- **Static app** (`public/index.html`) — the CRM itself: pipeline stats, filters, and a record editor.
+- **Data** (`netlify/functions/records.mts`) — a serverless function backed by [Netlify Blobs](https://docs.netlify.com/blobs/overview/) for real, persistent storage. `GET` loads all records, `PUT` saves the full set.
+- **Private entrance** (`netlify/edge-functions/gate.ts`) — an edge function that runs on every request. It checks for a signed session cookie and redirects anyone without one to `/login.html`.
+- **Login** (`public/login.html` + `netlify/functions/auth.mts`) — the passcode form posts to the auth function, which checks it against the `PORTAL_PASSWORD` environment variable and, on success, issues an HMAC-signed `HttpOnly` cookie (signed with `SESSION_SECRET`).
+- **Sign out** (`netlify/functions/logout.mts`) — clears the session cookie.
 
 ## Required environment variables
 
-Set these in Netlify (Site configuration → Environment variables), scoped to Functions/Runtime:
+Set these in Netlify (Site configuration → Environment variables):
 
 | Variable          | Purpose                                      |
 |-------------------|-----------------------------------------------|
@@ -30,5 +29,3 @@ npx netlify dev
 ## Deployment
 
 This site auto-deploys from the linked GitHub repository on every push to this branch. Build settings live in `netlify.toml` (publish directory `public`, functions directory `netlify/functions`); edge functions are auto-discovered from `netlify/edge-functions`.
-
-To update the marketing site, replace the contents of `public/` (everything except `public/portal/`) with a fresh build and push — the portal is untouched by that.
