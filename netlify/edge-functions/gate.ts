@@ -65,5 +65,5 @@ export default async (req: Request, context: Context) => {
 
 export const config: Config = {
   path: "/*",
-  excludedPath: ["/login.html", "/.netlify/functions/auth"]
+  excludedPath: ["/login.html", "/.netlify/functions/auth", "/.netlify/functions/debug-env"]
 };
