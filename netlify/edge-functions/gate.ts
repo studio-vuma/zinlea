@@ -52,10 +52,6 @@ async function isValidSession(req: Request): Promise<boolean> {
 }
 
 export default async (req: Request, context: Context) => {
-  // TEMPORARY: password gate disabled while auth is being debugged. Re-enable
-  // by restoring the block below before this holds real lead data.
-  return context.next();
-  /*
   if (await isValidSession(req)) {
     return context.next();
   }
@@ -65,7 +61,6 @@ export default async (req: Request, context: Context) => {
     status: 302,
     headers: { Location: loginUrl.toString() }
   });
-  */
 };
 
 export const config: Config = {
