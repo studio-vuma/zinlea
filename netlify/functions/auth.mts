@@ -1,8 +1,6 @@
 import type { Context } from "@netlify/functions";
 import { createHmac, timingSafeEqual } from "node:crypto";
 
-declare const Netlify: { env: { get(key: string): string | undefined } };
-
 const COOKIE_NAME = "zn_session";
 const SESSION_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 
@@ -29,8 +27,8 @@ export default async (req: Request, _context: Context) => {
     return json({ error: "Method not allowed" }, 405);
   }
 
-  const secret = Netlify.env.get("SESSION_SECRET");
-  const expected = Netlify.env.get("PORTAL_PASSWORD");
+  const secret = process.env.SESSION_SECRET;
+  const expected = process.env.PORTAL_PASSWORD;
   if (!secret || !expected) {
     return json({ error: "Portal is not configured yet. Set SESSION_SECRET and PORTAL_PASSWORD." }, 500);
   }
