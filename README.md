@@ -19,6 +19,8 @@ Set these in Netlify (Site configuration → Environment variables):
 | `PORTAL_PASSWORD` | The shared passcode for the private portal.   |
 | `SESSION_SECRET`  | Random secret used to sign session cookies.   |
 
+Set these as regular variables, not "secret"/sensitive-flagged ones — flagging them secret was observed to keep them from reaching Functions at runtime on this project.
+
 ## Local development
 
 ```bash
