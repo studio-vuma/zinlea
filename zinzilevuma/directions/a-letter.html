@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction A: The Letter | Zinzile Vuma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#2A211B;      /* near-black brown, 15:1 on white */
+    --brown:#6B4F3A;    /* walnut, 7.6:1 on white */
+    --rule:#E7DED4;
+    --stand-in:#F3EEE8;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"EB Garamond",Garamond,"Times New Roman",serif;
+    font-size:1.25rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:68rem;margin:0 auto;padding:0 1.5rem}
+  header{display:flex;justify-content:space-between;align-items:baseline;
+    padding:1.75rem 0;border-bottom:1px solid var(--rule)}
+  .name{font-size:1.375rem;font-weight:500;text-decoration:none;letter-spacing:.005em}
+  nav ul{list-style:none;margin:0;padding:0;display:flex;gap:1.5rem}
+  nav a{text-decoration:none;color:var(--brown);font-size:1.125rem}
+  nav a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:.25em}
+  .hero{padding:3rem 0 5rem}
+  .portrait{width:62%;max-width:22rem;aspect-ratio:4/5;margin:0 0 2rem;
+    background:var(--stand-in);display:flex;align-items:flex-end;padding:1rem;
+    color:var(--brown);font-size:1rem;font-style:italic}
+  h1{font-weight:400;font-size:clamp(2rem,4.4vw,2.875rem);line-height:1.2;
+    margin:0 0 1.5rem;max-width:20em;letter-spacing:-.005em}
+  .lede{max-width:33em;margin:0 0 1.25rem;color:var(--ink)}
+  .lede + .lede{color:var(--brown)}
+  .cta{display:inline-block;margin-top:1.25rem;font-size:1.25rem;color:var(--ink);
+    text-decoration:underline;text-decoration-color:var(--brown);
+    text-underline-offset:.3em;text-decoration-thickness:1px}
+  .cta:hover{text-decoration-thickness:2px}
+  @media (min-width:56rem){ .portrait{width:100%}
+    .hero{display:grid;grid-template-columns:22rem 1fr;gap:5rem;align-items:end;padding:5rem 0 7rem}
+    .portrait{margin:0}
+  }
+  @media (max-width:30rem){ nav ul{gap:1rem} .name{font-size:1.25rem} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="name" href="/">Zinzile Vuma</a>
+    <nav aria-label="Main"><ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul></nav>
+  </header>
+  <main class="hero">
+    <div class="portrait" role="img" aria-label="Portrait of Zinzile Vuma">Your portrait sits here</div>
+    <div>
+      <h1>I help African luxury brands become known for something specific, and say it well.</h1>
+      <p class="lede">I am a luxury brand strategist based in London, with roots in Zimbabwe. I work with founders and directors on brand identity, positioning, and provenance and storytelling.</p>
+      <p class="lede">I take on a small number of clients at a time, so each one has my full attention.</p>
+      <a class="cta" href="#contact">Book a first conversation</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>
