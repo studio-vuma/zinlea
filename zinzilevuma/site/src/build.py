@@ -22,9 +22,12 @@ CREDITS = ("Photography via Wikimedia Commons: Kente cloth by Warmglow (CC0); Vi
            "Mosi-oa-Tunya by Matti Blume (CC BY-SA 4.0); basket weaving by Rogerirakoze (CC BY-SA 4.0); "
            "Lower Zambezi by Joachim Huber (CC BY-SA 2.0).")
 
+SERVICE_PAGES = ["expansion", "positioning", "provenance", "platform", "intelligence"]
+
 def page(slug, label, body, title, desc):
-    nav = "".join(f'<li><a href="{s}.html"{" aria-current=\"page\"" if s == slug else ""}>{html.escape(l)}</a></li>' for s, l in NAV if s != "book")
-    mnav = "".join(f'<a href="{s}.html"{" aria-current=\"page\"" if s == slug else ""}>{html.escape(l)}</a>' for s, l in PAGES)
+    here = "services" if slug.startswith("service-") else slug
+    nav = "".join(f'<li><a href="{s}.html"{" aria-current=\"page\"" if s == here else ""}>{html.escape(l)}</a></li>' for s, l in NAV if s != "book")
+    mnav = "".join(f'<a href="{s}.html"{" aria-current=\"page\"" if s == here else ""}>{html.escape(l)}</a>' for s, l in PAGES)
     fnav = "".join(f'<a href="{s}.html">{html.escape(l)}</a>' for s, l in PAGES)
     return f"""<!doctype html>
 <html lang="en-GB">
@@ -82,7 +85,7 @@ BAND = """<section class="dark band">
   </div>
 </section>"""
 
-for slug, label in PAGES:
+for slug, label in PAGES + [("service-" + s, "Services") for s in SERVICE_PAGES]:
     src = (ROOT / "src" / f"{slug}.part.html").read_text()
     title = re.search(r"<!--TITLE:(.*?)-->", src).group(1)
     desc = re.search(r"<!--DESC:(.*?)-->", src).group(1)

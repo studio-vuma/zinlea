@@ -20,7 +20,7 @@
   } else { els.forEach(function (e) { e.classList.add('in'); }); }
 
   // Colour on hover; on touch screens, colour as the photograph comes into view
-  var photos = document.querySelectorAll('.mood img, .s-img img, .c-img img, .teaser img');
+  var photos = document.querySelectorAll('.mood img, .s-img img, .c-img img, .teaser img, .svc-img img');
   if (window.matchMedia && window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
     var co = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { en.target.classList.toggle('in-colour', en.intersectionRatio >= 0.6); });
@@ -32,7 +32,7 @@
   var form = document.getElementById('consultForm');
   if (!form) return;
   var want = new URLSearchParams(window.location.search).get('interest');
-  var map = { expansion: 'International market expansion', positioning: 'Brand positioning & brand culture', provenance: 'Provenance strategy' };
+  var map = { expansion: 'International market expansion', positioning: 'Brand positioning & brand culture', provenance: 'Provenance strategy', platform: 'Platform & retail readiness', intelligence: 'Market intelligence' };
   if (want && map[want]) {
     Array.prototype.forEach.call(form.interest.options, function (o) { if (o.text === map[want]) o.selected = true; });
   }
