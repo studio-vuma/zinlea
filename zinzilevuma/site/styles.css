@@ -270,3 +270,10 @@ a.pain:focus-visible { outline: 2px solid var(--black); outline-offset: 4px; }
 .mood img:hover, .s-img img:hover, .c-img img:hover, .teaser:hover img, .teaser:focus-visible img,
 .service:hover .s-img img, .in-colour { filter: grayscale(0%) contrast(1) !important; }
 @media (prefers-reduced-motion: reduce) { .mood img, .s-img img, .c-img img, .teaser img { transition: none; } }
+
+/* Case studies: the point of view first, then the facts */
+.case { scroll-margin-top: 140px; }
+.case .insight { margin-top: 20px; font-family: var(--display); font-size: clamp(21px, 2.1vw, 25px); line-height: 1.35; }
+.case .shows { margin-top: 24px; padding: 20px 0 0; border-top: 1px solid var(--line); font-family: var(--display); font-size: 19px; line-height: 1.5; }
+.case .shows span { display: block; margin-bottom: 6px; font-family: var(--text); font-size: 13px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--grey); }
+.case .text-link { display: inline-block; margin-top: 22px; }
