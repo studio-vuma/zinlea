@@ -12,6 +12,10 @@
 <meta property="og:description" content="I help brands become known for something specific, and say it well. Brand story, identity, positioning and pricing, with a specialism in provenance for African companies.">
 <meta property="og:url" content="https://zinzilevuma.com/">
 <meta property="og:locale" content="en_GB">
+<meta property="og:image" content="https://zinzilevuma.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -25,6 +29,7 @@
       "@id": "https://zinzilevuma.com/#person",
       "name": "Zinzile Vuma",
       "jobTitle": "Luxury Brand Strategist",
+      "image": "https://zinzilevuma.com/portrait.jpeg",
       "url": "https://zinzilevuma.com/",
       "email": "mailto:enquiries@zinzilevuma.com",
       "address": {
@@ -47,6 +52,7 @@
       "@id": "https://zinzilevuma.com/#service",
       "name": "Zinzile Vuma",
       "url": "https://zinzilevuma.com/",
+      "image": "https://zinzilevuma.com/portrait.jpeg",
       "description": "Brand strategy for brands built on heritage, craftsmanship and story, specialising in provenance for African companies.",
       "email": "enquiries@zinzilevuma.com",
       "founder": {
@@ -141,7 +147,10 @@
   <main id="main">
     <section class="hero" aria-labelledby="intro">
       <figure class="hero-portrait">
-        <img src="/portrait.jpeg" alt="Portrait of Zinzile Vuma" width="704" height="880" fetchpriority="high" onerror="this.closest('figure').remove()">
+        <picture>
+          <source type="image/webp" srcset="/portrait-528.webp 528w, /portrait-1056.webp 1056w" sizes="(min-width: 56rem) 22rem, 62vw">
+          <img src="/portrait-528.jpg" srcset="/portrait-528.jpg 528w, /portrait-1056.jpg 1056w" sizes="(min-width: 56rem) 22rem, 62vw" alt="Portrait of Zinzile Vuma" width="528" height="660" fetchpriority="high">
+        </picture>
       </figure>
       <div class="hero-text">
         <h1 id="intro">I help brands become known for something specific, and say it well.</h1>

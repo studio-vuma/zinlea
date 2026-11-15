@@ -11,8 +11,8 @@ Static HTML and CSS. No build step. The live site is everything in `site/`.
 - `site/404.html`
 
 ## Portrait
-Add the portrait as `site/portrait.jpeg` (portrait orientation, roughly 4:5, at least 704 x 880 px,
-compressed to under 200 KB). Until it exists, the home page hides the image space automatically.
+The portrait is `site/portrait.jpeg` (704 x 880) with resized copies `portrait-528` and `portrait-1056`
+in JPEG and WebP, and `og-image.jpg` for link previews. To replace it, regenerate all of these at 4:5.
 
 ## Deploying on Netlify
 1. Add new site, import this repository.
