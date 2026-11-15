@@ -263,13 +263,10 @@ a.pain:focus-visible { outline: 2px solid var(--black); outline-offset: 4px; }
 .service .heard + .when { margin-top: 14px; }
 .service .feel { margin-top: 18px; font-family: var(--display); font-size: 19px; line-height: 1.45; }
 .service .text-link { display: inline-block; margin-top: 22px; }
-.service:target .s-img img { filter: grayscale(0%); }
 
-/* Photographs: black and white, revealed in colour */
-.mood img, .s-img img, .c-img img, .teaser img { transition: filter .8s ease; }
-.mood img:hover, .s-img img:hover, .c-img img:hover, .teaser:hover img, .teaser:focus-visible img,
-.service:hover .s-img img, .in-colour { filter: grayscale(0%) contrast(1) !important; }
-@media (prefers-reduced-motion: reduce) { .mood img, .s-img img, .c-img img, .teaser img { transition: none; } }
+/* Photographs stay black and white. Only the homepage links below reveal colour on hover. */
+.teaser:focus-visible img { filter: grayscale(0%); }
+@media (prefers-reduced-motion: reduce) { .teaser img { transition: none; } }
 
 /* Case studies: the point of view first, then the facts */
 .case { scroll-margin-top: 140px; }
@@ -292,8 +289,7 @@ a.pain:focus-visible { outline: 2px solid var(--black); outline-offset: 4px; }
 .said { font-family: var(--display); font-size: clamp(20px, 2vw, 24px); line-height: 1.35; color: #2E2E2E; }
 .said + .said { margin-top: 10px; }
 .svc-img { margin: 0; }
-.svc-img img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: grayscale(100%); transition: filter .8s ease; }
-.svc-img img:hover, .svc-img img.in-colour { filter: grayscale(0%); }
+.svc-img img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: grayscale(100%); }
 .narrow { max-width: 860px; }
 .signs { list-style: none; margin-top: 26px; border-top: 1px solid var(--line); }
 .signs li { padding: 22px 0; border-bottom: 1px solid var(--line); font-family: var(--display); font-size: clamp(21px, 2.3vw, 27px); line-height: 1.35; }
