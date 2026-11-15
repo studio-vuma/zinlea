@@ -1,0 +1,31 @@
+# zinzilevuma.com
+# In Netlify, create a new site from this repository and set
+# Base directory = zinzilevuma. No build command is needed.
+
+[build]
+  publish = "site"
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "DENY"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[redirects]]
+  from = "https://www.zinzilevuma.com/*"
+  to = "https://zinzilevuma.com/:splat"
+  status = 301
+  force = true
