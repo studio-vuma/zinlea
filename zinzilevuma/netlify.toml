@@ -29,3 +29,10 @@
   to = "https://zinzilevuma.com/:splat"
   status = 301
   force = true
+
+# Page sources and build script are kept in the repo but not served
+[[redirects]]
+  from = "/src/*"
+  to = "/404"
+  status = 404
+  force = true

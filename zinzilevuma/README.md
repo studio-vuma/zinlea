@@ -2,7 +2,7 @@
 
 Static HTML and CSS. No build step. The live site is everything in `site/`.
 
-## Pages
+## Pages (edit the parts in site/src, then run: python3 site/src/build.py)
 - `site/index.html`: home (hero, approach, services, how it works, work preview, about, contact)
 - `site/services.html`: services and who each one suits
 - `site/work.html`: three concept studies (clearly labelled, not client projects)

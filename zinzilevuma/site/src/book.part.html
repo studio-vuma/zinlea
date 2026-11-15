@@ -1,0 +1,64 @@
+<!--TITLE:Book a Consultation | Zinzile Vuma-->
+<!--DESC:Book a complimentary 30-minute consultation with Zinzile Vuma to discuss your brand and its international ambitions.-->
+<section class="dark" style="padding-top:88px">
+  <div class="wrap book">
+    <div>
+      <div class="eyebrow">Book a Consultation</div>
+      <h1 style="font-size:clamp(38px,5vw,62px);line-height:1.08;margin-top:18px">Let's begin with a conversation.</h1>
+      <p class="lede" style="margin-top:24px">Tell me a little about your brand. I'll reply personally to arrange your complimentary 30-minute consultation at a time that suits you.</p>
+      <ul class="assure">
+        <li>30 minutes · complimentary · no obligation</li>
+        <li>By video call, or in person in London</li>
+        <li>Everything you share is kept in confidence</li>
+      </ul>
+    </div>
+    <div>
+      <form id="consultForm" name="consultation" method="POST" data-netlify="true" netlify-honeypot="company_url" novalidate>
+        <input type="hidden" name="form-name" value="consultation">
+        <p style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave this empty <input name="company_url" tabindex="-1" autocomplete="off"></label></p>
+        <div class="row2">
+          <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required><div class="err" id="e-name" aria-live="polite"></div></div>
+          <div class="field"><label for="f-brand">Brand or organisation</label><input id="f-brand" name="brand" autocomplete="organization" required><div class="err" id="e-brand" aria-live="polite"></div></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required><div class="err" id="e-email" aria-live="polite"></div></div>
+          <div class="field">
+            <label for="f-interest">I'm interested in</label>
+            <select id="f-interest" name="interest">
+              <option>International market expansion</option>
+              <option>Brand positioning &amp; brand culture</option>
+              <option>Provenance strategy</option>
+              <option>Platform &amp; retail readiness</option>
+              <option>Market intelligence</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="f-markets">Markets you're considering</label><input id="f-markets" name="markets" placeholder="e.g. UK, UAE, United States"></div>
+        <div class="field"><label for="f-msg">What's on your mind?</label><textarea id="f-msg" name="message" placeholder="Where the brand is today, and where you'd like it to go."></textarea></div>
+        <button class="btn" type="submit">Request my consultation</button>
+        <p class="form-note">Prefer email? Write to <a href="mailto:vzinzile@gmail.com?subject=Complimentary%20consultation%20request">vzinzile@gmail.com</a></p>
+      </form>
+      <div class="thanks" id="thanks" role="status" tabindex="-1">
+        <h3>Thank you.</h3>
+        <p>Your request has been received. I'll be in touch personally to arrange your consultation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="max-width:860px">
+    <div class="center">
+      <div class="eyebrow reveal">Before we speak</div>
+      <h2 class="title reveal" style="margin-bottom:48px">What to expect.</h2>
+    </div>
+    <div class="faq reveal">
+      <details><summary>What happens after I request a consultation?</summary><p>I'll reply personally to agree a time that suits you, by video call or in person in London.</p></details>
+      <details><summary>Do I need to prepare anything?</summary><p>No. Come as you are. If you'd like, share your website or any materials beforehand so we can make the most of the time.</p></details>
+      <details><summary>Is the consultation really complimentary?</summary><p>Yes. There is no cost and no obligation. It is simply the best way to understand whether, and how, I can help.</p></details>
+      <details><summary>What happens if we decide to work together?</summary><p>We'll arrange a private briefing to go deeper, and I'll prepare a tailored written proposal with the scope, deliverables and timeline.</p></details>
+      <details><summary>Will what I share be kept confidential?</summary><p>Always. Everything you share about your brand, plans and markets is kept in confidence.</p></details>
+    </div>
+  </div>
+</section>
