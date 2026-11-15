@@ -76,6 +76,7 @@ h2.title { font-size: clamp(32px, 4.4vw, 50px); line-height: 1.12; margin-top: 1
 /* Page hero */
 .page-hero { text-align: center; padding: 80px 0 48px; }
 .page-hero h1 { font-size: clamp(40px, 6vw, 74px); line-height: 1.08; margin: 22px auto 0; max-width: 16ch; }
+.page-hero h1.statement { font-size: clamp(34px, 4.6vw, 60px); line-height: 1.12; max-width: 22ch; }
 .page-hero .lede { margin-top: 26px; }
 .page-hero .btn { margin-top: 34px; }
 
