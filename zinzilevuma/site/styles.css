@@ -248,3 +248,25 @@ img.p2 { object-position: 62% 20%; }
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .8s ease, transform .8s ease; }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { opacity: 1; transform: none; } * { transition: none !important; } }
+
+/* Quotes link to the service that suits them */
+a.pain { display: block; color: inherit; text-decoration: none; transition: background .3s; }
+a.pain .fit { display: inline-block; margin-top: 14px; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--grey); }
+a.pain .fit span { color: var(--black); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+a.pain:hover .q, a.pain:focus-visible .q { opacity: .72; }
+a.pain:hover .fit span, a.pain:focus-visible .fit span { border-bottom-width: 2px; }
+a.pain:focus-visible { outline: 2px solid var(--black); outline-offset: 4px; }
+
+/* Services: the client's own words, and how it feels */
+.service { scroll-margin-top: 140px; }
+.service .heard { font-family: var(--display); font-size: 20px; line-height: 1.35; color: #3A3A3A; margin-bottom: 6px; }
+.service .heard + .when { margin-top: 14px; }
+.service .feel { margin-top: 18px; font-family: var(--display); font-size: 19px; line-height: 1.45; }
+.service .text-link { display: inline-block; margin-top: 22px; }
+.service:target .s-img img { filter: grayscale(0%); }
+
+/* Photographs: black and white, revealed in colour */
+.mood img, .s-img img, .c-img img, .teaser img { transition: filter .8s ease; }
+.mood img:hover, .s-img img:hover, .c-img img:hover, .teaser:hover img, .teaser:focus-visible img,
+.service:hover .s-img img, .in-colour { filter: grayscale(0%) contrast(1) !important; }
+@media (prefers-reduced-motion: reduce) { .mood img, .s-img img, .c-img img, .teaser img { transition: none; } }
