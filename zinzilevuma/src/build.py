@@ -229,7 +229,7 @@ def home():
 
 <section class="section">
   <div class="wrap">
-    <div class="section-head reveal"><span class="label">Advisory portfolio</span><h2>The work, told as a journey.</h2></div>
+    <div class="section-head reveal"><span class="label">Advisory portfolio</span><h2>Selected work.</h2></div>
     {pf.feature_card(arrow, "h3")}
     <div class="actions"><a class="link" href="/portfolio/">The full portfolio {arrow()}</a></div>
   </div>
@@ -502,7 +502,7 @@ def portfolio():
   <div class="wrap">
     <span class="label">Portfolio</span>
     <h1>The advisory portfolio.</h1>
-    <p class="lede">Selected work, told as it happened. Each piece is labelled for exactly what it is: academic placement, professional experience, research in progress or independent study. Client names and confidential material are withheld.</p>
+    <p class="lede">Selected work, each labelled for what it is: academic placement, professional experience, research in progress or independent study. Client names and confidential material are withheld.</p>
   </div>
 </section>
 <section class="section" style="padding-top:0">

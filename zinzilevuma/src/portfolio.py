@@ -1,4 +1,4 @@
-"""Advisory portfolio: the portfolio index and each case, told as a journey."""
+"""Advisory portfolio: the portfolio index and each case study."""
 import html
 
 e = html.escape
@@ -9,10 +9,12 @@ CASE_01 = dict(
     status="Academic placement",
     title="Carrying a heritage forward, online.",
     short_title="Carrying a heritage forward, online",
-    teaser="A curated platform for independent British designers had built its following in pop-up rooms. Working directly with its founders, I helped carry that heritage online without losing the craft and storytelling that set it apart.",
-    meta="Case study: digital discovery and editorial strategy for a curated platform of independent British designers, moving from pop-up retail to online discovery.",
-    glance=[("Client", "Curated British designer platform"), ("Sector", "Contemporary womenswear & jewellery"),
-            ("My role", "Brand & digital discovery strategy"), ("Worked with", "The founders, directly"), ("Focus", "Editorial, search visibility, trend mapping")],
+    teaser="A curated multi-brand platform for independent British designers had built its following through pop-up spaces. Working directly with the founders, I helped them take that following online without losing the craft and storytelling that set them apart.",
+    meta="Case study: SEO and digital discovery for a curated multi-brand platform of independent British designers, moving from pop-up spaces to online discovery.",
+    glance=[("Client", "Curated multi-brand platform for independent British designers"),
+            ("Sector", "Contemporary womenswear: curated, no-waste, organic British fashion"),
+            ("My role", "SEO and digital discovery strategy"), ("Worked with", "Directly with the founders"),
+            ("Focus", "Editorial, search visibility and trend mapping")],
 )
 
 CHAPTERS = [("ch-1", "Where it began"), ("ch-2", "The crossroads"), ("ch-3", "Finding the way"),
@@ -37,9 +39,9 @@ def case_01_body(arrow, invite):
     <p class="crumb"><a href="/portfolio/">Portfolio</a> &nbsp;/&nbsp; Case {c['num']}</p>
     <span class="label" style="display:block;margin-top:26px">Advisory portfolio &middot; Case {c['num']} &middot; {e(c['status'])}</span>
     <h1>Carrying a heritage forward, <span class="ink-swap">online</span>.</h1>
-    <p class="lede">A curated platform for independent British designers had built its following in pop-up rooms, one conversation at a time. The question was how to carry that heritage online without losing the craft and storytelling that set it apart. This is the journey of how we found the way.</p>
+    <p class="lede">A curated multi-brand platform for independent British designers had built its following through pop-up spaces. Each location drew a different crowd and a different set of supporters. The next part of their story was taking that heritage, and the following the pop-ups had built, online without losing the craft and storytelling that set them apart.</p>
     <dl class="glance reveal">{glance}</dl>
-    <nav class="chapters reveal" aria-label="Chapters"><p class="label">The journey</p><ol>{chapters}</ol></nav>
+    <nav class="chapters reveal" aria-label="Chapters"><p class="label">In this case study</p><ol>{chapters}</ol></nav>
   </div>
 </header>
 
@@ -47,13 +49,13 @@ def case_01_body(arrow, invite):
   <div class="wrap ch-grid">
     {chapter_head(0, "Between editorial and retail.")}
     <div class="ch-body reveal">
-      <p class="lede">The client curates collections from a network of independent studios across the British Isles.</p>
+      <p class="lede">The platform brings together independent British designers, with a focus on curated, no-waste, organic fashion, much of it made to order.</p>
       <ul class="chips">
-        <li>Sustainability-led production</li><li>Heritage textiles</li><li>Limited runs</li><li>Made to order</li>
+        <li>Curated</li><li>No-waste</li><li>Organic</li><li>Made to order</li>
       </ul>
-      <p>It is not a volume retailer. It sits somewhere between an editorial discovery space and a selective boutique, serving a considered customer who wants to know who made something, and why.</p>
-      <p>Until now, that story had mostly been told in person: in the room, with the garment in hand.</p>
-      <p>I worked directly with the founders, so I came to know the vision behind the platform first-hand, not through a brief.</p>
+      <p>Its designers came to the platform because of its pop-ups. Many of them already sold online through their own channels, but the pop-ups gave them a physical space and a following in each location.</p>
+      <p>Until then, most of the selling happened in person. Customers could touch the garments and understand how they were made, and that physical experience was what everyone leaned towards, the designers included.</p>
+      <p>I worked directly with the founders throughout.</p>
     </div>
   </div>
 </section>
@@ -62,14 +64,15 @@ def case_01_body(arrow, invite):
   <div class="wrap ch-grid">
     {chapter_head(1, "From the room to the screen.")}
     <div class="ch-body reveal">
-      <p class="lede">The brief: connect an audience spread across the country, and design a marketing structure that could grow with it, while the business moved from physical retail towards online discovery.</p>
+      <p class="lede">The brief was to move from physical to digital discovery.</p>
+      <p>One goal mattered more than most. The designers had joined for the pop-ups, and many were already online on their own. The move had to give them a reason to want to be featured online through the platform too, as something that added to their presence rather than competed with it.</p>
     </div>
   </div>
   <div class="wrap">
     <div class="shift reveal" aria-label="The shift the client was making">
-      <div class="from"><span class="label">From</span><h3>Physical presence</h3><ul><li>Reliance on pop-ups and in-person retail</li><li>Stories told in the room, not online</li><li>Discovery limited by geography</li></ul></div>
+      <div class="from"><span class="label">From</span><h3>Physical presence</h3><ul><li>Pop-ups in different locations, each with its own crowd</li><li>Customers touching the garments to understand them</li><li>Designers drawn in by the physical space</li></ul></div>
       <div class="via" aria-hidden="true"><span>&rarr;</span></div>
-      <div class="to"><span class="label">To</span><h3>Digital discovery</h3><ul><li>An online destination for British design</li><li>Storytelling customers can find and read</li><li>A framework that works for years, not one campaign</li></ul></div>
+      <div class="to"><span class="label">To</span><h3>Digital discovery</h3><ul><li>An online home for curated British fashion</li><li>The craft and the story, explained so customers can find it</li><li>Designers who see being featured online as a plus</li></ul></div>
     </div>
   </div>
 </section>
@@ -78,8 +81,8 @@ def case_01_body(arrow, invite):
   <div class="wrap ch-grid">
     {chapter_head(2, "Built around the brand, not a template.")}
     <div class="ch-body reveal">
-      <p class="lede">I did not reach for a standard marketing playbook. I started with the client's goals and identity, and shaped every recommendation to fit them.</p>
-      <p>The work moved through four stations.</p>
+      <p class="lede">I didn't use a standard marketing playbook. I started with the founders' goals and the brand's identity, and shaped every recommendation around them.</p>
+      <p>The work had four stages.</p>
     </div>
   </div>
   <div class="wrap">
@@ -111,12 +114,12 @@ def case_01_body(arrow, invite):
   <div class="wrap ch-grid">
     {chapter_head(4, "Visibility without dilution.")}
     <div class="ch-body reveal">
-      <p class="lede">Here was the real tension. Search visibility mattered a great deal, but chasing it too hard would flatten a sustainability-led, story-first brand. The strategy had to hold both.</p>
+      <p class="lede">Search visibility mattered a great deal, but chasing it too hard would flatten a no-waste, story-led brand. The strategy had to balance both.</p>
       <div class="balance">
-        <label for="balance" class="label">Drag to feel the trade-off</label>
+        <label for="balance" class="label">Move the slider to see the trade-off</label>
         <div class="balance-ends" aria-hidden="true"><span>Search visibility</span><span>Brand identity</span></div>
-        <input id="balance" type="range" min="0" max="100" value="50" aria-describedby="balance-out" aria-valuetext="Held at the centre">
-        <p class="balance-out" id="balance-out" aria-live="polite">Held at the centre: keywords that serve the storytelling, not replace it.</p>
+        <input id="balance" type="range" min="0" max="100" value="50" aria-describedby="balance-out" aria-valuetext="Balanced">
+        <p class="balance-out" id="balance-out" aria-live="polite">Balanced: keywords that support the storytelling rather than replace it.</p>
       </div>
     </div>
   </div>
@@ -125,7 +128,7 @@ def case_01_body(arrow, invite):
 <section class="chapter on-paper" id="ch-6">
   <div class="wrap ch-grid">
     {chapter_head(5, "Value created.")}
-    <div class="ch-body reveal"><p class="lede">By the end of the journey, the work had strengthened the client on four fronts.</p></div>
+    <div class="ch-body reveal"><p class="lede">The work strengthened the client in four areas.</p></div>
   </div>
   <div class="wrap">
     <div class="fronts">
@@ -167,7 +170,7 @@ def case_01_body(arrow, invite):
 </section>
 </article>
 
-{invite(title="Begin your own journey", text="An initial conversation to explore your objectives, understand the nature of the challenge and establish whether there is a basis for working together.", navy=True)}
+{invite(title="Request a private consultation", text="An initial conversation to explore your objectives, understand the nature of the challenge and establish whether there is a basis for working together.", navy=True)}
 
 <section class="section" style="padding-top:0">
   <div class="wrap"><nav class="pager" aria-label="Portfolio"><a href="/portfolio/"><span class="label">&larr; Back to</span><span class="t">The advisory portfolio</span></a><a href="/advisory/"><span class="label">Explore &rarr;</span><span class="t">The six advisory disciplines</span></a></nav></div>
@@ -186,7 +189,7 @@ def feature_card(arrow, heading_tag="h2"):
     <span class="label">Case {c['num']} &middot; {e(c['status'])}</span>
     <{heading_tag}>{e(c['title'])}</{heading_tag}>
     <p>{e(c['teaser'])}</p>
-    <span class="btn">Follow the journey {arrow()}</span>
+    <span class="btn">Read the case study {arrow()}</span>
   </div>
   {journey_motif()}
 </a>"""

@@ -117,11 +117,11 @@
   if (range && out) {
     var say = function () {
       var v = +range.value, msg;
-      if (v <= 20) msg = 'All visibility: found by many, remembered by few. The brand begins to sound like everyone else.';
-      else if (v < 40) msg = 'Leaning towards visibility: more traffic, but the story is starting to thin.';
-      else if (v <= 60) msg = 'Held at the centre: keywords that serve the storytelling, not replace it.';
-      else if (v < 80) msg = 'Leaning towards identity: the story is intact, but fewer people find it.';
-      else msg = 'All identity: true to itself, but hard to find. The story stays in the room.';
+      if (v <= 20) msg = 'Too much visibility: easy to find, but the brand starts to sound like everyone else.';
+      else if (v < 40) msg = 'Leaning towards visibility: more traffic, but less of the story.';
+      else if (v <= 60) msg = 'Balanced: keywords that support the storytelling rather than replace it.';
+      else if (v < 80) msg = 'Leaning towards identity: the story stays intact, but fewer people find it.';
+      else msg = 'Too much identity: true to the brand, but hard to find online.';
       out.textContent = msg;
       range.setAttribute('aria-valuetext', msg.split(':')[0]);
       range.style.setProperty('--fill', v + '%');
