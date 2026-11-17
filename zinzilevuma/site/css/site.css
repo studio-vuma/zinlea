@@ -554,3 +554,8 @@ p { text-wrap: pretty; }
 .motif li:nth-child(3), .motif li:nth-child(3) span { transition-delay: 1.1s; }
 .motif li:nth-child(4), .motif li:nth-child(4) span { transition-delay: 1.4s; }
 .js .case-feature:not(.reveal) .motif li { opacity: 1; }
+
+/* Reserved discipline */
+.reserved { display: inline-block; vertical-align: middle; margin-left: 12px; padding: 4px 11px; border-radius: 999px; background: var(--navy); color: var(--ivory); font-family: var(--sans); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; position: relative; top: -3px; }
+.reserved-note { display: inline-flex; align-items: center; gap: 10px; margin-top: 16px; padding: 7px 16px 7px 8px; border: 1px solid var(--navy); border-radius: 999px; font-family: var(--sans); font-size: 13.5px; }
+.reserved-note::before { content: ""; width: 20px; height: 20px; border-radius: 50%; background: var(--navy); flex: none; }

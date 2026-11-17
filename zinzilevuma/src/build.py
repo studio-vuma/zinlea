@@ -170,7 +170,7 @@ def crumbs(*items):
 
 # ---------------------------------------------------------------- home
 def home():
-    idx = "".join(f'''<a href="/advisory/{s["slug"]}/"><span class="num">{s["num"]}</span><h3>{e(s["title"])}</h3><p>{e(s["positioning"])}</p><span class="go" aria-hidden="true">&rarr;</span></a>''' for s in SERVICES)
+    idx = "".join(f'''<a href="/advisory/{s["slug"]}/"><span class="num">{s["num"]}</span><h3>{e(s["title"])}{('<span class="reserved">Reserved</span>' if s.get("reserved") else '')}</h3><p>{e(s["positioning"])}</p><span class="go" aria-hidden="true">&rarr;</span></a>''' for s in SERVICES)
     teasers = "".join(f'''<a class="teaser reveal" href="/perspectives/{a["slug"]}/"><div class="img">{pic(a["image"], "", "(min-width: 900px) 30vw, 100vw")}</div><span class="label">{e(a["kind"])}</span><h3>{e(a["title"])}</h3><p>{e(a["standfirst"])}</p></a>''' for a in ARTICLES)
     sectors = "".join(f"<li>{e(x)}</li>" for x in SECTORS)
     clients = "".join(f"<li>{e(x)}</li>" for x in CLIENTS)
@@ -205,7 +205,7 @@ def home():
 
 <section class="section on-paper">
   <div class="wrap">
-    <div class="section-head reveal"><span class="label">Areas of advisory</span><h2>Six disciplines, shaped around each engagement.</h2><p class="muted">Clients engage me in one discipline or across several. The scope is developed around the circumstances, not chosen from a menu.</p></div>
+    <div class="section-head reveal"><span class="label">Areas of advisory</span><h2>Seven disciplines, shaped around each engagement.</h2><p class="muted">Clients engage me in one discipline or across several. The scope is developed around the circumstances, not chosen from a menu.</p></div>
     <nav class="index reveal" aria-label="Advisory disciplines">{idx}</nav>
     <div class="actions"><a class="link" href="/advisory/">How I work with clients {arrow()}</a></div>
   </div>
@@ -272,7 +272,7 @@ def advisory():
     for s in SERVICES:
         areas = "".join(f"<li>{e(a)}</li>" for a in s["areas"][:6])
         discs += f"""<article class="disc reveal" id="{s['slug']}">
-      <div><span class="label">{s['num']}</span><h2>{e(s['title'])}</h2></div>
+      <div><span class="label">{s['num']}</span><h2>{e(s['title'])}</h2>{('<p class="reserved-note">' + e(s['reserved']) + '</p>') if s.get('reserved') else ''}</div>
       <div><p class="pos">{e(s['positioning'])}</p><p style="margin-top:14px">{e(s['summary'])}</p><ul class="areas">{areas}</ul><a class="link" href="/advisory/{s['slug']}/">Explore {e(s['short'])} {arrow()}</a></div>
     </article>"""
     clients = "".join(f"<li>{e(x)}</li>" for x in CLIENTS)
@@ -328,7 +328,7 @@ def advisory():
 </section>
 
 {invite()}"""
-    desc = "Six advisory disciplines: luxury brand strategy, international market entry, provenance and value creation, commercial development, institutional and destination advisory, and strategic research."
+    desc = "Seven advisory disciplines: luxury brand strategy, international market entry, provenance and value creation, commercial development, institutional and destination advisory, strategic research, and brand scouting for acquisitions."
     write("/advisory/", page("/advisory/", f"Advisory | {NAME}", desc, body, section="/advisory/",
                              schema=[{"@context": "https://schema.org", **ORG}, crumbs(("Home", "/"), ("Advisory", "/advisory/"))]))
 
@@ -345,6 +345,7 @@ def service(i, s):
     body = f"""<section class="page-hero">
   <div class="wrap">
     <p class="crumb"><a href="/advisory/">Advisory</a> &nbsp;/&nbsp; {s['num']}</p>
+    {('<p class="reserved-note" style="margin-top:22px">' + e(s['reserved']) + '</p>') if s.get('reserved') else ''}
     <h1>{e(s['title'])}</h1>
     <p class="lede">{e(s['positioning'])}</p>
     <div class="actions"><a class="btn" href="/enquire/?area={s['slug']}">Request a consultation {arrow()}</a></div>

@@ -236,6 +236,41 @@ SERVICES = [
         value="The objective is not simply to understand the market as it stands, but to anticipate what it could become and to position the business accordingly.",
         image="nairobi",
     ),
+    dict(
+        num="VII", slug="acquisition-research", short="Brand Scouting & Acquisition Research",
+        title="Brand Scouting & Acquisition Research",
+        reserved="Reserved for luxury groups, conglomerates and investors",
+        positioning="Finding the African brands, makers and founders worth investing in, and judging how they would fit a portfolio.",
+        summary="For groups looking to acquire or take stakes in African businesses. I research local markets and demographics to find the brands and talent that would fit the portfolio, and that could be developed further.",
+        meta="Brand scouting and acquisition research for luxury groups, conglomerates and investors looking to acquire or take stakes in African brands and businesses.",
+        challenge_head="The right businesses are rarely on a list.",
+        challenge=[
+            "Groups looking at African brands often start from the same handful of well-known names. Many of the businesses that would suit a portfolio best are smaller, younger or less visible, and are known locally long before they are known internationally.",
+            "Finding them takes research on the ground, an understanding of local customers and demographics, and a clear sense of what makes a brand worth developing.",
+        ],
+        questions=[
+            "Which African brands and businesses would fit our portfolio?",
+            "Which founders and makers are worth backing, and why?",
+            "What would it take to develop them for international markets?",
+        ],
+        contribution=[
+            "I research local markets and demographics to identify brands, makers and founders that match your criteria. For each one I look at positioning, craft, customers and potential, and at how it would sit alongside the businesses you already own.",
+            "You receive a considered shortlist with a clear view of each opportunity and what developing it would involve. The work is confidential from start to finish.",
+        ],
+        areas=[
+            "Local market and demographic research", "Brand and talent scouting", "Portfolio fit assessment",
+            "Founder and maker profiles", "Brand development potential", "Positioning and growth prospects",
+            "Considerations for taking acquired brands to new markets", "Confidential opportunity briefings",
+        ],
+        relevant=[
+            "Luxury groups and conglomerates",
+            "Investors taking stakes in consumer brands",
+            "Family offices interested in African markets",
+            "Corporate acquisition and venture teams",
+        ],
+        value="A clear, well-researched view of the African businesses worth investing in, found before they are obvious to everyone else.",
+        image="durban-port",
+    ),
 ]
 
 ARTICLES = [

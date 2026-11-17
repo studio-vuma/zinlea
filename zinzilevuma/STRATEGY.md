@@ -49,7 +49,7 @@ None of these alone is distinctive. The combination, delivered personally, is. T
 ### Where I have challenged the brief
 
 - **Job title.** "Founder & Principal Luxury Brand Advisor" is implemented as you specified. My recommendation is **"Founder & Principal Advisor"**, keeping luxury in the description rather than the title. "Luxury Brand Advisor" sits awkwardly beside destination advisory for ministries, or market intelligence for investors, and narrows the practice at the point of first contact. It is a one-line change in `src/content.py` (`TITLE`).
-- **Breadth versus proof.** Six disciplines, from brand positioning to government advisory, is a broad offer for an independent practice with limited published work. Breadth without evidence reads as overreach to exactly the senior buyers you want. I have handled this by leading with the intellectual proposition, publishing perspectives that demonstrate judgement, and labelling every piece of work precisely. The real fix is time: commissioned work you can describe, and testimonials you can attribute.
+- **Breadth versus proof.** Seven disciplines, from brand positioning to government advisory, is a broad offer for an independent practice with limited published work. Breadth without evidence reads as overreach to exactly the senior buyers you want. I have handled this by leading with the intellectual proposition, publishing perspectives that demonstrate judgement, and labelling every piece of work precisely. The real fix is time: commissioned work you can describe, and testimonials you can attribute.
 - **"Critical materials and strategic value chains."** I have not written content on this. It is far from the luxury core and would need a substantiated point of view to be credible. I suggest adding it only once you have one.
 - **The client quotes.** These are removed. Each service now lists "the questions it addresses", which keeps the empathy without implying testimonials.
 
@@ -64,6 +64,7 @@ None of these alone is distinctive. The combination, delivered personally, is. T
 /advisory/commercial-development/ IV Commercial Development & Market Access
 /advisory/institutions-destinations/ V Institutional & Destination Advisory
 /advisory/research-intelligence/ VI Strategic Research & Market Intelligence
+/advisory/acquisition-research/ VII Brand Scouting & Acquisition Research (reserved for groups and investors)
 /about/                         Founder narrative and background
 /portfolio/                     Advisory portfolio: cases told as journeys, plus further work
 /portfolio/carrying-a-heritage-forward/  Case 01
@@ -82,7 +83,7 @@ Old addresses (`/services`, `/service-*.html`, `/book.html`, `/about.html`) redi
 
 1. **Hero:** name and title, the three-line proposition, supporting sentence, "Explore the advisory" and "Meet Zinzile". The portrait is in the hero on desktop, and on mobile it comes first, above the headline.
 2. **The practice:** "Senior counsel, given personally", then the three-part proposition (where markets are, where they are going, what comes next).
-3. **Areas of advisory:** the six disciplines as an editorial index (numeral, title, positioning line). No cards.
+3. **Areas of advisory:** the seven disciplines as an editorial index (numeral, title, positioning line). No cards.
 4. **The principal advisor:** a navy section with a substantial portrait, a short introduction and a statement of direct access.
 5. **Strategic perspectives:** three essays, with black and white images that reveal colour on hover.
 6. **Geographic and sector perspective:** London base and a pan-African and global view, with sectors of focus and who I advise. There is no map graphic.
@@ -113,6 +114,7 @@ The pages describe *what* I advise on and *why it matters*. They do not describe
 | IV | Commercial Development & Market Access | Identifying and strengthening the commercial pathways through which businesses access markets and create value. |
 | V | Institutional & Destination Advisory | Strengthening the strategic positioning of destinations, institutions and sector ecosystems. |
 | VI | Strategic Research & Market Intelligence | Understanding what exists. Anticipating what comes next. |
+| VII | Brand Scouting & Acquisition Research | Finding the African brands, makers and founders worth investing in, and judging how they would fit a portfolio. Reserved for luxury groups, conglomerates and investors. |
 
 The collaborative model replaces the six-stage journey. It is set out as what you bring, what I bring and what we do together, followed by seven commitments: direct engagement, understanding, collaborative perspectives, independent research, commercial implications, recommendations and ongoing support.
 
@@ -154,7 +156,7 @@ They contain no statistics. Please read and approve them before the custom domai
 - Canonical URLs on `zinzilevuma.com`, plus a sitemap, robots file, Open Graph and Twitter metadata, and a share image built from the portrait.
 - Structured data:
   - `Person`
-  - `ProfessionalService` with an offer catalogue of the six disciplines
+  - `ProfessionalService` with an offer catalogue of the seven disciplines
   - `Service` on each discipline page
   - `Article` on each perspective
   - `ProfilePage`
@@ -171,7 +173,7 @@ They contain no statistics. Please read and approve them before the custom domai
   - Fields for role, organisation, area of advisory (preselected from each discipline page) and markets of interest.
   - Sends in place with confirmation, and falls back to a thank-you page without JavaScript.
   - A privacy notice is linked from the form.
-- The footer is branded and clean: the practice description, all six disciplines, a branded email address, and privacy and credits links.
+- The footer is branded and clean: the practice description, all seven disciplines, a branded email address, and privacy and credits links.
 
 ## Open questions (not invented, please confirm)
 

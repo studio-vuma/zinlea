@@ -173,7 +173,7 @@ def case_01_body(arrow, invite):
 {invite(title="Request a private consultation", text="An initial conversation to explore your objectives, understand the nature of the challenge and establish whether there is a basis for working together.", navy=True)}
 
 <section class="section" style="padding-top:0">
-  <div class="wrap"><nav class="pager" aria-label="Portfolio"><a href="/portfolio/"><span class="label">&larr; Back to</span><span class="t">The advisory portfolio</span></a><a href="/advisory/"><span class="label">Explore &rarr;</span><span class="t">The six advisory disciplines</span></a></nav></div>
+  <div class="wrap"><nav class="pager" aria-label="Portfolio"><a href="/portfolio/"><span class="label">&larr; Back to</span><span class="t">The advisory portfolio</span></a><a href="/advisory/"><span class="label">Explore &rarr;</span><span class="t">The advisory disciplines</span></a></nav></div>
 </section>"""
 
 
