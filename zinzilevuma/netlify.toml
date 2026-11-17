@@ -1,6 +1,6 @@
 # zinzilevuma.com
-# In Netlify, create a new site from this repository and set
-# Base directory = zinzilevuma. No build command is needed.
+# Netlify project: zinzile-vuma. Base directory: zinzilevuma. No build command:
+# pages are generated locally with `python3 src/build.py` and committed in site/.
 
 [build]
   publish = "site"
@@ -18,21 +18,89 @@
   for = "/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
 
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=86400, must-revalidate"
 
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+# Earlier addresses, kept working
+[[redirects]]
+  from = "/services"
+  to = "/advisory/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/services.html"
+  to = "/advisory/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/service-positioning.html"
+  to = "/advisory/brand-strategy/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/service-expansion.html"
+  to = "/advisory/market-entry/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/service-provenance.html"
+  to = "/advisory/provenance/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/service-platform.html"
+  to = "/advisory/commercial-development/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/service-intelligence.html"
+  to = "/advisory/research-intelligence/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/about.html"
+  to = "/about/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/book.html"
+  to = "/enquire/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/book"
+  to = "/enquire/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/contact"
+  to = "/enquire/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+# One public address. Once zinzilevuma.com is set as the primary domain in
+# Netlify, the netlify.app address redirects to it automatically.
 [[redirects]]
   from = "https://www.zinzilevuma.com/*"
   to = "https://zinzilevuma.com/:splat"
   status = 301
-  force = true
-
-# Page sources and build script are kept in the repo but not served
-[[redirects]]
-  from = "/src/*"
-  to = "/404"
-  status = 404
   force = true
