@@ -73,7 +73,7 @@ def page(path, title, desc, body, section=None, schema=None, noindex=False, og_t
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0F1B2D">
+<meta name="theme-color" content="#0B0B0B">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/newsreader-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -563,7 +563,7 @@ def small_pages():
     urls = ["/", "/advisory/"] + [f"/advisory/{s['slug']}/" for s in SERVICES] + ["/about/", "/perspectives/"] + [f"/perspectives/{a['slug']}/" for a in ARTICLES] + ["/enquire/", "/privacy/", "/credits/"]
     (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{SITE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
-    (ROOT / "favicon.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#0F1B2D"/><text x="32" y="44" font-family="Georgia, \'Times New Roman\', serif" font-size="36" fill="#F6F1E7" text-anchor="middle">Z</text><rect x="20" y="51" width="24" height="1.5" fill="#CDB27C"/></svg>\n')
+    (ROOT / "favicon.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#0B0B0B"/><text x="32" y="44" font-family="Georgia, \'Times New Roman\', serif" font-size="36" fill="#FFFFFF" text-anchor="middle">Z</text><rect x="20" y="51" width="24" height="1.5" fill="#B5B5B5"/></svg>\n')
 
 
 if __name__ == "__main__":

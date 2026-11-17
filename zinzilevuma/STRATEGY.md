@@ -50,7 +50,6 @@ None of these alone is distinctive. The combination, delivered personally, is. T
 
 - **Job title.** "Founder & Principal Luxury Brand Advisor" is implemented as you specified. My recommendation is **"Founder & Principal Advisor"**, keeping luxury in the description rather than the title. "Luxury Brand Advisor" sits awkwardly beside destination advisory for ministries, or market intelligence for investors, and narrows the practice at the point of first contact. It is a one-line change in `src/content.py` (`TITLE`).
 - **Breadth versus proof.** Six disciplines, from brand positioning to government advisory, is a broad offer for an independent practice with limited published work. Breadth without evidence reads as overreach to exactly the senior buyers you want. I have handled this by leading with the intellectual proposition, publishing perspectives that demonstrate judgement, and labelling every piece of work precisely. The real fix is time: commissioned work you can describe, and testimonials you can attribute.
-- **Gold.** The palette uses antique gold only for hairlines, small labels and markers, never as a fill or headline colour. More would undermine the restraint you asked for.
 - **"Critical materials and strategic value chains."** I have not written content on this. It is far from the luxury core and would need a substantiated point of view to be credible. I suggest adding it only once you have one.
 - **The client quotes.** These are removed. Each service now lists "the questions it addresses", which keeps the empathy without implying testimonials.
 
@@ -133,13 +132,13 @@ They contain no statistics. Please read and approve them before the custom domai
 
 ## 8. Visual design direction
 
-- **Palette:** midnight navy `#0F1B2D`, warm ivory `#F6F1E7`, a deeper ivory `#EEE7D9`, charcoal `#2B2E34`, and antique gold `#A88A55` (hairlines and markers only) with a darker gold `#775C30` for small text. All text meets WCAG AA contrast.
+- **Palette:** black and white. Black `#0B0B0B` for text, buttons and feature sections; white `#FFFFFF` pages; a very light grey `#F4F4F2` for alternate sections; greys for hairlines and small labels (`#5C5C5C` for small text, 6.7:1 on white). All text meets WCAG AA contrast. (This replaced an earlier navy, ivory and gold palette at your request.)
 - **Typography:**
   - Newsreader, a variable editorial serif with optical sizes, for headings, key statements and questions.
   - Instrument Sans for descriptive and reading copy, navigation, labels and buttons.
   - Both are self-hosted, with no third-party font requests.
   - This replaces Playfair Display, which is heavily associated with templates.
-- **Wordmark:** the name set in Newsreader, with "Private Advisory · London" beneath. The boxed monogram is gone. The favicon is a single serif "Z" on navy with a gold rule.
+- **Wordmark:** the name set in Newsreader, with "Private Advisory · London" beneath. The boxed monogram is gone. The favicon is a single serif "Z" in white on black.
 - **Photography:**
   - The portrait is used in three crops (4:5 hero, 3:4 feature, 1:1 note).
   - Contemporary African architecture, craft, production, hospitality and commercial infrastructure (Djenné, Fez, Kericho, Durban, Marrakech, Kigali, Nairobi) replaces safari and textile imagery.

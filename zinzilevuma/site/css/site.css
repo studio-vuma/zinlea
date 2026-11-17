@@ -8,19 +8,19 @@
   src: url("/fonts/instrument-sans-latin-wght-normal.woff2") format("woff2-variations"), url("/fonts/instrument-sans-latin-wght-normal.woff2") format("woff2"); }
 
 :root {
-  --navy: #0F1B2D;
-  --navy-2: #172840;
-  --charcoal: #2B2E34;
-  --ivory: #F6F1E7;
-  --ivory-2: #EEE7D9;
-  --ink: #15191F;
-  --muted: #535963;          /* 6.4:1 on ivory */
-  --line: #DCD2C0;
-  --line-dark: rgba(246, 241, 231, .16);
-  --gold: #A88A55;           /* hairlines and markers only */
-  --gold-text: #775C30;      /* 5.7:1 on ivory */
-  --gold-on-navy: #CDB27C;   /* 8:1 on navy */
-  --on-navy-muted: #C9CDD4;
+  --navy: #0B0B0B;
+  --navy-2: #1A1A1A;
+  --charcoal: #2B2B2B;
+  --ivory: #FFFFFF;
+  --ivory-2: #F4F4F2;
+  --ink: #0B0B0B;
+  --muted: #5C5C5C;          /* 6.7:1 on white */
+  --line: #E0E0E0;
+  --line-dark: rgba(255, 255, 255, .16);
+  --gold: #8A8A8A;           /* hairlines and markers */
+  --gold-text: #5C5C5C;      /* 6.7:1 on white */
+  --gold-on-navy: #B5B5B5;   /* 9:1 on black */
+  --on-navy-muted: #CFCFCF;
   --serif: "Newsreader", Georgia, "Times New Roman", serif;
   --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --max: 1240px;
@@ -71,7 +71,7 @@ p { text-wrap: pretty; }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; margin-top: 36px; }
 
 /* Header */
-.site-header { position: sticky; top: 0; z-index: 50; background: rgba(246, 241, 231, .96); backdrop-filter: saturate(1.2) blur(6px); border-bottom: 1px solid transparent; transition: border-color .3s; }
+.site-header { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .96); backdrop-filter: saturate(1.2) blur(6px); border-bottom: 1px solid transparent; transition: border-color .3s; }
 .site-header.scrolled { border-bottom-color: var(--line); }
 .bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 76px; }
 .wordmark { text-decoration: none; display: flex; flex-direction: column; line-height: 1.1; }
@@ -290,7 +290,7 @@ p { text-wrap: pretty; }
 @media (min-width: 720px) { .row2 { grid-template-columns: 1fr 1fr; } }
 .field label { display: block; font-family: var(--sans); font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--ink); }
 .field .opt { font-weight: 400; color: var(--muted); }
-.field input, .field select, .field textarea { width: 100%; font: inherit; font-size: 17px; color: var(--ink); background: #FFFDF8; border: 1px solid #A99F8E; border-radius: 0; padding: 12px 14px; appearance: none; }
+.field input, .field select, .field textarea { width: 100%; font: inherit; font-size: 17px; color: var(--ink); background: #FFFFFF; border: 1px solid #9A9A9A; border-radius: 0; padding: 12px 14px; appearance: none; }
 .field select { background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 40px; }
 .field textarea { min-height: 160px; resize: vertical; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--navy); outline-offset: 0; border-color: var(--navy); }
