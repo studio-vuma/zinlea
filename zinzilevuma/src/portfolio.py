@@ -9,10 +9,10 @@ CASE_01 = dict(
     status="Academic placement",
     title="Carrying a heritage forward, online.",
     short_title="Carrying a heritage forward, online",
-    teaser="A curated platform for independent British designers had built its following in pop-up rooms. The question was how to carry that heritage online without losing the craft and storytelling that set it apart.",
+    teaser="A curated platform for independent British designers had built its following in pop-up rooms. Working directly with its founders, I helped carry that heritage online without losing the craft and storytelling that set it apart.",
     meta="Case study: digital discovery and editorial strategy for a curated platform of independent British designers, moving from pop-up retail to online discovery.",
     glance=[("Client", "Curated British designer platform"), ("Sector", "Contemporary womenswear & jewellery"),
-            ("My role", "Brand & digital discovery strategy"), ("Focus", "Editorial, search visibility, trend mapping")],
+            ("My role", "Brand & digital discovery strategy"), ("Worked with", "The founders, directly"), ("Focus", "Editorial, search visibility, trend mapping")],
 )
 
 CHAPTERS = [("ch-1", "Where it began"), ("ch-2", "The crossroads"), ("ch-3", "Finding the way"),
@@ -53,6 +53,7 @@ def case_01_body(arrow, invite):
       </ul>
       <p>It is not a volume retailer. It sits somewhere between an editorial discovery space and a selective boutique, serving a considered customer who wants to know who made something, and why.</p>
       <p>Until now, that story had mostly been told in person: in the room, with the garment in hand.</p>
+      <p>I worked directly with the founders, so I came to know the vision behind the platform first-hand, not through a brief.</p>
     </div>
   </div>
 </section>
@@ -83,7 +84,7 @@ def case_01_body(arrow, invite):
   </div>
   <div class="wrap">
     <ol class="stations" style="--p:0">
-      <li><span class="dot">1</span><h3>Listen</h3><p>I began with the goals, the leadership culture and the many designer identities living under one roof.</p></li>
+      <li><span class="dot">1</span><h3>Listen</h3><p>I sat down with the founders to understand their goals, the culture they had built and the many designer identities living under one roof.</p></li>
       <li><span class="dot">2</span><h3>Map</h3><p>I read seasonal runway and industry trend signals, and matched them to stories the brand was already telling: craft, texture, layering and material heritage.</p></li>
       <li><span class="dot">3</span><h3>Structure</h3><p>I built a keyword and editorial framework covering blog themes, styling guidance and tone of voice.</p></li>
       <li><span class="dot">4</span><h3>Hand over</h3><p>I left a repeatable system the team can keep using, so nobody starts from a blank page each season.</p></li>
