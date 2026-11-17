@@ -135,8 +135,8 @@ They contain no statistics. Please read and approve them before the custom domai
 
 - **Palette:** midnight navy `#0F1B2D`, warm ivory `#F6F1E7`, a deeper ivory `#EEE7D9`, charcoal `#2B2E34`, and antique gold `#A88A55` (hairlines and markers only) with a darker gold `#775C30` for small text. All text meets WCAG AA contrast.
 - **Typography:**
-  - Newsreader, a variable editorial serif with optical sizes, for display and reading.
-  - Instrument Sans, used sparingly, for navigation, labels and buttons.
+  - Newsreader, a variable editorial serif with optical sizes, for headings, key statements and questions.
+  - Instrument Sans for descriptive and reading copy, navigation, labels and buttons.
   - Both are self-hosted, with no third-party font requests.
   - This replaces Playfair Display, which is heavily associated with templates.
 - **Wordmark:** the name set in Newsreader, with "Private Advisory · London" beneath. The boxed monogram is gone. The favicon is a single serif "Z" on navy with a gold rule.

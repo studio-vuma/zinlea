@@ -345,7 +345,7 @@ def service(i, s):
     </div>
     <aside class="svc-aside">
       <div class="aside-box"><h2>Relevant to</h2><ul>{rel}</ul></div>
-      <div class="aside-box"><h2>Led personally</h2><p style="font-size:17.5px">Every engagement is led by {NAME}. Scope is agreed around your circumstances and may draw on more than one discipline.</p><p style="margin-top:14px"><a class="link" href="/advisory/#approach">How I work {arrow()}</a></p></div>
+      <div class="aside-box"><h2>Led personally</h2><p style="font-size:16px">Every engagement is led by {NAME}. Scope is agreed around your circumstances and may draw on more than one discipline.</p><p style="margin-top:14px"><a class="link" href="/advisory/#approach">How I work {arrow()}</a></p></div>
     </aside>
   </div>
 </section>
