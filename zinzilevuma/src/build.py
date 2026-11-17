@@ -135,13 +135,13 @@ def write(path, content):
 def invite(title="Request a private consultation", text=None, area=None, navy=False):
     text = text or "An initial conversation to explore your objectives, understand the nature of the strategic challenge and establish whether there is a basis for working together."
     href = "/enquire/" + (f"?area={area}" if area else "")
-    return f"""<section class="section{' on-navy' if navy else ' on-paper'}">
-  <div class="wrap invite reveal">
+    return f"""<section class="section">
+  <div class="wrap"><div class="invite invite-panel reveal{' on-navy' if navy else ' on-paper'}">
     <span class="label">Private enquiry</span>
     <h2>{title}</h2>
     <p class="lede">{text}</p>
     <div class="actions"><a class="btn" href="{href}">Request a consultation {arrow()}</a></div>
-  </div>
+  </div></div>
 </section>"""
 
 

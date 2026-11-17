@@ -339,3 +339,59 @@ p { text-wrap: pretty; }
   .teaser img { transition: none; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 }
+
+/* ------------------------------------------------------------------
+   Shape language: arches for portraits, pills for actions,
+   circles for markers, soft corners for photographs. */
+:root { --r-img: 22px; --r-field: 14px; }
+
+/* Actions */
+.btn { border-radius: 999px; padding: 15px 28px; }
+.nav .btn { padding: 11px 20px; }
+.menu-btn { border-radius: 999px; padding: 9px 18px; }
+.link { border-bottom: 0; padding-bottom: 0; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 6px; }
+.link .arr { display: inline-grid; place-items: center; width: 26px; height: 26px; margin-left: 6px; border: 1px solid currentColor; border-radius: 50%; font-size: 13px; text-decoration: none; }
+.btn .arr { display: inline-grid; place-items: center; width: 26px; height: 26px; margin-right: -12px; border-radius: 50%; background: var(--ivory); color: var(--navy); font-size: 13px; }
+.btn:hover .arr { background: var(--navy); color: var(--ivory); }
+.on-navy .btn .arr { background: var(--navy); color: var(--ivory); }
+.on-navy .btn:hover .arr { background: var(--ivory); color: var(--navy); }
+
+/* Portraits: arched */
+.portrait img, .advisor figure img, .about-hero figure img { border-radius: 999px 999px var(--r-img) var(--r-img); }
+@media (max-width: 899px) { .hero .portrait img { border-radius: 240px 240px var(--r-img) var(--r-img); } }
+
+/* Photographs: soft corners */
+.teaser .img, .svc-figure img, .article-figure img { border-radius: var(--r-img); overflow: hidden; }
+.teaser img { border-radius: var(--r-img); }
+
+/* Circles as markers */
+.index .num { display: inline-grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 1px solid var(--line); border-radius: 50%; font-size: 12px; letter-spacing: .04em; color: var(--ink); transition: background .3s, color .3s, border-color .3s; }
+.index a:hover .num { background: var(--navy); color: var(--ivory); border-color: var(--navy); }
+.index .go { display: none; }
+@media (min-width: 900px) { .index a { align-items: center; } .index .go { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%; } .index a:hover .go { background: var(--navy); color: var(--ivory); border-color: var(--navy); transform: none; } }
+.together li::before, .expect li::before { width: 7px; height: 7px; border-radius: 50%; top: 1.3em; }
+.together li::before { background: var(--gold-on-navy); }
+.faq summary::after { content: "+"; display: grid; place-items: center; width: 30px; height: 30px; top: 17px; right: 0; border: 1px solid var(--line); border-radius: 50%; font-size: 17px; line-height: 1; }
+.faq details[open] summary::after { content: "\2212"; background: var(--navy); color: var(--ivory); border-color: var(--navy); }
+
+/* Areas of advisory as chips */
+.disc .areas, .areas-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.disc .areas li, .areas-list li { padding: 7px 15px; border: 1px solid var(--line); border-radius: 999px; font-size: 14.5px; line-height: 1.4; background: var(--ivory); }
+.on-paper .disc .areas li { background: var(--ivory); }
+
+/* Tags and small details */
+.tag { border-radius: 999px; padding: 5px 12px; }
+.principal { border-radius: 64px; border: 1px solid var(--line); padding: 12px 32px 12px 12px; width: fit-content; max-width: 760px; }
+
+/* Panels with softer edges */
+.aside-box { border-top: 0; padding: 26px 26px 24px; border: 1px solid var(--line); border-radius: var(--r-img); }
+.aside-box li:last-child { border-bottom: 0; }
+
+/* Form fields */
+.field input, .field select, .field textarea { border-radius: var(--r-field); }
+.field input, .field select { border-radius: 999px; padding-left: 20px; padding-right: 20px; }
+.field select { padding-right: 44px; background-position: calc(100% - 24px) 50%, calc(100% - 19px) 50%; }
+
+/* The closing invitation becomes a rounded panel */
+.invite-panel { border-radius: 32px; padding: 64px 24px; }
+@media (min-width: 900px) { .invite-panel { padding: 88px 48px; } }
