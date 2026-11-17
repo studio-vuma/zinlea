@@ -58,7 +58,7 @@ SERVICES = [
             "Hospitality and destination brands",
         ],
         value="A position the business can defend: clear about what it is, credible at its price, and difficult to imitate.",
-        image="djenne",
+        image="bosjes-chapel",
     ),
     dict(
         num="II", slug="market-entry", short="Market Entry & Expansion",
@@ -93,7 +93,7 @@ SERVICES = [
             "Leadership teams reviewing an existing international footprint",
         ],
         value="A sequenced, evidence-led route into new markets, with the brand's position protected rather than diluted along the way.",
-        image="durban-port",
+        image="cape-town-edition",
     ),
     dict(
         num="III", slug="provenance", short="Provenance & Value Creation",
@@ -128,7 +128,7 @@ SERVICES = [
             "Public institutions developing national or regional origin strategies",
         ],
         value="Origin that is defined, defended and recognised, so that more of the value it creates is retained where it begins.",
-        image="fes-tannery",
+        image="diamond-polishing",
     ),
     dict(
         num="IV", slug="commercial-development", short="Commercial Development & Market Access",
@@ -243,7 +243,7 @@ ARTICLES = [
         slug="provenance-is-an-asset", kind="Perspective · Provenance", date="2026-11-17", date_label="November 2026", minutes=4,
         title="Provenance is not a story. It is an asset.",
         standfirst="Origin is one of the most valuable things an African business owns. Too often, it is also the first thing it gives away.",
-        image="kericho-tea-pickers",
+        image="basket-weaving",
         body=[
             "Provenance has become one of the most used words in African luxury. It appears on labels, in investor presentations and in tourism campaigns. Yet in many cases it is doing very little commercial work. The word is present; the value is not.",
             "#Where the value goes",
@@ -261,7 +261,7 @@ ARTICLES = [
         slug="known-for-something", kind="Perspective · Positioning", date="2026-11-17", date_label="November 2026", minutes=4,
         title="Known for something.",
         standfirst="The most valuable position a brand, a destination or a sector can hold is a specific one.",
-        image="kigali-convention",
+        image="safari-lodge",
         body=[
             "Ask an international traveller what South Africa and Kenya are known for and many will mention the game drive. Ask about the Seychelles and they will describe the beaches. These associations are not accidents of geography alone. They are positions, reinforced over years by experience, investment and consistent communication, and they shape demand long before any single business makes its case.",
             "#The cost of being known for everything",
@@ -277,7 +277,7 @@ ARTICLES = [
         slug="beyond-the-market-as-it-stands", kind="Perspective · Foresight", date="2026-11-17", date_label="November 2026", minutes=4,
         title="Looking beyond the market as it stands.",
         standfirst="Market data describes where demand has been. Strategy has to consider where it is going.",
-        image="nairobi",
+        image="durban-port",
         body=[
             "Most market research answers a reasonable question: how large is this market, who competes in it, and how do customers behave today? These answers are necessary. They are rarely sufficient. By the time a pattern is clear enough to appear in a market report, the businesses best placed to benefit from it have often already moved.",
             "#What the numbers leave out",
@@ -316,13 +316,19 @@ LIC = {
 }
 
 def _img(caption, artist, licence, source):
-    return dict(caption=caption, artist=artist, licence=licence, licence_url=LIC[licence], source=source)
+    return dict(caption=caption, artist=artist, licence=licence, licence_url=LIC[licence], source=source, via=None)
+
+def _via(caption, via, source=None):
+    """Image supplied by Zinzile, credited to where it was published. Permission to be confirmed."""
+    return dict(caption=caption, via=via, source=source, artist=None, licence=None, licence_url=None)
 
 IMAGES = {
-    "djenne": _img("The Great Mosque of Djenné, Mali", "BluesyPete", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:MaliDjenn%C3%A9Mosqu%C3%A9e.JPG"),
+    "bosjes-chapel": _via("Bosjes Chapel, Western Cape, South Africa. Architecture by Steyn Studio", "Parametric Architecture"),
+    "cape-town-edition": _via("The Cape Town EDITION, V&A Waterfront, Cape Town", "Hotel Designs"),
+    "diamond-polishing": _via("Diamond polishing", "Stephen Hughes Fine Diamonds"),
+    "basket-weaving": _via("Basket weaving", "54kibo"),
+    "safari-lodge": _via("Safari lodge at dusk", None),
     "durban-port": _img("Container terminal, Port of Durban, South Africa", "Media Club", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Durban_container_port_(24747434937).jpg"),
-    "fes-tannery": _img("Chouara tannery, Fez, Morocco", "Uwe Brodrecht", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Chouara_Tannery_-_156_-_Marokko_Handybilder_2018_-_Fes_(41497450044).jpg"),
-    "kericho-tea-pickers": _img("Tea estate near Kericho, Kenya", "Josep M. Gracia", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:KER_-_Tea_pickers_working_near_Kericho,_Kenya,_2012.jpg"),
     "kigali-convention": _img("Kigali Convention Centre, Rwanda", "Schlawgclart", "CC0", "https://commons.wikimedia.org/wiki/File:Kigali_convention_centre.jpg"),
     "nairobi": _img("Nairobi, Kenya", "Lmwangi", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Nairobi_skyline_P1000020.jpg"),
     "riad": _img("Riad courtyard, Marrakech, Morocco", "calflier001", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:RIAD_LALLA_KHITI_MARRAKECH_MOROCCO_APRIL_2013_(8713893422).jpg"),

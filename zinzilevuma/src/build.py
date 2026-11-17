@@ -32,7 +32,9 @@ def portrait(kind, sizes, lazy=True, alt=f"Portrait of {NAME}"):
 
 def credit(name):
     i = IMAGES[name]
-    return f'{e(i["caption"])}. Photograph: {e(i["artist"])}, {e(i["licence"])}.'
+    if i["licence"]:
+        return f'{e(i["caption"])}. Photograph: {e(i["artist"])}, {e(i["licence"])}.'
+    return f'{e(i["caption"])}.' + (f' Image: {e(i["via"])}.' if i["via"] else "")
 
 
 def arrow():
@@ -540,9 +542,14 @@ def enquire():
 
 # ---------------------------------------------------------------- small pages
 def small_pages():
-    credits = "".join(f'<li>{e(i["caption"])}. Photograph by {e(i["artist"])}, <a href="{i["licence_url"]}">{e(i["licence"])}</a>, via <a href="{i["source"]}">Wikimedia Commons</a>. Converted to black and white and cropped.</li>' for i in IMAGES.values())
+    def credit_line(i):
+        if i["licence"]:
+            return f'{e(i["caption"])}. Photograph by {e(i["artist"])}, <a href="{i["licence_url"]}">{e(i["licence"])}</a>, via <a href="{i["source"]}">Wikimedia Commons</a>. Shown in black and white and cropped.'
+        return f'{e(i["caption"])}.' + (f' Image: {e(i["via"])}.' if i["via"] else "") + ' Shown in black and white and cropped.'
+    used = {s["image"] for s in SERVICES} | {a["image"] for a in ARTICLES}
+    credits = "".join(f'<li>{credit_line(IMAGES[k])}</li>' for k in IMAGES if k in used)
     write("/credits/", page("/credits/", f"Photography credits | {NAME}", "Credits for photography used on this website.",
-                            f'<section class="plain-page"><div class="wrap measure"><h1>Photography credits</h1><div class="prose"><p>Portraits of {NAME} are used with permission. Other photographs are used under the licences below.</p></div><ul class="credits" style="margin-top:28px">{credits}</ul></div></section>', noindex=False))
+                            f'<section class="plain-page"><div class="wrap measure"><h1>Photography credits</h1><div class="prose"><p>Portraits of {NAME} are used with permission. Other photographs are credited below.</p></div><ul class="credits" style="margin-top:28px">{credits}</ul></div></section>', noindex=False))
     write("/privacy/", page("/privacy/", f"Privacy notice | {NAME}", "How personal information submitted through this website is used.",
                             f"""<section class="plain-page"><div class="wrap measure"><h1>Privacy notice</h1><div class="prose">
 <p>This notice explains how {NAME} uses the personal information you share through this website.</p>
