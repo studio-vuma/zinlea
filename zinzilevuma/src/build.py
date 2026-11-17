@@ -9,6 +9,15 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from content import (SITE, EMAIL, NAME, TITLE, SERVICES, ARTICLES, WORK, IMAGES, CLIENTS, SECTORS)
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent / "site"
+
+
+def _v(rel):
+    """Short content hash so browsers always fetch the latest stylesheet and script."""
+    import hashlib
+    return hashlib.sha1((ROOT / rel).read_bytes()).hexdigest()[:10]
+
+
+ASSET_V = {"css": _v("css/site.css"), "js": _v("js/site.js")}
 YEAR = 2026
 e = html.escape
 TITLE_H = html.escape(TITLE)
@@ -78,7 +87,7 @@ def page(path, title, desc, body, section=None, schema=None, noindex=False, og_t
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/newsreader-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/site.css?v={ASSET_V['css']}">
 {schemas}
 </head>
 <body>
@@ -108,7 +117,7 @@ def page(path, title, desc, body, section=None, schema=None, noindex=False, og_t
     <div class="foot-base"><span>&copy; {YEAR} {NAME}</span><a href="/privacy/">Privacy</a><a href="/credits/">Photography credits</a></div>
   </div>
 </footer>
-<script src="/js/site.js" defer></script>
+<script src="/js/site.js?v={ASSET_V['js']}" defer></script>
 </body>
 </html>
 """

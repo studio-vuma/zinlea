@@ -12,7 +12,7 @@
   --navy-2: #1A1A1A;
   --charcoal: #2B2B2B;
   --ivory: #FFFFFF;
-  --ivory-2: #F4F4F2;
+  --ivory-2: #F4F4F4;
   --ink: #0B0B0B;
   --muted: #5C5C5C;          /* 6.7:1 on white */
   --line: #E0E0E0;
@@ -160,7 +160,7 @@ p { text-wrap: pretty; }
 .teaser { display: block; text-decoration: none; }
 .teaser .img { overflow: hidden; }
 .teaser img { width: 100%; aspect-ratio: 4/3; object-fit: cover; filter: grayscale(100%); transition: filter .8s ease, transform 1.2s ease; }
-.teaser:hover img, .teaser:focus-visible img { filter: grayscale(0%); transform: scale(1.015); }
+@media (hover: hover) and (pointer: fine) { .teaser:hover img, .teaser:focus-visible img { filter: grayscale(0%); transform: scale(1.015); } }
 .teaser .label { display: block; margin-top: 20px; }
 .teaser h3 { font-size: 25px; line-height: 1.22; margin-top: 10px; }
 .teaser p { margin-top: 10px; color: var(--muted); font-size: 16px; }
@@ -294,8 +294,8 @@ p { text-wrap: pretty; }
 .field select { background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 40px; }
 .field textarea { min-height: 160px; resize: vertical; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--navy); outline-offset: 0; border-color: var(--navy); }
-.field [aria-invalid="true"] { border-color: #8B2B1E; }
-.err { font-family: var(--sans); font-size: 14px; color: #8B2B1E; margin-top: 6px; min-height: 0; }
+.field [aria-invalid="true"] { border-color: #0B0B0B; border-width: 2px; }
+.err { font-family: var(--sans); font-size: 14px; font-weight: 600; color: #0B0B0B; margin-top: 6px; min-height: 0; }
 .err:empty { display: none; }
 .form-note { font-family: var(--sans); font-size: 13.5px; color: var(--muted); line-height: 1.5; }
 .hp { position: absolute; left: -9999px; }

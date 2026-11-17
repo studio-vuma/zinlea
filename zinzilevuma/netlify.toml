@@ -25,15 +25,22 @@
   [headers.values]
     Cache-Control = "public, max-age=2592000"
 
+# Stylesheet and script are versioned in the page (?v=hash), but always
+# revalidate so a change is never held back by a browser cache.
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=86400, must-revalidate"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=86400, must-revalidate"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # Earlier addresses, kept working
 [[redirects]]
