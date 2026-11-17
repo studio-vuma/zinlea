@@ -191,7 +191,7 @@ p { text-wrap: pretty; }
 
 /* Advisory overview: principal advisor note */
 .principal { display: grid; grid-template-columns: 88px 1fr; gap: 20px; align-items: center; margin-top: 44px; padding: 22px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); max-width: 760px; }
-.principal img { width: 88px; height: 88px; object-fit: cover; }
+.principal img { width: 88px; height: 88px; object-fit: cover; border-radius: 50%; }
 .principal strong { font-weight: 500; }
 .principal p { font-size: 16px; line-height: 1.55; }
 .principal .role { font-family: var(--sans); font-size: 13.5px; color: var(--gold-text); }
