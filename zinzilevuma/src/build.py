@@ -7,6 +7,7 @@ import html, json, pathlib, shutil, sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from content import (SITE, EMAIL, NAME, TITLE, SERVICES, ARTICLES, WORK, IMAGES, CLIENTS, SECTORS)
+import portfolio as pf
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent / "site"
 
@@ -54,7 +55,7 @@ def jsonld(obj):
     return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False) + "</script>"
 
 
-NAV = [("/advisory/", "Advisory"), ("/perspectives/", "Perspectives"), ("/about/", "About")]
+NAV = [("/advisory/", "Advisory"), ("/portfolio/", "Portfolio"), ("/perspectives/", "Perspectives"), ("/about/", "About")]
 
 
 def page(path, title, desc, body, section=None, schema=None, noindex=False, og_type="website"):
@@ -228,13 +229,21 @@ def home():
 
 <section class="section">
   <div class="wrap">
+    <div class="section-head reveal"><span class="label">Advisory portfolio</span><h2>The work, told as a journey.</h2></div>
+    {pf.feature_card(arrow, "h3")}
+    <div class="actions"><a class="link" href="/portfolio/">The full portfolio {arrow()}</a></div>
+  </div>
+</section>
+
+<section class="section on-paper">
+  <div class="wrap">
     <div class="section-head reveal"><span class="label">Strategic perspectives</span><h2>Independent thinking on markets, origin and value.</h2></div>
     <div class="teasers">{teasers}</div>
     <div class="actions"><a class="link" href="/perspectives/">All perspectives and selected work {arrow()}</a></div>
   </div>
 </section>
 
-<section class="section on-paper">
+<section class="section">
   <div class="wrap">
     <div class="split reveal">
       <div><span class="label">Perspective</span><h2>From London, with a pan-African and international view.</h2></div>
@@ -418,14 +427,14 @@ def about():
   <div class="wrap split">
     <div><span class="label">Background</span><h2>Training and experience.</h2></div>
     <div class="measure">
-      <p>I studied Luxury Brand Management at Regent's University London, and my professional background is in luxury brand management. My approach to clients has been shaped by years of looking after premium clients in London: understanding what they choose, what they return for and what they recommend. My background spans the United Kingdom and Southern Africa.</p>
+      <p>I hold a BA (Hons) in Luxury Brand Management from Regent's University London, and my professional background is in luxury brand management. My approach to clients has been shaped by years of looking after premium clients in London: understanding what they choose, what they return for and what they recommend. My background spans the United Kingdom and Southern Africa.</p>
       <dl class="facts">
-        <div><dt>Education</dt><dd>Luxury Brand Management, Regent's University London</dd></div>
+        <div><dt>Education</dt><dd>BA (Hons) Luxury Brand Management, Regent's University London</dd></div>
         <div><dt>Base</dt><dd>London, working internationally</dd></div>
         <div><dt>Focus</dt><dd>Luxury brand strategy, provenance and international markets, with particular depth in Africa</dd></div>
         <div><dt>Practice</dt><dd>Independent. Every engagement is led personally.</dd></div>
       </dl>
-      <div class="actions"><a class="link" href="/perspectives/">Perspectives and selected work {arrow()}</a></div>
+      <div class="actions"><a class="link" href="/portfolio/">The advisory portfolio {arrow()}</a></div>
     </div>
   </div>
 </section>
@@ -444,20 +453,17 @@ def perspectives():
   <div class="wrap">
     <span class="label">Perspectives</span>
     <h1>Independent thinking on markets, origin and value.</h1>
-    <p class="lede">Short essays on the questions I find most consequential for luxury, African enterprise and international markets, followed by a selection of professional experience and independent research. Each piece is labelled for exactly what it is.</p>
+    <p class="lede">Short essays on the questions I find most consequential for luxury, African enterprise and international markets. For the work itself, see the <a href="/portfolio/">advisory portfolio</a>.</p>
   </div>
 </section>
 <section class="section" style="padding-top:0">
   <div class="wrap"><div class="teasers" style="margin-top:0">{teasers}</div></div>
 </section>
-<section class="section on-paper" id="work">
-  <div class="wrap">
-    <div class="section-head reveal"><span class="label">Selected work</span><h2>Professional experience and independent research.</h2><p class="muted">Client confidentiality applies to commissioned work. What follows is described accurately: professional experience, research in progress and independent study are marked as such.</p></div>
-    <div class="work-list">{work}</div>
-  </div>
+<section class="section on-paper">
+  <div class="wrap">{pf.feature_card(arrow)}<div class="actions"><a class="link" href="/portfolio/">The advisory portfolio {arrow()}</a></div></div>
 </section>
 {invite()}"""
-    desc = "Strategic perspectives on provenance, destination positioning and strategic foresight, with selected professional experience and independent research."
+    desc = "Strategic perspectives on provenance, destination positioning and strategic foresight."
     write("/perspectives/", page("/perspectives/", f"Perspectives | {NAME}", desc, body, section="/perspectives/",
                                  schema=[crumbs(("Home", "/"), ("Perspectives", "/perspectives/"))]))
     for a in ARTICLES:
@@ -486,6 +492,38 @@ def perspectives():
                "image": f"{SITE}/img/{a['image']}-1600.jpg", "mainEntityOfPage": SITE + path, "inLanguage": "en-GB"}
         write(path, page(path, f"{a['title']} | {NAME}", a["standfirst"], body, section="/perspectives/", og_type="article",
                          schema=[art, crumbs(("Home", "/"), ("Perspectives", "/perspectives/"), (a["title"], path))]))
+
+
+# ---------------------------------------------------------------- portfolio
+def portfolio():
+    c = pf.CASE_01
+    work = "".join(f'''<article class="work-item reveal"><div><span class="tag">{e(w["status"])}</span><h3 style="margin-top:14px">{e(w["title"])}</h3></div><div><p>{e(w["summary"])}</p><p class="muted" style="margin-top:12px;font-size:15.5px">{e(w["shows"])}</p></div></article>''' for w in WORK)
+    body = f"""<section class="page-hero">
+  <div class="wrap">
+    <span class="label">Portfolio</span>
+    <h1>The advisory portfolio.</h1>
+    <p class="lede">Selected work, told as it happened. Each piece is labelled for exactly what it is: academic placement, professional experience, research in progress or independent study. Client names and confidential material are withheld.</p>
+  </div>
+</section>
+<section class="section" style="padding-top:0">
+  <div class="wrap">{pf.feature_card(arrow)}</div>
+</section>
+<section class="section on-paper">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="label">Further work</span><h2>Experience and independent research.</h2></div>
+    <div class="work-list">{work}</div>
+  </div>
+</section>
+{invite()}"""
+    write("/portfolio/", page("/portfolio/", f"Advisory Portfolio | {NAME}",
+                              "Selected work by Zinzile Vuma, told as it happened, including a case study in digital discovery and editorial strategy for a curated British designer platform.",
+                              body, section="/portfolio/", schema=[crumbs(("Home", "/"), ("Portfolio", "/portfolio/"))]))
+    path = f"/portfolio/{c['slug']}/"
+    cw = {"@context": "https://schema.org", "@type": "CreativeWork", "name": c["short_title"], "genre": "Case study",
+          "about": "Digital discovery and editorial strategy for a curated luxury fashion platform", "url": SITE + path,
+          "author": {"@type": "Person", "name": NAME, "url": SITE + "/about/"}}
+    write(path, page(path, f"Case {c['num']}: {c['short_title']} | {NAME}", c["meta"], pf.case_01_body(arrow, invite),
+                     section="/portfolio/", og_type="article", schema=[cw, crumbs(("Home", "/"), ("Portfolio", "/portfolio/"), (c["short_title"], path))]))
 
 
 # ---------------------------------------------------------------- enquire
@@ -569,7 +607,7 @@ def small_pages():
 </div></div></section>"""))
     write("/404", page("/404", f"Page not found | {NAME}", "This page could not be found.",
                        f'<section class="plain-page"><div class="wrap measure"><span class="label">Page not found</span><h1 style="margin-top:14px">This page could not be found.</h1><div class="prose"><p>It may have moved when the site was reorganised. The <a href="/advisory/">advisory</a> and <a href="/perspectives/">perspectives</a> pages are good places to begin, or you can <a href="/enquire/">get in touch</a>.</p></div></div></section>', noindex=True))
-    urls = ["/", "/advisory/"] + [f"/advisory/{s['slug']}/" for s in SERVICES] + ["/about/", "/perspectives/"] + [f"/perspectives/{a['slug']}/" for a in ARTICLES] + ["/enquire/", "/privacy/", "/credits/"]
+    urls = ["/", "/advisory/"] + [f"/advisory/{s['slug']}/" for s in SERVICES] + ["/about/", "/portfolio/", f"/portfolio/{pf.CASE_01['slug']}/", "/perspectives/"] + [f"/perspectives/{a['slug']}/" for a in ARTICLES] + ["/enquire/", "/privacy/", "/credits/"]
     (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{SITE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
     (ROOT / "favicon.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="31" fill="#0B0B0B"/><circle cx="32" cy="32" r="27" fill="none" stroke="#B5B5B5" stroke-width="1"/><text x="32" y="43.5" font-family="Georgia, \'Times New Roman\', serif" font-size="32" fill="#FFFFFF" text-anchor="middle">Z</text></svg>\n')
@@ -579,4 +617,4 @@ if __name__ == "__main__":
     home(); advisory()
     for i, s in enumerate(SERVICES):
         service(i, s)
-    about(); perspectives(); enquire(); small_pages()
+    about(); portfolio(); perspectives(); enquire(); small_pages()

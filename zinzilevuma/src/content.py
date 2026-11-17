@@ -293,9 +293,6 @@ ARTICLES = [
 ]
 
 WORK = [
-    dict(status="Professional experience", title="Retail strategy: from shopfront to online",
-         summary="For a London retailer weighing the future of its physical store, I analysed search demand and competitor activity to understand where customers were really looking. The analysis informed the decision to move the business from its physical store to online retail.",
-         shows="Where a business chooses to be present is a decision for evidence rather than instinct."),
     dict(status="Professional experience", title="A partnership conversation with Forbes Africa",
          summary="While building the public profile of a new practice focused on African luxury strategy, I wrote long-form editorial and led media and partnership outreach. Forbes Africa requested a partnership call, for which I prepared the partnership deck.",
          shows="A clear point of view, expressed with care, opens doors that promotion alone does not."),

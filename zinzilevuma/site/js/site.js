@@ -82,3 +82,51 @@
       });
   });
 })();
+
+// Advisory portfolio: reading progress, stations, from-to shift and the balance
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var case_ = document.querySelector('article.case');
+  if (!case_) return;
+  var bar = document.querySelector('.case-progress');
+  var stations = document.querySelector('.stations');
+  var items = stations ? stations.querySelectorAll('li') : [];
+  var shift = document.querySelector('.shift');
+
+  function tick() {
+    var r = case_.getBoundingClientRect(), vh = window.innerHeight;
+    var read = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - vh)));
+    if (bar) bar.style.setProperty('--read', read.toFixed(4));
+    if (stations) {
+      var s = stations.getBoundingClientRect();
+      var p = reduce ? 1 : Math.min(1, Math.max(0, (vh * 0.75 - s.top) / (s.height + vh * 0.25)));
+      stations.style.setProperty('--p', p.toFixed(3));
+      items.forEach(function (li, i) { li.classList.toggle('lit', p >= (i / (items.length - 1)) - 0.02 || (p > 0 && i === 0)); });
+    }
+  }
+  window.addEventListener('scroll', tick, { passive: true });
+  window.addEventListener('resize', tick);
+  tick();
+
+  if (shift && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (en, o) { if (en[0].isIntersecting) { shift.classList.add('in'); o.disconnect(); } }, { threshold: 0.35 }).observe(shift);
+  } else if (shift) { shift.classList.add('in'); }
+
+  var range = document.getElementById('balance');
+  var out = document.getElementById('balance-out');
+  if (range && out) {
+    var say = function () {
+      var v = +range.value, msg;
+      if (v <= 20) msg = 'All visibility: found by many, remembered by few. The brand begins to sound like everyone else.';
+      else if (v < 40) msg = 'Leaning towards visibility: more traffic, but the story is starting to thin.';
+      else if (v <= 60) msg = 'Held at the centre: keywords that serve the storytelling, not replace it.';
+      else if (v < 80) msg = 'Leaning towards identity: the story is intact, but fewer people find it.';
+      else msg = 'All identity: true to itself, but hard to find. The story stays in the room.';
+      out.textContent = msg;
+      range.setAttribute('aria-valuetext', msg.split(':')[0]);
+      range.style.setProperty('--fill', v + '%');
+    };
+    range.addEventListener('input', say);
+    say();
+  }
+})();

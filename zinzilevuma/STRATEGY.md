@@ -65,7 +65,9 @@ None of these alone is distinctive. The combination, delivered personally, is. T
 /advisory/institutions-destinations/ V Institutional & Destination Advisory
 /advisory/research-intelligence/ VI Strategic Research & Market Intelligence
 /about/                         Founder narrative and background
-/perspectives/                  Strategic perspectives and selected work
+/portfolio/                     Advisory portfolio: cases told as journeys, plus further work
+/portfolio/carrying-a-heritage-forward/  Case 01
+/perspectives/                  Strategic perspectives (essays)
 /perspectives/provenance-is-an-asset/
 /perspectives/known-for-something/
 /perspectives/beyond-the-market-as-it-stands/
@@ -175,7 +177,7 @@ They contain no statistics. Please read and approve them before the custom domai
 
 1. **Email:** the site now uses `enquiries@zinzilevuma.com`. That mailbox must exist and be monitored before launch, and Netlify form notifications should be sent to it.
 2. **Domain:** `zinzilevuma.com` needs to be added to the Netlify project and set as the primary domain. Netlify will then redirect the netlify.app address automatically.
-3. **Education:** the exact qualification and year for Regent's University London (for example, BA or MA in Luxury Brand Management).
+3. **Education:** confirmed as BA (Hons) Luxury Brand Management, Regent's University London. Add the year if you would like it shown.
 4. **Professional history:** any employers or roles you are happy to name, which would strengthen the About page considerably.
 5. **The caviar study:** is it academic research (for example, a dissertation) or independent research? It is labelled "Research in progress" until you confirm.
 6. **The Forbes Africa work:** confirm the description is accurate and acceptable to publish.
