@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Newsreader";src:url("../site/fonts/newsreader-latin-opsz-normal.woff2") format("woff2");font-weight:200 800}
+@font-face{font-family:"Newsreader";font-style:italic;src:url("../site/fonts/newsreader-latin-opsz-italic.woff2") format("woff2");font-weight:200 800}
+@font-face{font-family:"Instrument Sans";src:url("../site/fonts/instrument-sans-latin-wght-normal.woff2") format("woff2");font-weight:400 700}
+@page{size:1080px 1350px;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff}
+body{font-family:"Instrument Sans",sans-serif;color:#0B0B0B;-webkit-font-smoothing:antialiased}
+.s{width:1080px;height:1350px;position:relative;overflow:hidden;padding:110px 96px 120px;display:flex;flex-direction:column;page-break-after:always;background:#fff}
+.s.dark{background:#0B0B0B;color:#fff}
+.s.grey{background:#F4F4F4}
+.bar{position:absolute;top:0;left:0;height:8px;background:#0B0B0B}
+.dark .bar{background:#fff}
+.foot{position:absolute;left:96px;right:96px;bottom:56px;display:flex;justify-content:space-between;align-items:center;font-size:22px;color:#5C5C5C}
+.dark .foot{color:#B5B5B5}
+.foot b{font-family:"Newsreader",serif;font-weight:400;font-size:28px;color:#0B0B0B}
+.dark .foot b{color:#fff}
+.label{font-size:22px;letter-spacing:.14em;text-transform:uppercase;color:#5C5C5C}
+.dark .label{color:#B5B5B5}
+h1,h2,h3{font-family:"Newsreader",serif;font-weight:340;letter-spacing:-.015em}
+h1{font-size:104px;line-height:1.02}
+h2{font-size:78px;line-height:1.06;margin-top:24px}
+p{font-size:33px;line-height:1.45}
+.lede{font-size:36px;line-height:1.42;color:#2B2B2B}
+.dark .lede{color:#CFCFCF}
+.num{flex:none;width:96px;height:96px;border-radius:50%;border:2px solid currentColor;display:grid;place-items:center;font-family:"Newsreader",serif;font-size:44px;margin-bottom:34px}
+.pill{display:inline-flex;align-items:center;gap:16px;padding:16px 30px 16px 16px;border-radius:999px;background:#0B0B0B;color:#fff;font-size:26px}
+.pill i{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:#fff;color:#0B0B0B;font-style:normal;font-size:24px}
+.dark .pill{background:#fff;color:#0B0B0B}.dark .pill i{background:#0B0B0B;color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:40px}
+.chips span{padding:14px 28px;border-radius:999px;background:#0B0B0B;color:#fff;font-size:28px}
+.mt{margin-top:auto}
+/* cover */
+.cover .arch{position:absolute;right:-40px;bottom:0;width:560px;height:760px;border-radius:999px 999px 0 0;overflow:hidden;filter:grayscale(1)}
+.cover .arch img{width:100%;height:100%;object-fit:cover;object-position:60% 25%}
+.cover h1{max-width:8.5em;margin-top:30px}
+.cover .who{position:absolute;left:96px;bottom:150px;max-width:420px}
+.cover .who b{display:block;font-family:"Newsreader",serif;font-weight:400;font-size:40px}
+.cover .who span{font-size:24px;color:#5C5C5C;line-height:1.4;display:block;margin-top:6px}
+.underline{position:relative;white-space:nowrap}
+.underline::after{content:"";position:absolute;left:0;right:0;bottom:.04em;height:.07em;border-radius:99px;background:#0B0B0B}
+/* from to */
+.ft{display:grid;gap:20px;margin-top:44px}
+.ft .c{padding:28px 44px 22px;border-radius:44px}
+.ft .from{border:2px solid #E0E0E0;background:#fff;opacity:.7}
+.ft .to{background:#0B0B0B;color:#fff}
+.ft h3{font-size:46px;margin:8px 0 10px}
+.ft li{list-style:none;font-size:27px;padding:10px 0;border-top:1px solid #E0E0E0}
+.ft .to li{border-color:rgba(255,255,255,.18)}
+.ft .to .label{color:#B5B5B5}
+.ft .via{justify-self:center;width:84px;height:84px;border-radius:50%;border:2px solid #0B0B0B;display:grid;place-items:center;font-size:36px;background:#fff;margin:-46px 0;position:relative;z-index:2}
+/* stations */
+.st{position:relative;margin-top:60px;padding-left:120px;display:grid;gap:48px}
+.st::before{content:"";position:absolute;left:43px;top:40px;bottom:40px;width:4px;border-radius:4px;background:#0B0B0B}
+.st li{list-style:none;position:relative}
+.st .d{position:absolute;left:-120px;top:-6px;width:88px;height:88px;border-radius:50%;background:#0B0B0B;color:#fff;display:grid;place-items:center;font-family:"Newsreader",serif;font-size:40px;border:6px solid #fff}
+.grey .st .d{border-color:#F4F4F4}
+.st h3{font-size:50px}
+.st p{font-size:28px;color:#5C5C5C;margin-top:8px;line-height:1.4}
+/* path */
+.path{display:grid;gap:18px;margin-top:56px}
+.path div{padding:34px 40px;border-radius:40px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.path div:nth-child(1){background:#fff;border:2px solid #E0E0E0}
+.path div:nth-child(2){background:#E9E9E9}
+.path div:nth-child(3){background:#CFCFCF}
+.path div:nth-child(4){background:#0B0B0B;color:#fff}
+.path h3{font-size:44px}
+.path .label{white-space:nowrap}
+.path div:nth-child(4) .label{color:#B5B5B5}
+/* balance */
+.bal{margin-top:70px;padding:56px 52px;border-radius:48px;border:2px solid #E0E0E0;background:#fff}
+.bal .ends{display:flex;justify-content:space-between;font-family:"Newsreader",serif;font-size:40px}
+.bal .track{position:relative;height:4px;background:#E0E0E0;border-radius:4px;margin:56px 0 50px}
+.bal .track::before{content:"";position:absolute;left:0;width:50%;height:100%;background:#0B0B0B;border-radius:4px}
+.bal .track i{position:absolute;left:50%;top:50%;width:64px;height:64px;border-radius:50%;background:#0B0B0B;border:10px solid #fff;box-shadow:0 0 0 2px #0B0B0B;transform:translate(-50%,-50%)}
+.bal p{text-align:center;font-family:"Newsreader",serif;font-size:42px;line-height:1.3}
+/* value */
+.val{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:56px}
+.val div{padding:38px 36px;border-radius:40px;background:#fff;border:2px solid #E0E0E0}
+.val div:nth-child(4){background:#0B0B0B;color:#fff;border-color:#0B0B0B}
+.val div:nth-child(4) .label{color:#B5B5B5}.val div:nth-child(4) p{color:#CFCFCF}
+.val h3{font-size:44px;line-height:1.1;margin:12px 0 14px}
+.val p{font-size:25px;line-height:1.4;color:#5C5C5C}
+/* quote */
+.q{font-family:"Newsreader",serif;font-weight:340;font-size:80px;line-height:1.14;letter-spacing:-.01em}
+.q::before{content:"\201C";display:block;font-size:180px;line-height:.7;color:#8A8A8A}
+.note{margin-top:48px;padding:34px 40px;border-radius:40px;background:#F4F4F4;font-size:24px;line-height:1.45;color:#5C5C5C}
+.dark .note{background:#1A1A1A;color:#B5B5B5}
+</style></head><body>
+
+<!-- 1 cover -->
+<section class="s cover">
+  <div class="bar" style="width:10%"></div>
+  <span class="label">Advisory portfolio · Case 01</span>
+  <h1>Carrying a heritage forward, <span class="underline">online</span>.</h1>
+  <p class="lede" style="margin-top:40px;max-width:520px;font-size:32px">How a curated British designer platform took its pop-up following online.</p>
+  <div class="who"><b>Zinzile Vuma</b><span>Founder &amp; Principal Luxury Brand Advisor</span><div class="pill" style="margin-top:40px">Swipe <i>→</i></div></div>
+  <div class="arch"><img src="../site/img/zv-portrait-4x5-1040.jpg" alt=""></div>
+</section>
+
+<!-- 2 client -->
+<section class="s">
+  <div class="bar" style="width:20%"></div>
+  <div class="num">1</div><span class="label">Where it began</span>
+  <h2>A multi-brand platform built on pop-ups.</h2>
+  <p class="lede" style="margin-top:36px">A curated platform for independent British designers had built its following through pop-up spaces. Each location drew a different crowd and a different set of supporters.</p>
+  <div class="chips"><span>Curated</span><span>No-waste</span><span>Organic</span><span>Made to order</span></div>
+  <p style="margin-top:44px;color:#5C5C5C">Customers came to touch the garments and understand how they were made. That physical experience was what everyone leaned towards, the designers included.</p>
+  <div class="foot"><b>Zinzile Vuma</b><span>2 / 10</span></div>
+</section>
+
+<!-- 3 from to -->
+<section class="s grey">
+  <div class="bar" style="width:30%"></div>
+  <div class="num">2</div><span class="label">The brief</span>
+  <h2>From the room to the screen.</h2>
+  <div class="ft">
+    <div class="c from"><span class="label">From</span><h3>Physical presence</h3><ul><li>Pop-ups, each with its own crowd</li><li>Customers touching the garments</li><li>Designers drawn in by the physical space</li></ul></div>
+    <div class="via">↓</div>
+    <div class="c to"><span class="label">To</span><h3>Digital discovery</h3><ul><li>An online home for curated British fashion</li><li>The craft and the story, easy to find</li><li>Designers who see being online as a plus</li></ul></div>
+  </div>
+  <div class="foot"><b>Zinzile Vuma</b><span>3 / 10</span></div>
+</section>
+
+<!-- 4 goal -->
+<section class="s dark">
+  <div class="bar" style="width:40%"></div>
+  <div class="num">3</div><span class="label">The real goal</span>
+  <h2>Bring the designers with us.</h2>
+  <p class="lede" style="margin-top:40px">The designers had joined for the pop-ups, and many already sold online on their own.</p>
+  <p class="lede" style="margin-top:30px">The move online had to give them a reason to want to be featured there through the platform too, as something that added to their presence rather than competed with it.</p>
+  <div class="mt"><span class="label">Working directly with the founders</span></div>
+  <div class="foot"><b>Zinzile Vuma</b><span>4 / 10</span></div>
+</section>
+
+<!-- 5 stations -->
+<section class="s">
+  <div class="bar" style="width:50%"></div>
+  <div class="num">4</div><span class="label">The approach</span>
+  <h2>Built around the brand, not a template.</h2>
+  <ol class="st">
+    <li><span class="d">1</span><h3>Listen</h3><p>The founders' goals, the culture they had built, and many designer identities under one roof.</p></li>
+    <li><span class="d">2</span><h3>Map</h3><p>Runway and industry trend signals, matched to stories the brand already told.</p></li>
+    <li><span class="d">3</span><h3>Structure</h3><p>A keyword and editorial framework: blog themes, styling guidance, tone of voice.</p></li>
+    <li><span class="d">4</span><h3>Hand over</h3><p>A repeatable system, so nobody starts from a blank page each season.</p></li>
+  </ol>
+  <div class="foot"><b>Zinzile Vuma</b><span>5 / 10</span></div>
+</section>
+
+<!-- 6 path -->
+<section class="s grey">
+  <div class="bar" style="width:60%"></div>
+  <div class="num">5</div><span class="label">The customer's path</span>
+  <h2>From inspiration to purchase.</h2>
+  <div class="path">
+    <div><h3>Found through considered keywords</h3><span class="label">Search</span></div>
+    <div><h3>Editorial and designer stories</h3><span class="label">Read</span></div>
+    <div><h3>Guidance on how to wear it</h3><span class="label">Style</span></div>
+    <div><h3>A considered purchase</h3><span class="label">Buy</span></div>
+  </div>
+  <p style="margin-top:44px;color:#5C5C5C">A clear path through the site, without turning a discovery platform into a hard-sell shop.</p>
+  <div class="foot"><b>Zinzile Vuma</b><span>6 / 10</span></div>
+</section>
+
+<!-- 7 balance -->
+<section class="s">
+  <div class="bar" style="width:70%"></div>
+  <div class="num">6</div><span class="label">The trade-off</span>
+  <h2>Visibility without dilution.</h2>
+  <p class="lede" style="margin-top:36px">Search visibility mattered, but chasing it too hard would flatten a no-waste, story-led brand.</p>
+  <div class="bal"><div class="ends"><span>Search visibility</span><span>Brand identity</span></div><div class="track"><i></i></div><p>Keywords that support the storytelling rather than replace it.</p></div>
+  <div class="foot"><b>Zinzile Vuma</b><span>7 / 10</span></div>
+</section>
+
+<!-- 8 value -->
+<section class="s grey">
+  <div class="bar" style="width:80%"></div>
+  <div class="num">7</div><span class="label">What changed</span>
+  <h2>Value created.</h2>
+  <div class="val">
+    <div><span class="label">Strategic</span><h3>A real move online</h3><p>Supported the shift from reliance on pop-ups to a stronger digital discovery platform.</p></div>
+    <div><span class="label">Brand</span><h3>Positioning reinforced</h3><p>A curated destination for contemporary British design.</p></div>
+    <div><span class="label">Digital</span><h3>Clearer navigation</h3><p>Clear routes across styling guidance and blog pages.</p></div>
+    <div><span class="label">Commercial</span><h3>Browsing to buying</h3><p>From inspiration-led browsing to structured engagement, identity intact.</p></div>
+  </div>
+  <div class="foot"><b>Zinzile Vuma</b><span>8 / 10</span></div>
+</section>
+
+<!-- 9 quote -->
+<section class="s dark" style="justify-content:center">
+  <div class="bar" style="width:90%"></div>
+  <p class="q">A multi-brand platform carries many identities at once. The work was to carry all of them forward, together.</p>
+  <span class="label" style="margin-top:44px">Zinzile Vuma</span>
+  <div class="foot"><b>Zinzile Vuma</b><span>9 / 10</span></div>
+</section>
+
+<!-- 10 close -->
+<section class="s">
+  <div class="bar" style="width:100%"></div>
+  <span class="label">Read the full case study</span>
+  <h2 style="font-size:88px">The whole story, chapter by chapter.</h2>
+  <p class="lede" style="margin-top:36px">Including the customer's path, the trade-off you can test for yourself, and where I would take it next.</p>
+  <div style="margin-top:56px"><div class="pill" style="font-size:30px;padding:22px 36px 22px 22px">zinzilevuma.com/portfolio <i>→</i></div></div>
+  <div class="note">Academic placement as part of my BA (Hons) Luxury Brand Management at Regent's University London. Assessed at 80%, publishable standard. The client's name is withheld to protect confidentiality.</div>
+  <div class="foot"><b>Zinzile Vuma</b><span>10 / 10</span></div>
+</section>
+</body></html>
