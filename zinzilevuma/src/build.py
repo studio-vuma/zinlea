@@ -86,8 +86,8 @@ def page(path, title, desc, body, section=None, schema=None, noindex=False, og_t
 <meta name="theme-color" content="#0B0B0B">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" href="/fonts/newsreader-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/playfair-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/libre-franklin-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css?v={ASSET_V['css']}">
 {schemas}
 </head>
@@ -170,6 +170,7 @@ def crumbs(*items):
 
 # ---------------------------------------------------------------- home
 def home():
+    tiles = "".join(f'''<a class="tile" href="/advisory/{s["slug"]}/"><img src="/img/{s["image"]}-800.jpg" alt="" loading="lazy" decoding="async"><span class="in"><span class="n">{s["num"]}</span><h3>{e(s["short"])}</h3>{('<span class="reserved">Reserved</span>' if s.get("reserved") else '')}</span></a>''' for s in SERVICES) + f'''<a class="tile more" href="/advisory/"><div><span>How I work with clients</span><i aria-hidden="true">&rarr;</i></div></a>'''
     idx = "".join(f'''<a href="/advisory/{s["slug"]}/"><span class="num">{s["num"]}</span><h3>{e(s["title"])}{('<span class="reserved">Reserved</span>' if s.get("reserved") else '')}</h3><p>{e(s["positioning"])}</p><span class="go" aria-hidden="true">&rarr;</span></a>''' for s in SERVICES)
     teasers = "".join(f'''<a class="teaser reveal" href="/perspectives/{a["slug"]}/"><div class="img">{pic(a["image"], "", "(min-width: 900px) 30vw, 100vw")}</div><span class="label">{e(a["kind"])}</span><h3>{e(a["title"])}</h3><p>{e(a["standfirst"])}</p></a>''' for a in ARTICLES)
     sectors = "".join(f"<li>{e(x)}</li>" for x in SECTORS)
@@ -206,8 +207,7 @@ def home():
 <section class="section on-paper">
   <div class="wrap">
     <div class="section-head reveal"><span class="label">Areas of advisory</span><h2>Seven disciplines, shaped around each engagement.</h2><p class="muted">Clients engage me in one discipline or across several. The scope is developed around the circumstances, not chosen from a menu.</p></div>
-    <nav class="index reveal" aria-label="Advisory disciplines">{idx}</nav>
-    <div class="actions"><a class="link" href="/advisory/">How I work with clients {arrow()}</a></div>
+    <nav class="tiles reveal" aria-label="Advisory disciplines">{tiles}</nav>
   </div>
 </section>
 
@@ -232,6 +232,16 @@ def home():
     <div class="section-head reveal"><span class="label">Advisory portfolio</span><h2>Selected work.</h2></div>
     {pf.feature_card(arrow, "h3")}
     <div class="actions"><a class="link" href="/portfolio/">The full portfolio {arrow()}</a></div>
+  </div>
+</section>
+
+<section class="band">
+  <img src="/img/kigali-convention-1600.jpg" alt="" loading="lazy" decoding="async">
+  <div class="wrap reveal">
+    <span class="label">Perspective &middot; Positioning</span>
+    <h2>The most valuable position is a specific one.</h2>
+    <p>Why brands, destinations and sectors should become known for one thing, and how African businesses can build that position in their own right.</p>
+    <a class="btn" href="/perspectives/known-for-something/">Read the perspective {arrow()}</a>
   </div>
 </section>
 

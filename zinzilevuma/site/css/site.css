@@ -4,6 +4,12 @@
   src: url("/fonts/newsreader-latin-opsz-normal.woff2") format("woff2-variations"), url("/fonts/newsreader-latin-opsz-normal.woff2") format("woff2"); }
 @font-face { font-family: "Newsreader"; font-style: italic; font-weight: 200 800; font-display: swap;
   src: url("/fonts/newsreader-latin-opsz-italic.woff2") format("woff2-variations"), url("/fonts/newsreader-latin-opsz-italic.woff2") format("woff2"); }
+@font-face { font-family: "Playfair Display"; font-style: normal; font-weight: 400 900; font-display: swap;
+  src: url("/fonts/playfair-display-latin-wght-normal.woff2") format("woff2-variations"), url("/fonts/playfair-display-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "Playfair Display"; font-style: italic; font-weight: 400 900; font-display: swap;
+  src: url("/fonts/playfair-display-latin-wght-italic.woff2") format("woff2-variations"), url("/fonts/playfair-display-latin-wght-italic.woff2") format("woff2"); }
+@font-face { font-family: "Libre Franklin"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url("/fonts/libre-franklin-latin-wght-normal.woff2") format("woff2-variations"), url("/fonts/libre-franklin-latin-wght-normal.woff2") format("woff2"); }
 @font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 400 700; font-display: swap;
   src: url("/fonts/instrument-sans-latin-wght-normal.woff2") format("woff2-variations"), url("/fonts/instrument-sans-latin-wght-normal.woff2") format("woff2"); }
 
@@ -21,8 +27,8 @@
   --gold-text: #5C5C5C;      /* 6.7:1 on white */
   --gold-on-navy: #B5B5B5;   /* 9:1 on black */
   --on-navy-muted: #CFCFCF;
-  --serif: "Newsreader", Georgia, "Times New Roman", serif;
-  --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --sans: "Libre Franklin", system-ui, -apple-system, "Segoe UI", sans-serif;
   --max: 1240px;
   --gutter: 20px;
   --space: 76px;
@@ -40,7 +46,7 @@ a:hover { text-decoration-thickness: 2px; }
 .on-navy :focus-visible, .site-footer :focus-visible { outline-color: var(--ivory); }
 p, ul, ol, dl, figure, h1, h2, h3, h4, blockquote { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
-h1, h2, h3, h4 { font-family: var(--serif); font-weight: 380; letter-spacing: -.012em; text-wrap: balance; }
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; letter-spacing: 0; text-wrap: balance; }
 p { text-wrap: pretty; }
 
 .skip { position: absolute; left: -9999px; top: 0; z-index: 100; background: var(--navy); color: var(--ivory); padding: 10px 16px; font-family: var(--sans); font-size: 14px; }
@@ -559,3 +565,55 @@ p { text-wrap: pretty; }
 .reserved { display: inline-block; vertical-align: middle; margin-left: 12px; padding: 4px 11px; border-radius: 999px; background: var(--navy); color: var(--ivory); font-family: var(--sans); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; position: relative; top: -3px; }
 .reserved-note { display: inline-flex; align-items: center; gap: 10px; margin-top: 16px; padding: 7px 16px 7px 8px; border: 1px solid var(--navy); border-radius: 999px; font-family: var(--sans); font-size: 13.5px; }
 .reserved-note::before { content: ""; width: 20px; height: 20px; border-radius: 50%; background: var(--navy); flex: none; }
+
+
+/* ------------------------------------------------------------------
+   Type in the manner of the reference: Playfair Display headings in
+   letter-spaced capitals, Libre Franklin for reading. */
+body { font-weight: 400; }
+.hero h1, .page-hero h1, .article-head h1, .plain-page h1 { text-transform: uppercase; letter-spacing: .06em; font-weight: 400; line-height: 1.18; }
+.hero h1 { font-size: clamp(30px, 3.5vw, 48px); }
+.page-hero h1 { font-size: clamp(30px, 3.6vw, 50px); }
+.article-head h1, .plain-page h1 { font-size: clamp(28px, 3.2vw, 44px); }
+.section-head h2, .split h2, .invite h2, .advisor h2, .ch-head h2, .disc h2, .svc-body h2, .essay h2, .case-feature h2, .case-feature h3 { text-transform: uppercase; letter-spacing: .05em; font-weight: 700; line-height: 1.22; }
+.section-head h2, .split h2, .invite h2, .ch-head h2 { font-size: clamp(24px, 2.6vw, 34px); }
+.advisor h2 { font-size: clamp(28px, 3vw, 40px); font-weight: 400; letter-spacing: .08em; }
+.disc h2 { font-size: clamp(21px, 2.1vw, 27px); }
+.svc-body h2, .essay h2 { font-size: clamp(19px, 1.8vw, 23px); }
+.case-feature h2, .case-feature h3 { font-size: clamp(24px, 2.6vw, 34px); }
+.section-head, .invite { text-align: center; margin-left: auto; margin-right: auto; }
+.section-head p { margin-left: auto; margin-right: auto; max-width: 40em; }
+.index h3, .teaser h3, .triad h3, .bring h3, .outcome h3, .fronts h3, .work-item h3, .stations h3, .path h3, .shift h3, .glance dd { font-weight: 400; letter-spacing: .01em; }
+.wordmark .n { font-family: var(--serif); text-transform: uppercase; letter-spacing: .14em; font-size: 19px; font-weight: 500; }
+.lede { font-weight: 300; }
+.prose, .ch-body p, .svc-body p { font-weight: 400; }
+.ch-num, .stations .dot, .chapters a span { font-family: var(--serif); }
+
+/* Disciplines as photo tiles, titles laid over the image */
+.tiles { display: grid; gap: 14px; margin-top: 56px; }
+@media (min-width: 640px) { .tiles { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) { .tiles { grid-template-columns: repeat(4, 1fr); } }
+.tile { position: relative; display: block; aspect-ratio: 4 / 5; border-radius: 22px; overflow: hidden; color: #fff; text-decoration: none; background: #0B0B0B; }
+.tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(.62); transition: transform 1.2s ease, filter .8s ease; }
+.tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,.72) 100%); }
+.tile .in { position: absolute; inset: auto 22px 22px 22px; z-index: 1; }
+.tile .n { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,.7); font-family: var(--serif); font-size: 13px; margin-bottom: 14px; }
+.tile h3 { font-family: var(--serif); font-size: 18px; line-height: 1.3; text-transform: uppercase; letter-spacing: .1em; font-weight: 600; color: #fff; }
+.tile .reserved { margin: 10px 0 0; top: 0; background: #fff; color: #0B0B0B; }
+.tile:hover img, .tile:focus-visible img { transform: scale(1.04); filter: grayscale(100%) brightness(.5); }
+.tile.more { background: var(--ivory-2); color: var(--ink); display: grid; place-items: center; text-align: center; padding: 28px; }
+.tile.more::after { display: none; }
+.tile.more span { font-family: var(--serif); font-size: 18px; text-transform: uppercase; letter-spacing: .1em; }
+.tile.more i { display: grid; place-items: center; width: 52px; height: 52px; margin: 18px auto 0; border-radius: 50%; background: var(--navy); color: var(--ivory); font-style: normal; }
+
+/* Full-width dark photographic band */
+.band { position: relative; min-height: 78vh; display: grid; align-items: end; color: #fff; overflow: hidden; background: #0B0B0B; }
+.band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(.45); }
+.band .wrap { position: relative; width: 100%; padding-top: 120px; padding-bottom: 72px; text-align: right; }
+.band .label { color: #CFCFCF; }
+.band h2 { font-family: var(--serif); font-size: clamp(28px, 3.4vw, 46px); line-height: 1.2; text-transform: uppercase; letter-spacing: .06em; font-weight: 400; margin: 14px 0 0 auto; max-width: 18em; }
+.band p { margin: 16px 0 0 auto; max-width: 34em; color: #E0E0E0; }
+.band .btn { margin-top: 28px; background: #fff; color: #0B0B0B; border-color: #fff; }
+.band .btn .arr { background: #0B0B0B; color: #fff; }
+
+@media (max-width: 600px) { .hero h1 { font-size: 27px; letter-spacing: .04em; } .page-hero h1 { font-size: 27px; letter-spacing: .04em; } .wordmark .n { font-size: 17px; } }
