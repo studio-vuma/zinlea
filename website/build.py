@@ -578,7 +578,7 @@ def global_page():
 
 <section class="sec">
   <div class="wrap split flip">
-    <div class="media">{img("clinician-portrait", "Portrait of a young woman")}</div>
+    <div class="media">{img("global-partnership", "Two professionals shaking hands across a meeting table")}</div>
     <div>
       {label("How we work")}
       <h2 class="t-2">Partnership, from the first conversation.</h2>
