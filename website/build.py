@@ -19,7 +19,7 @@ LOGO = '<span class="logo-word">ZINLEA</span><span class="logo-sub">{sub}</span>
 
 
 # --------------------------------------------------------------------------- shell
-def head(title, desc, path, schema=None, noindex=False):
+def head(title, desc, path, schema=None, noindex=False, theme="health"):
     ld = "".join(f'<script type="application/ld+json">{json.dumps(s, ensure_ascii=False)}</script>\n' for s in (schema or []))
     robots = '<meta name="robots" content="noindex">\n' if noindex else ""
     return f"""<!DOCTYPE html>
@@ -45,7 +45,7 @@ def head(title, desc, path, schema=None, noindex=False):
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 {ld}</head>
-<body>
+<body class="theme-{theme}">
 <a class="skip-link" href="#main">Skip to content</a>
 """
 
@@ -104,7 +104,7 @@ def footer():
       <div class="f-brand">
         <a class="logo" href="/" aria-label="Zinlea Health home">{LOGO.format(sub="HEALTH")}</a>
         <p>Clinician-led healthcare, quietly available. Overnight clinical support in London through Zinlea Night, and new partnerships across Africa through Zinlea Global.</p>
-        <a class="link-arrow" href="mailto:{EMAIL}" style="color:#fff">{EMAIL} {ARR}</a>
+        <a class="link-arrow" href="mailto:{EMAIL}" >{EMAIL} {ARR}</a>
       </div>
       <div class="f-cols">
         <div><h4>Zinlea Night</h4><ul>
@@ -203,7 +203,7 @@ def home():
         "Zinlea Health | Clinician-led care in London and Africa",
         "Zinlea Health is a clinician-led healthcare company. Zinlea Night offers private overnight medical advice in London, 8pm–8am. Zinlea Global brings our standard of care to partners across Africa.",
         "/", [ORG],
-    ) + header() + f"""
+    ) + header(solid=True) + f"""
 <main id="main">
 <section class="hero-panels" aria-label="Zinlea Health and its divisions">
   <div class="hero-intro">
@@ -339,7 +339,7 @@ def night():
     return head(
         "Zinlea Night | Overnight Clinical Support London, 8pm–8am",
         "Private overnight medical advice in London. Experienced Advanced Nurse Practitioners available 8pm–8am for calm reassurance, clinical guidance and escalation support.",
-        "/night/", [NIGHT_ORG, crumbs("Zinlea Night", "/night/")],
+        "/night/", [NIGHT_ORG, crumbs("Zinlea Night", "/night/")], theme="night",
     ) + header("night", sub="NIGHT", cta=("Request Membership", "/contact/?type=member")) + f"""
 <main id="main">
 <section class="page-hero">
@@ -516,7 +516,7 @@ def global_page():
     return head(
         "Zinlea Global | Healthcare partnerships across Africa",
         "Zinlea Global brings Zinlea Health's clinician-led, governance-first approach to Africa's growing healthcare markets, in partnership with local providers and investors.",
-        "/global/", [GLOBAL_ORG, crumbs("Zinlea Global", "/global/")],
+        "/global/", [GLOBAL_ORG, crumbs("Zinlea Global", "/global/")], theme="global",
     ) + header("global", sub="GLOBAL", cta=("Register Interest", "/contact/?type=global")) + f"""
 <main id="main">
 <section class="page-hero earth">

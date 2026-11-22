@@ -497,3 +497,84 @@ strong,b{font-weight:500;}
 .prose li::before{content:"";flex-shrink:0;width:14px;height:1px;background:var(--gold);transform:translateY(-5px);}
 .prose a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gold);}
 .prose strong{color:var(--ink);}
+
+/* ==========================================================================
+   Division themes
+   Each page sets body.theme-health | theme-night | theme-global. Components
+   read the shared tokens above, so a theme only re-maps the tokens.
+   ========================================================================== */
+
+/* Zinlea Health — clean white */
+.theme-health{
+  --ivory:#FFFFFF;
+  --stone:#F6F4F0;
+  --sand:#ECE7DF;
+}
+.theme-health .utility{background:var(--stone);color:var(--ink-60);border-bottom:1px solid var(--line);}
+.theme-health .utility a{color:var(--ink);}
+.theme-health .utility a:hover{color:var(--gold);}
+.theme-health .hero-panels{background:var(--white);}
+.theme-health .hero-intro{background:var(--white);color:var(--ink);}
+.theme-health .hero-intro .display{color:var(--ink);}
+.theme-health .hero-intro .display i{color:var(--gold);}
+.theme-health .hero-intro .lede{color:var(--ink-60);}
+.theme-health .hero-intro .meta{color:var(--ink-60);border-top-color:var(--line);}
+.theme-health .hero-intro .btn-gold:hover{background:var(--ink);color:#fff;}
+.theme-health .site-footer{background:var(--stone);color:var(--ink-60);border-top:1px solid var(--line);}
+.theme-health .site-footer .logo{color:var(--ink);}
+.theme-health .site-footer .logo-sub,.theme-health .f-cols h4{color:var(--gold);}
+.theme-health .f-top,.theme-health .f-emergency{border-color:var(--line);}
+.theme-health .f-cols a:hover,.theme-health .f-bottom a:hover{color:var(--ink);}
+.theme-health .f-emergency b{color:var(--ink);}
+.theme-health .site-footer .link-arrow{color:var(--ink);}
+@media (min-width:1000px){
+  .theme-health .hero-panels{height:calc(100svh - 38px);margin-top:0;}
+}
+
+/* Zinlea Night — midnight blue throughout */
+.theme-night{
+  --ivory:#0E1527;
+  --stone:#121B32;
+  --sand:#1A2440;
+  --white:#151F38;
+  --ink:#F1ECE2;
+  --ink-80:#DAD5CB;
+  --ink-60:rgba(241,236,226,.68);
+  --ink-40:rgba(241,236,226,.46);
+  --line:rgba(241,236,226,.12);
+  --line-strong:rgba(241,236,226,.24);
+  --night:#090E1C;
+}
+.theme-night .site-footer{border-top:1px solid var(--line);}
+.theme-night .site-footer .link-arrow{color:#fff;}
+.theme-night .bg-night{border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.theme-night .plan{border-color:var(--line);}
+.theme-night .plan.featured{background:#1B2646;box-shadow:inset 0 0 0 1px rgba(205,179,132,.55);}
+.theme-night .pricing{border-color:var(--line-strong);}
+.theme-night .notice .kicker,.theme-night .notice .num{color:#E59A84;}
+.theme-night .btn-ink:hover{background:var(--gold);color:#fff;}
+.theme-night .header-cta{border-color:var(--line-strong);}
+.theme-night .site-header.is-stuck .header-cta:hover{background:var(--ink);color:var(--ivory);}
+.theme-night .kicker{color:var(--gold-soft);}
+
+/* Zinlea Global — warm African earth */
+.theme-global{
+  --ivory:#F7F0E6;
+  --stone:#EFE3D3;
+  --sand:#E2D0BA;
+  --white:#FCF8F2;
+  --ink:#2A1C15;
+  --ink-80:#45332A;
+  --ink-60:#6E5A4E;
+  --ink-40:#9A8679;
+  --line:rgba(42,28,21,.12);
+  --line-strong:rgba(42,28,21,.22);
+  --gold:#B9683F;
+  --gold-soft:#E8B48A;
+  --night:#3B261C;
+  --on-night:#F1E6DA;
+  --on-night-60:rgba(241,230,218,.7);
+  --line-night:rgba(241,230,218,.14);
+}
+.theme-global .site-footer .link-arrow{color:#fff;}
+.theme-global .btn-ink:hover{background:var(--gold);}
