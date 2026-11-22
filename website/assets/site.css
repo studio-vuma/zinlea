@@ -496,3 +496,25 @@ fieldset.fld{border:0;margin:0;padding:0;min-width:0;}
 .faq summary:hover .pm{background:var(--surface-2);}
 .faq-a{padding:0 56px 24px 0;color:var(--muted);max-width:70ch;}
 .faq-a a{color:var(--ink);text-underline-offset:3px;text-decoration-color:var(--dot);}
+
+/* ---------- Responsive images ---------- */
+picture{display:contents;}
+
+/* ---------- Who we are (home) ---------- */
+.who{border-top:1px solid var(--line);}
+.who-grid{display:grid;gap:28px;}
+.who-grid .t-2{margin-top:18px;max-width:14ch;}
+.who-grid .lede + .lede{margin-top:16px;}
+.who-grid .lede a,.prose-lede a,.explain a{color:var(--ink);text-underline-offset:3px;text-decoration-color:var(--dot);}
+.who-facts{display:grid;grid-template-columns:1fr;gap:0;margin:32px 0 28px;border-top:1px solid var(--line);}
+.who-facts div{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);}
+.who-facts dt{color:var(--muted);font-size:15px;}
+.who-facts dd{margin:0;font-weight:500;text-align:right;}
+@media (min-width:1000px){ .who-grid{grid-template-columns:.9fr 1.1fr;gap:80px;} }
+.explain-grid{display:grid;gap:36px;align-items:start;}
+.explain-grid .checks{margin-top:0;}
+@media (min-width:1000px){ .explain-grid{grid-template-columns:1fr 1fr;gap:80px;} }
+.trust.two{grid-template-columns:1fr 1fr;}
+.trust.two div{border-right:0;border-bottom:1px solid var(--line);}
+.trust.two div:nth-child(odd){border-right:1px solid var(--line);}
+.trust.two div:nth-last-child(-n+2){border-bottom:0;}

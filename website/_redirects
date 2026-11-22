@@ -1,0 +1,5 @@
+# Netlify redirects: old zinlea.com pages -> new structure
+/membership  /night/membership/  301!
+/how-it-works  /night/how-it-works/  301!
+/partnerships  /night/partnerships/  301!
+/private-client  /night/private-client/  301!
