@@ -60,8 +60,6 @@ export default async (req: Request, context: Context) => {
   }
 
   const loginUrl = new URL("/login.html", req.url);
-  const requested = new URL(req.url).pathname;
-  if (requested.startsWith("/portal")) loginUrl.searchParams.set("next", requested);
   return new Response(null, {
     status: 302,
     headers: { Location: loginUrl.toString() }
@@ -70,22 +68,5 @@ export default async (req: Request, context: Context) => {
 
 export const config: Config = {
   path: "/*",
-  // Public marketing site (Zinlea Health / Night / Global) is open to everyone;
-  // everything else — the /portal/ CRM, records, whoami — stays behind the gate.
-  excludedPath: [
-    "/",
-    "/index.html",
-    "/night",
-    "/night/*",
-    "/global",
-    "/global/*",
-    "/thank-you",
-    "/thank-you/*",
-    "/assets/*",
-    "/robots.txt",
-    "/sitemap.xml",
-    "/favicon.ico",
-    "/login.html",
-    "/.netlify/functions/auth"
-  ]
+  excludedPath: ["/login.html", "/.netlify/functions/auth"]
 };
