@@ -71,7 +71,7 @@ def header(current="", solid=False, sub="HEALTH", cta=("Enquire", "/contact/")):
     )
     return f"""<div class="utility">
   <div class="container">
-    <div class="u-left"><span><span class="dot" aria-hidden="true"></span><span class="u-hide">Zinlea Night &middot; </span>8pm &ndash; 8am</span><span class="u-hide">London &amp; Africa</span></div>
+    <div class="u-left"><span><span class="dot" aria-hidden="true"></span><span class="u-hide">Zinlea Night &middot; </span>8pm &ndash; 8am</span><span class="u-hide">Clinician-led healthcare</span></div>
     <a href="mailto:{EMAIL}">{EMAIL}</a>
   </div>
 </div>
@@ -200,7 +200,7 @@ def crumbs(name, path):
 # --------------------------------------------------------------------------- pages
 def home():
     return head(
-        "Zinlea Health | Clinician-led care in London and Africa",
+        "Zinlea Health | Clinician-led healthcare",
         "Zinlea Health is a clinician-led healthcare company. Zinlea Night offers private overnight medical advice in London, 8pm–8am. Zinlea Global brings our standard of care to partners across Africa.",
         "/", [ORG],
     ) + header(solid=True) + f"""
@@ -211,7 +211,7 @@ def home():
     <h1 class="display rv d1">Care, <i>quietly</i> exceptional.</h1>
     <p class="lede rv d2">A clinician-led healthcare company. Calm, expert support in London through the night, and a growing commitment to better care across Africa.</p>
     <div class="rv d3"><a class="btn btn-gold" href="/contact/">Make an enquiry {ARR}</a></div>
-    <div class="meta rv d3"><span>Clinician-led</span><span>Private &amp; discreet</span><span>London &middot; Africa</span></div>
+    <div class="meta rv d3"><span>Clinician-led</span><span>Private &amp; discreet</span><span>Safety first</span></div>
   </div>
   <a class="panel" href="/night/">
     {img("night-london", "Westminster and Big Ben at dusk, London", eager=True)}
@@ -278,7 +278,7 @@ def home():
     </div>
     <div class="feature-body">
       <span class="kicker rv" style="color:var(--terracotta)">A new chapter</span>
-      <h2 class="h2 rv d1">London standards. <i>African ambition.</i></h2>
+      <h2 class="h2 rv d1">Proven standards. <i>African ambition.</i></h2>
       <p class="lede rv d2">Zinlea Global is our initiative to bring clinician-led, governance-first care to Africa&rsquo;s growing healthcare markets, in partnership with local providers, clinicians and investors.</p>
       <div class="actions rv d3">
         <a class="btn btn-ink" href="/global/">Explore Zinlea Global {ARR}</a>
@@ -524,7 +524,7 @@ def global_page():
   <div class="container">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Zinlea Health</a><span>/</span>Zinlea Global</nav>
     <span class="kicker">Zinlea Global &middot; Africa</span>
-    <h1 class="h1">London standards. <i>African ambition.</i></h1>
+    <h1 class="h1">Proven standards. <i>African ambition.</i></h1>
     <p class="lede">Zinlea Global brings Zinlea Health&rsquo;s clinician-led, governance-first approach to Africa&rsquo;s growing healthcare markets, built in partnership with the people who know them best.</p>
     <div class="actions">
       <a class="btn btn-gold" href="/contact/?type=global">Register interest {ARR}</a>
