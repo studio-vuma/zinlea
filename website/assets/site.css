@@ -557,24 +557,34 @@ strong,b{font-weight:500;}
 .theme-night .site-header.is-stuck .header-cta:hover{background:var(--ink);color:var(--ivory);}
 .theme-night .kicker{color:var(--gold-soft);}
 
-/* Zinlea Global — warm African earth */
+/* Zinlea Global — midnight blue (shared with Night) with warm amber accents */
 .theme-global{
-  --ivory:#F7F0E6;
-  --stone:#EFE3D3;
-  --sand:#E2D0BA;
-  --white:#FCF8F2;
-  --ink:#2A1C15;
-  --ink-80:#45332A;
-  --ink-60:#6E5A4E;
-  --ink-40:#9A8679;
-  --line:rgba(42,28,21,.12);
-  --line-strong:rgba(42,28,21,.22);
-  --gold:#B9683F;
+  --ivory:#0E1527;
+  --stone:#121B32;
+  --sand:#1A2440;
+  --white:#151F38;
+  --ink:#F1ECE2;
+  --ink-80:#DAD5CB;
+  --ink-60:rgba(241,236,226,.68);
+  --ink-40:rgba(241,236,226,.46);
+  --line:rgba(241,236,226,.12);
+  --line-strong:rgba(241,236,226,.24);
+  --night:#090E1C;
+  --gold:#D08A4E;
   --gold-soft:#E8B48A;
-  --night:#3B261C;
-  --on-night:#F1E6DA;
-  --on-night-60:rgba(241,230,218,.7);
-  --line-night:rgba(241,230,218,.14);
+  --terracotta:#E39A62;
 }
+.theme-global .kicker{color:var(--gold-soft);}
+.theme-global .bg-earth{background:var(--night);color:var(--on-night);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.theme-global .bg-earth .kicker,.theme-global .bg-earth .index-list .n{color:var(--gold-soft);}
+.theme-global .page-hero.earth::before{background:linear-gradient(90deg,rgba(9,14,28,.86) 0%,rgba(9,14,28,.5) 55%,rgba(9,14,28,.12) 100%),linear-gradient(0deg,rgba(9,14,28,.6),transparent 45%);}
+.theme-global .page-hero.earth .kicker,.theme-global .page-hero.earth .h1 i,.theme-global .cta-bleed.earth .kicker{color:var(--gold-soft);}
+.theme-global .cta-bleed.earth::before{background:rgba(9,14,28,.62);}
+.theme-global .btn-gold{background:var(--gold);}
+.theme-global .btn-ink:hover{background:var(--gold);color:#fff;}
+.theme-global .header-cta{border-color:var(--line-strong);}
+.theme-global .site-header.is-stuck .header-cta:hover{background:var(--ink);color:var(--ivory);}
+.theme-global .site-footer{border-top:1px solid var(--line);}
 .theme-global .site-footer .link-arrow{color:#fff;}
-.theme-global .btn-ink:hover{background:var(--gold);}
+.theme-global .site-footer .logo-sub,.theme-global .f-cols h4,.theme-global .utility .dot{color:var(--gold-soft);}
+.theme-global .utility .dot{background:var(--gold);}
