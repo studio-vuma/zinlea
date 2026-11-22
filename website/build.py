@@ -201,7 +201,7 @@ def crumbs(name, path):
 def home():
     return head(
         "Zinlea Health | Clinician-led healthcare",
-        "Zinlea Health is a clinician-led healthcare company. Zinlea Night offers private overnight medical advice in London, 8pm–8am. Zinlea Global brings our standard of care to partners across Africa.",
+        "Zinlea Health is a clinician-led healthcare company. Zinlea Night offers private overnight medical advice in London, 8pm–8am. Zinlea Global builds healthcare partnerships across Africa.",
         "/", [ORG],
     ) + header(solid=True) + f"""
 <main id="main">
@@ -209,7 +209,7 @@ def home():
   <div class="hero-intro">
     <span class="kicker rv">Zinlea Health</span>
     <h1 class="display rv d1">Care, <i>quietly</i> exceptional.</h1>
-    <p class="lede rv d2">A clinician-led healthcare company. Calm, expert support in London through the night, and a growing commitment to better care across Africa.</p>
+    <p class="lede rv d2">A clinician-led healthcare company. Calm, expert overnight support through Zinlea Night, and new healthcare partnerships through Zinlea Global.</p>
     <div class="rv d3"><a class="btn btn-gold" href="/contact/">Make an enquiry {ARR}</a></div>
     <div class="meta rv d3"><span>Clinician-led</span><span>Private &amp; discreet</span><span>Safety first</span></div>
   </div>
@@ -224,7 +224,7 @@ def home():
     {img("global-acacia", "An acacia tree on the savanna at sunset", eager=True)}
     <span class="p-region">Africa &middot; Partnerships</span>
     <h2 class="p-title">Zinlea <i>Global</i></h2>
-    <p class="p-desc">Bringing the Zinlea standard of clinician-led care to partners in Africa&rsquo;s growing healthcare markets.</p>
+    <p class="p-desc">Partnering with healthcare providers, clinicians and investors across Africa to build new services together.</p>
     <span class="p-cta">Discover Zinlea Global {ARR}</span>
   </a>
 </section>
@@ -239,7 +239,7 @@ def home():
       <p class="statement rv">We believe good healthcare should feel <em>private, professional and unhurried</em>, whatever the hour and wherever you are.</p>
       <div class="follow">
         <p class="rv d1">Zinlea Health brings together clinicians with backgrounds across urgent care, primary care and acute services. Our first service, Zinlea Night, gives Londoners calm, expert clinical advice during the hours when healthcare can feel hardest to reach.</p>
-        <p class="rv d2">Through Zinlea Global, we are now taking that same safety-first, governance-led approach further, working with partners to develop trusted models of care across Africa.</p>
+        <p class="rv d2">Through Zinlea Global, we are building partnerships with healthcare providers, clinicians and investors across Africa, developing new services together as equal partners.</p>
       </div>
     </div>
   </div>
@@ -278,8 +278,8 @@ def home():
     </div>
     <div class="feature-body">
       <span class="kicker rv" style="color:var(--terracotta)">A new chapter</span>
-      <h2 class="h2 rv d1">Proven standards. <i>African ambition.</i></h2>
-      <p class="lede rv d2">Zinlea Global is our initiative to bring clinician-led, governance-first care to Africa&rsquo;s growing healthcare markets, in partnership with local providers, clinicians and investors.</p>
+      <h2 class="h2 rv d1">Healthcare partnerships, <i>built together.</i></h2>
+      <p class="lede rv d2">Zinlea Global is our new venture with healthcare providers, clinicians and investors across Africa. Every partnership is shaped jointly, drawing on the expertise of everyone involved.</p>
       <div class="actions rv d3">
         <a class="btn btn-ink" href="/global/">Explore Zinlea Global {ARR}</a>
         <a class="btn btn-line" href="/contact/?type=global">Register interest</a>
@@ -515,7 +515,7 @@ def night():
 def global_page():
     return head(
         "Zinlea Global | Healthcare partnerships across Africa",
-        "Zinlea Global brings Zinlea Health's clinician-led, governance-first approach to Africa's growing healthcare markets, in partnership with local providers and investors.",
+        "Zinlea Global partners with healthcare providers, clinicians and investors across Africa to develop new healthcare services together.",
         "/global/", [GLOBAL_ORG, crumbs("Zinlea Global", "/global/")], theme="global",
     ) + header("global", sub="GLOBAL", cta=("Register Interest", "/contact/?type=global")) + f"""
 <main id="main">
@@ -524,8 +524,8 @@ def global_page():
   <div class="container">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Zinlea Health</a><span>/</span>Zinlea Global</nav>
     <span class="kicker">Zinlea Global &middot; Africa</span>
-    <h1 class="h1">Proven standards. <i>African ambition.</i></h1>
-    <p class="lede">Zinlea Global brings Zinlea Health&rsquo;s clinician-led, governance-first approach to Africa&rsquo;s growing healthcare markets, built in partnership with the people who know them best.</p>
+    <h1 class="h1">Healthcare partnerships, <i>built together.</i></h1>
+    <p class="lede">Zinlea Global works with healthcare providers, clinicians and investors across Africa to develop new services, as equal partners from the very first conversation.</p>
     <div class="actions">
       <a class="btn btn-gold" href="/contact/?type=global">Register interest {ARR}</a>
       <a class="btn btn-line-light" href="#focus">Our focus</a>
@@ -538,10 +538,10 @@ def global_page():
   <div class="container intro-statement">
     <div class="side rv"><span class="kicker" style="color:var(--terracotta)">The opportunity</span><p>Zinlea Global is in development, and we are speaking with prospective founding partners.</p></div>
     <div>
-      <p class="statement rv">Across the continent, demand for private healthcare is growing quickly. We want to help partners meet it with <em>care people can trust.</em></p>
+      <p class="statement rv">Africa&rsquo;s healthcare sector is home to outstanding clinicians, entrepreneurs and innovators. We want to <em>build alongside them.</em></p>
       <div class="follow">
-        <p class="rv d1">Our experience in London has shown how much calm expertise, clear escalation and strong clinical governance matter, especially out of hours.</p>
-        <p class="rv d2">Zinlea Global will bring those foundations to new markets, shaped with local clinicians and adapted to local needs, culture and regulation.</p>
+        <p class="rv d1">We bring our experience of running a private, clinician-led overnight service. Our partners bring their own expertise, relationships and deep understanding of their markets.</p>
+        <p class="rv d2">Together, we can develop services that neither of us could build alone, and learn from each other along the way.</p>
       </div>
     </div>
   </div>
@@ -550,13 +550,13 @@ def global_page():
 <section class="section bg-earth" id="focus">
   <div class="container">
     <div class="head split-head">
-      <div><span class="kicker rv">Our focus</span><h2 class="h2 rv d1" style="margin-top:22px">Where we will <i>add value.</i></h2></div>
-      <p class="lede rv d2">Three areas where Zinlea&rsquo;s experience can make a practical difference for partners.</p>
+      <div><span class="kicker rv">Our focus</span><h2 class="h2 rv d1" style="margin-top:22px">What we can <i>build together.</i></h2></div>
+      <p class="lede rv d2">Three areas where we are looking to collaborate.</p>
     </div>
     <ol class="index-list">
-      <li class="rv"><span class="n">01</span><h3>Provider partnerships</h3><p>Working alongside hospital groups and private clinics to strengthen services, including out-of-hours and remote clinical support.</p></li>
-      <li class="rv"><span class="n">02</span><h3>Clinical governance &amp; training</h3><p>Sharing protocols, escalation pathways and training, so teams can grow safely and confidently.</p></li>
-      <li class="rv"><span class="n">03</span><h3>Models of care</h3><p>Designing sustainable, locally led service models with partners and investors.</p></li>
+      <li class="rv"><span class="n">01</span><h3>Provider partnerships</h3><p>Working with hospital groups and private clinics to develop new services, including out-of-hours and remote clinical support.</p></li>
+      <li class="rv"><span class="n">02</span><h3>Shared learning</h3><p>Exchanging clinical protocols, escalation pathways and training, with knowledge flowing in both directions.</p></li>
+      <li class="rv"><span class="n">03</span><h3>Models of care</h3><p>Co-designing sustainable service models with partners and investors.</p></li>
     </ol>
   </div>
 </section>
@@ -568,8 +568,8 @@ def global_page():
     </div>
     <div class="feature-body">
       <span class="kicker rv" style="color:var(--terracotta)">How we work</span>
-      <h2 class="h2 rv d1">Locally led. <i>Globally informed.</i></h2>
-      <p class="lede rv d2">We believe the best care is designed with communities, not for them. Every Zinlea Global partnership starts by listening.</p>
+      <h2 class="h2 rv d1">Partnership, <i>from the first conversation.</i></h2>
+      <p class="lede rv d2">Every Zinlea Global partnership starts by listening, and every decision is made together.</p>
       <div class="facts rv d2">
         <div><b>Listen</b><span>Understand your goals</span></div>
         <div><b>Design</b><span>Co-create the model</span></div>
