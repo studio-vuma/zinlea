@@ -90,13 +90,13 @@ def head(title, desc, path, theme="health", schema=None, noindex=False):
 NAV = [
     ("night", "/night/", "Zinlea Night", "n-night"),
     ("global", "/global/", "Zinlea Global", "n-global"),
-    ("membership", "/night/#membership", "Membership", ""),
-    ("governance", "/clinical-governance/", "Clinical governance", ""),
+    ("about", "/about/", "About", ""),
+    ("faq", "/faq/", "FAQ", ""),
     ("contact", "/contact/", "Contact", ""),
 ]
 
 
-def header(current="", sub="health", cta=("Enquire", "/contact/"), status=True):
+def header(current="", sub="health", cta=("Enquire", "/contact/"), status=True, subnav=None):
     cur = ' aria-current="page"'
     def dot(d):
         return f'<span class="n-dot {d}" aria-hidden="true"></span>' if d else ""
@@ -108,10 +108,16 @@ def header(current="", sub="health", cta=("Enquire", "/contact/"), status=True):
         f'<li><a href="{h}">{label}<small>{tag}</small></a></li>'
         for h, label, tag in [
             ("/", "Zinlea Health", "Home"), ("/night/", "Zinlea Night", "London, 8pm to 8am"),
-            ("/global/", "Zinlea Global", "Partnerships"), ("/night/#membership", "Membership", ""),
-            ("/clinical-governance/", "Clinical governance", ""), ("/contact/", "Contact", ""),
+            ("/night/membership/", "Membership", "Zinlea Night"), ("/night/private-client/", "Private Client", "Zinlea Night"),
+            ("/global/", "Zinlea Global", "Partnerships"), ("/about/", "About", ""), ("/faq/", "FAQ", ""),
+            ("/contact/", "Contact", ""),
         ]
     )
+    sub_html = ""
+    if subnav:
+        items, now = subnav
+        sub_html = '<nav class="subnav" aria-label="Zinlea Night"><div class="wrap"><ul>' + "".join(
+            f'<li><a href="{h}"{cur if k == now else ""}>{t}</a></li>' for k, h, t in items) + '</ul></div></nav>'
     chip = '<span class="status" data-open-state><span class="s-dot" aria-hidden="true"></span><span data-status-short>8pm &ndash; 8am &middot; London</span></span>' if status else ""
     return f"""<header class="site-header">
   <div class="wrap">
@@ -123,6 +129,7 @@ def header(current="", sub="health", cta=("Enquire", "/contact/"), status=True):
       <button class="menu-btn" type="button" aria-controls="drawer" aria-expanded="false" aria-label="Open menu"><span></span></button>
     </div>
   </div>
+  {sub_html}
 </header>
 <div class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-label="Menu">
   <div class="drawer-top">
@@ -149,13 +156,15 @@ def footer(sub="health"):
       </div>
       <div class="f-cols">
         <div><h4>Zinlea Night</h4><ul>
-          <li><a href="/night/">Overview</a></li><li><a href="/night/#membership">Membership</a></li>
-          <li><a href="/night/#how-it-works">How it works</a></li><li><a href="/night/#partnerships">Partnerships</a></li></ul></div>
+          <li><a href="/night/">Overview</a></li><li><a href="/night/membership/">Membership</a></li>
+          <li><a href="/night/private-client/">Private Client</a></li><li><a href="/night/how-it-works/">How it works</a></li>
+          <li><a href="/night/partnerships/">Partnerships</a></li></ul></div>
         <div><h4>Zinlea Global</h4><ul>
           <li><a href="/global/">Overview</a></li><li><a href="/global/#focus">What we build</a></li>
           <li><a href="/contact/?type=global">Register interest</a></li></ul></div>
         <div><h4>Zinlea Health</h4><ul>
-          <li><a href="/">Home</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+          <li><a href="/">Home</a></li><li><a href="/about/">About</a></li>
+          <li><a href="/faq/">FAQ</a></li><li><a href="/contact/">Contact</a></li></ul></div>
         <div><h4>Legal</h4><ul>
           <li><a href="/clinical-governance/">Clinical governance</a></li><li><a href="/privacy/">Privacy policy</a></li></ul></div>
       </div>
@@ -289,7 +298,7 @@ def home():
         <li><span><b>Medication guidance</b> and remote prescribing where clinically appropriate</span></li>
         <li><span><b>Clear escalation</b> when you need in-person care</span></li>
       </ul>
-      <div class="actions"><a class="btn btn-primary" href="/night/">How Zinlea Night works {ARR}</a></div>
+      <div class="actions"><a class="btn btn-primary" href="/night/how-it-works/">How Zinlea Night works {ARR}</a></div>
     </div>
   </div>
 </section>
@@ -330,11 +339,67 @@ def mcard(kind, tier):
 </div>"""
 
 
+NIGHT_SUB = [
+    ("overview", "/night/", "Overview"),
+    ("membership", "/night/membership/", "Membership"),
+    ("private-client", "/night/private-client/", "Private Client"),
+    ("how", "/night/how-it-works/", "How it works"),
+    ("partnerships", "/night/partnerships/", "Partnerships"),
+    ("faq", "/faq/#night", "FAQ"),
+]
+
+
+def night_head(title, desc, path, sub_current, cta=("Request membership", "/contact/?type=member")):
+    schema = [NIGHT_ORG] if path == "/night/" else [crumbs(title.split(" | ")[0], path)]
+    return head(title, desc, path, theme="night", schema=schema) + header("night", sub="night", cta=cta, subnav=(NIGHT_SUB, sub_current))
+
+
+def page_intro(lbl, h1, lede, actions=""):
+    return f"""<section class="p-intro">
+  <div class="wrap">
+    {label(lbl)}
+    <h1 class="t-1">{h1}</h1>
+    <p class="lede">{lede}</p>
+    {f'<div class="actions">{actions}</div>' if actions else ''}
+  </div>
+</section>"""
+
+
+NIGHT_CTA = f"""<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-panel">
+      <span class="label">Founding membership</span>
+      <h2 class="t-1">Overnight clinical care, quietly available.</h2>
+      <p class="lede">Private access to experienced Advanced Nurse Practitioners, 8pm to 8am. We reply to every enquiry within 24 hours.</p>
+      <div class="actions"><a class="btn btn-light" href="/contact/?type=member">Request membership {ARR}</a><a class="btn btn-quiet" href="/night/private-client/">Private Client</a></div>
+    </div>
+  </div>
+</section>"""
+
+NOTICE = f"""<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="notice">
+      <span class="n-num">999</span>
+      <p><strong>Zinlea Night is not an emergency service.</strong> If you or someone else has chest pain, difficulty breathing, loss of consciousness, severe bleeding or signs of stroke, call 999 immediately or go to your nearest A&amp;E.</p>
+      <a class="arrow-link" href="/clinical-governance/">Read more {ARR}</a>
+    </div>
+  </div>
+</section>"""
+
+
 def night():
-    return head("Zinlea Night | Overnight clinical advice in London, 8pm to 8am",
-                "Private overnight medical advice in London. Experienced Advanced Nurse Practitioners available 8pm to 8am for calm reassurance, clinical guidance and escalation support.",
-                "/night/", theme="night", schema=[NIGHT_ORG, crumbs("Zinlea Night", "/night/")]) + \
-        header("night", sub="night", cta=("Request membership", "/contact/?type=member")) + f"""
+    teasers = "".join(
+        f'<a class="teaser" href="{h}"><span class="t-k">{k}</span><b>{t}</b><span class="t-d">{d}</span><span class="circ">{ARR}</span></a>'
+        for k, h, t, d in [
+            ("From &pound;85 a month", "/night/membership/", "Membership", "Individual and family membership, with simple monthly pricing."),
+            ("By private consultation", "/night/private-client/", "Private Client", "A named lead clinician and specialist care arranged entirely around you."),
+            ("Enquiry to first call", "/night/how-it-works/", "How it works", "What happens after you get in touch, and what a call is like."),
+            ("For organisations", "/night/partnerships/", "Partnerships", "Overnight support for care homes, residences and family offices."),
+        ]
+    )
+    return night_head("Zinlea Night | Overnight clinical advice in London, 8pm to 8am",
+                      "Private overnight medical advice in London. Experienced Advanced Nurse Practitioners available 8pm to 8am for calm reassurance, clinical guidance and escalation support.",
+                      "/night/", "overview") + f"""
 <main id="main">
 <section class="d-hero">
   <div class="wrap d-hero-grid">
@@ -344,7 +409,7 @@ def night():
       <p class="lede">Private overnight medical advice in London through experienced Advanced Nurse Practitioners. Calm reassurance, clear guidance and escalation support while the rest of London sleeps.</p>
       <div class="actions">
         <a class="btn btn-primary" href="/contact/?type=member">Request membership {ARR}</a>
-        <a class="btn btn-quiet" href="#partnerships">For care providers</a>
+        <a class="btn btn-quiet" href="/night/membership/">See membership</a>
       </div>
       <div class="facts">
         <span class="chip"><b>Advanced Nurse Practitioners</b></span>
@@ -376,12 +441,197 @@ def night():
       <p class="lede">Out-of-hours medical support designed around your comfort and peace of mind.</p>
     </div>
     <div class="tiles c3">
-      <article class="tile feature"><span class="t-tag mono">20:00 &ndash; 08:00</span><h3>Overnight access</h3><p>Advanced Nurse Practitioners available throughout the night, every night.</p></article>
+      <article class="tile feature"><span class="t-tag mono">20:00 &ndash; 08:00</span><h3>Overnight access</h3><p>Advanced Nurse Practitioners available throughout the night.</p></article>
       <article class="tile"><span class="t-tag">You and your household</span><h3>Adult &amp; family support</h3><p>Overnight healthcare support for adults and family members when you need it most.</p></article>
       <article class="tile"><span class="t-tag">Treatment options</span><h3>Medication guidance</h3><p>Expert advice on medication, treatment and what to do next.</p></article>
       <article class="tile"><span class="t-tag">Where clinically appropriate</span><h3>Remote prescribing</h3><p>Prescribing decisions are made only after proper assessment, within UK guidelines.</p></article>
       <article class="tile"><span class="t-tag">Clear next steps</span><h3>Reassurance &amp; escalation</h3><p>Clear guidance on when further care is needed, and where to go.</p></article>
       <article class="tile"><span class="t-tag">At your pace</span><h3>Calm consultations</h3><p>Unhurried, thoughtful conversations by telephone or video.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt">
+  <div class="wrap">
+    <div class="sec-head split">
+      <h2 class="t-2">Explore Zinlea Night.</h2>
+      <p class="lede">Membership for individuals and families, a fully personal Private Client service, and partnerships for organisations.</p>
+    </div>
+    <div class="teasers">{teasers}</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split flip">
+    <div class="media">{img("nurse", "An Advanced Nurse Practitioner in uniform")}</div>
+    <div>
+      {label("Our clinicians")}
+      <h2 class="t-2">Experienced, calm and thorough.</h2>
+      <p class="lede">Zinlea Night is delivered by experienced Advanced Nurse Practitioners with backgrounds across urgent care, primary care and acute services, trained in remote consultation safety and safeguarding.</p>
+      <p class="lede">Zinlea Night is a remote service. We do not provide home visits or in-person examinations, and we guide you to the right service when you need one.</p>
+      <div class="actions"><a class="arrow-link" href="/clinical-governance/">Clinical governance {ARR}</a></div>
+    </div>
+  </div>
+</section>
+
+{NOTICE}
+{NIGHT_CTA}
+</main>
+""" + footer("night")
+
+
+def night_membership():
+    return night_head("Membership | Zinlea Night",
+                      "Zinlea Night membership: Individual from £85 a month, Family from £225 a month, and the Private Client service by consultation.",
+                      "/night/membership/", "membership") + f"""
+<main id="main">
+{page_intro("Zinlea Night &middot; Membership", "Membership.", "Simple, transparent pricing for overnight peace of mind in London. We are currently onboarding a limited number of founding members.")}
+
+<section class="sec" style="padding-top:8px">
+  <div class="wrap">
+    <div class="plans">
+      <article class="plan">
+        {mcard("silver", "Individual")}
+        <div class="plan-body"><h3>Individual</h3><p class="for">Personal overnight clinical support.</p>
+          <div class="price"><span class="from">From</span><b>&pound;85</b><small>a month</small></div>
+          <ul><li>Overnight access, 8pm to 8am</li><li>Advanced Nurse Practitioner consultations</li><li>Medication and treatment guidance</li><li>Reassurance and escalation support</li></ul></div>
+        <a class="btn btn-quiet" href="/contact/?type=member">Request membership</a>
+      </article>
+      <article class="plan">
+        {mcard("midnight", "Family")}
+        <div class="plan-body"><h3>Family</h3><p class="for">Overnight healthcare support for your household.</p>
+          <div class="price"><span class="from">From</span><b>&pound;225</b><small>a month</small></div>
+          <ul><li>Everything in Individual</li><li>Support for adults and family members</li><li>Continuity with a consistent clinical team</li><li>Unhurried consultations at your pace</li></ul></div>
+        <a class="btn btn-primary" href="/contact/?type=member">Request membership {ARR}</a>
+      </article>
+      <article class="plan">
+        {mcard("glass-card", "Partner")}
+        <div class="plan-body"><h3>Partnership</h3><p class="for">Care homes, residences, family offices and organisations.</p>
+          <div class="price"><b style="font-size:2.2rem">Tailored</b><small>monthly</small></div>
+          <ul><li>Overnight clinical decision support</li><li>Triage, remote consultation and prescribing</li><li>Governance-led escalation</li><li>Complements your existing care team</li></ul></div>
+        <a class="btn btn-quiet" href="/night/partnerships/">About partnerships</a>
+      </article>
+    </div>
+
+    <a class="pc-panel" href="/night/private-client/">
+      <div class="pc-card">{mcard("obsidian", "Private Client")}</div>
+      <div class="pc-body">
+        {label("By private consultation")}
+        <h2 class="t-2">Private Client.</h2>
+        <p class="lede">For individuals and families who want care arranged entirely around them: a named lead clinician, coordination with specialist consultants, and a care plan that knows your history. Fees are agreed after a private consultation.</p>
+        <span class="arrow-link">Discover Private Client {ARR}</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="sec alt">
+  <div class="wrap">
+    <div class="sec-head split">
+      <h2 class="t-2">Every membership includes.</h2>
+      <p class="lede">The same clinical standards, whichever membership you choose.</p>
+    </div>
+    <div class="tiles c3">
+      <article class="tile"><span class="t-tag mono">20:00 &ndash; 08:00</span><h3>Overnight access</h3><p>Speak to an Advanced Nurse Practitioner through the night, by phone or video.</p></article>
+      <article class="tile"><span class="t-tag">Safety first</span><h3>Clear escalation</h3><p>Guidance on when you need in-person care, and help finding the right service.</p></article>
+      <article class="tile"><span class="t-tag">UK GDPR</span><h3>Confidentiality</h3><p>Your information is stored securely and used only to provide your care.</p></article>
+    </div>
+    <p class="note-line">Questions about membership? <a href="/faq/#night">Read the FAQ</a> or <a href="/contact/?type=member">get in touch</a>.</p>
+  </div>
+</section>
+
+{NOTICE.replace('style="padding-top:0"', '')}
+</main>
+""" + footer("night")
+
+
+def night_private_client():
+    return night_head("Private Client | Zinlea Night",
+                      "Zinlea Night Private Client: a named lead clinician, coordination with specialist consultants and care arranged entirely around you. By private consultation.",
+                      "/night/private-client/", "private-client", cta=("Arrange a consultation", "/contact/?type=private-client")) + f"""
+<main id="main">
+<section class="pc-hero">
+  <div class="wrap pc-hero-grid">
+    <div>
+      {label("Zinlea Night &middot; Private Client")}
+      <h1 class="t-hero">Care that knows you.</h1>
+      <p class="lede">Private Client is our most personal service. One lead clinician who knows you and your family, specialist input arranged on your behalf, and care that is planned around your life rather than a schedule.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/contact/?type=private-client">Arrange a private consultation {ARR}</a>
+      </div>
+      <p class="pc-note">Fees are agreed individually, after a private consultation.</p>
+    </div>
+    <div class="pc-hero-card">{mcard("obsidian", "Private Client")}</div>
+  </div>
+</section>
+
+<section class="sec-lg alt">
+  <div class="wrap">
+    <p class="two-tone">Some families want more than access to a clinician. <span>They want a clinician who already knows the history, the medication and the people involved.</span></p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head split">
+      <h2 class="t-2">What Private Client includes.</h2>
+      <p class="lede">Everything in Zinlea Night membership, with care arranged personally around you. The details are agreed with you during your consultation.</p>
+    </div>
+    <div class="tiles c3">
+      <article class="tile feature"><span class="t-tag">One point of contact</span><h3>A named lead clinician</h3><p>A senior clinician who knows you, your household and your medical history, and leads your care.</p></article>
+      <article class="tile"><span class="t-tag">Specialist input</span><h3>Specialist coordination</h3><p>Referrals and liaison with specialist consultants and your own doctors, arranged on your behalf.</p></article>
+      <article class="tile"><span class="t-tag">Written for you</span><h3>A personal care plan</h3><p>A plan that reflects your history and preferences, so every overnight call starts from what we already know.</p></article>
+      <article class="tile"><span class="t-tag">No rush</span><h3>Extended consultations</h3><p>Longer, unhurried conversations and follow-up guidance after every call.</p></article>
+      <article class="tile"><span class="t-tag">Your household</span><h3>Family and staff</h3><p>Care that can extend to family members and, where appropriate, household staff.</p></article>
+      <article class="tile"><span class="t-tag">Complete discretion</span><h3>Quiet by design</h3><p>Strict confidentiality and personal boundaries, whoever you are.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head split">
+      <h2 class="t-2">How it begins.</h2>
+      <p class="lede">Private Client is arranged individually. There is no sign-up form and no published price.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl"><span class="when">First</span><div><h3>Get in touch</h3><p>Tell us a little about yourself, in confidence.</p></div></div>
+      <div class="tl"><span class="when">Within 24 hours</span><div><h3>We arrange a time</h3><p>A member of our clinical leadership contacts you personally.</p></div></div>
+      <div class="tl"><span class="when">Consultation</span><div><h3>A private conversation</h3><p>We understand your needs, your family and what good care looks like for you.</p></div></div>
+      <div class="tl"><span class="when">Your proposal</span><div><h3>Care, designed for you</h3><p>A written proposal with your lead clinician, care plan and fees.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-panel obsidian">
+      <span class="label">Private Client</span>
+      <h2 class="t-1">Begin with a conversation.</h2>
+      <p class="lede">Every Private Client relationship starts with a private consultation. There is no obligation.</p>
+      <div class="actions"><a class="btn btn-light" href="/contact/?type=private-client">Arrange a private consultation {ARR}</a></div>
+    </div>
+  </div>
+</section>
+{NOTICE}
+</main>
+""" + footer("night")
+
+
+def night_how():
+    return night_head("How it works | Zinlea Night",
+                      "How Zinlea Night works: from your enquiry to your first overnight call with an Advanced Nurse Practitioner.",
+                      "/night/how-it-works/", "how") + f"""
+<main id="main">
+{page_intro("Zinlea Night &middot; How it works", "From enquiry to your first call.", "Simple, discreet access to overnight clinical support in London. We keep everything straightforward.")}
+
+<section class="sec" style="padding-top:8px">
+  <div class="wrap">
+    <div class="timeline">
+      <div class="tl"><span class="when">Today</span><div><h3>Request membership</h3><p>Complete our short enquiry form.</p></div></div>
+      <div class="tl"><span class="when">Within 24 hours</span><div><h3>We reply</h3><p>A member of our team responds personally.</p></div></div>
+      <div class="tl"><span class="when">Onboarding call</span><div><h3>Get to know you</h3><p>A brief call to understand your needs and confirm your membership.</p></div></div>
+      <div class="tl"><span class="when">From 20:00</span><div><h3>Call when you need us</h3><p>Overnight advice from our Advanced Nurse Practitioners until 08:00.</p></div></div>
     </div>
   </div>
 </section>
@@ -412,82 +662,130 @@ def night():
       <h2 class="t-2">You speak directly to a senior nurse.</h2>
       <p class="lede">When you contact Zinlea Night, you speak with an experienced Advanced Nurse Practitioner. We listen carefully, ask the right questions and give clear clinical guidance.</p>
       <p class="lede">Unlike a standard out-of-hours service, our focus is continuity and reassurance. When in-person care is needed, we help you understand your options and escalate appropriately. Everything is confidential.</p>
+      <ul class="checks">
+        <li><span><b>By phone or video</b>, whichever you prefer</span></li>
+        <li><span><b>Remote prescribing</b> where clinically appropriate</span></li>
+        <li><span><b>Clear next steps</b> if you need in-person care</span></li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="sec" id="membership">
-  <div class="wrap">
-    <div class="sec-head split">
-      <h2 class="t-2">Membership.</h2>
-      <p class="lede">Simple, transparent pricing. We are currently onboarding a limited number of founding members.</p>
-    </div>
-    <div class="plans">
-      <article class="plan">
-        {mcard("silver", "Individual")}
-        <div class="plan-body"><h3>Individual</h3><p class="for">Personal overnight clinical support.</p>
-          <div class="price"><span class="from">From</span><b>&pound;85</b><small>a month</small></div>
-          <ul><li>Overnight access, 8pm to 8am</li><li>Advanced Nurse Practitioner consultations</li><li>Medication and treatment guidance</li><li>Reassurance and escalation support</li></ul></div>
-        <a class="btn btn-quiet" href="/contact/?type=member">Request membership</a>
-      </article>
-      <article class="plan">
-        {mcard("midnight", "Family")}
-        <div class="plan-body"><h3>Family</h3><p class="for">Overnight healthcare support for your household.</p>
-          <div class="price"><span class="from">From</span><b>&pound;225</b><small>a month</small></div>
-          <ul><li>Everything in Individual</li><li>Support for adults and family members</li><li>Continuity with a consistent clinical team</li><li>Unhurried consultations at your pace</li></ul></div>
-        <a class="btn btn-primary" href="/contact/?type=member">Request membership {ARR}</a>
-      </article>
-      <article class="plan">
-        {mcard("glass-card", "Partner")}
-        <div class="plan-body"><h3>Partnership</h3><p class="for">Care homes, residences, family offices and organisations.</p>
-          <div class="price"><b style="font-size:2.2rem">Tailored</b><small>monthly</small></div>
-          <ul><li>Overnight clinical decision support</li><li>Triage, remote consultation and prescribing</li><li>Governance-led escalation</li><li>Complements your existing care team</li></ul></div>
-        <a class="btn btn-quiet" href="/contact/?type=partnership">Enquire</a>
-      </article>
-    </div>
-  </div>
-</section>
+{NOTICE.replace('style="padding-top:0"', '')}
+{NIGHT_CTA}
+</main>
+""" + footer("night")
 
-<section class="sec" id="how-it-works" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head split">
-      <h2 class="t-2">From enquiry to your first call.</h2>
-      <p class="lede">Simple, discreet access to overnight clinical support.</p>
-    </div>
-    <div class="timeline">
-      <div class="tl"><span class="when">Today</span><div><h3>Request membership</h3><p>Complete our short enquiry form.</p></div></div>
-      <div class="tl"><span class="when">Within 24 hours</span><div><h3>We reply</h3><p>A member of our team responds personally.</p></div></div>
-      <div class="tl"><span class="when">Onboarding call</span><div><h3>Get to know you</h3><p>A brief call to understand your needs and confirm your membership.</p></div></div>
-      <div class="tl"><span class="when">Every night, 20:00</span><div><h3>Call when you need us</h3><p>Overnight advice from our Advanced Nurse Practitioners until 08:00.</p></div></div>
-    </div>
-  </div>
-</section>
 
-<section class="sec alt" id="partnerships">
+def night_partnerships():
+    return night_head("Partnerships | Zinlea Night",
+                      "Zinlea Night partners with care homes, residences, family offices and organisations to provide overnight clinical support in London, 8pm to 8am.",
+                      "/night/partnerships/", "partnerships", cta=("Partnership enquiry", "/contact/?type=partnership")) + f"""
+<main id="main">
+{page_intro("Zinlea Night &middot; Partnerships", "Overnight support for care providers.", "Zinlea Night partners with a limited number of organisations and private residences seeking discreet overnight clinical support in London.", f'<a class="btn btn-primary" href="/contact/?type=partnership">Partnership enquiry {ARR}</a>')}
+
+<section class="sec" style="padding-top:8px">
   <div class="wrap split">
     <div class="media">{img("care-home", "A clinician checking an older resident's blood pressure")}</div>
     <div>
-      {label("For care providers")}
-      <h2 class="t-2">Overnight support for care homes and residences.</h2>
-      <p class="lede">Zinlea Night works with a small number of carefully selected care homes, residences, family offices and organisations, providing overnight escalation support between 8pm and 8am.</p>
+      {label("Residential &amp; clinical partnerships")}
+      <h2 class="t-2">For care homes and residences.</h2>
+      <p class="lede">We work with a small number of carefully selected residential and clinical partners, providing overnight escalation support between 8pm and 8am.</p>
       <ul class="checks">
-        <li><span>Complements existing care teams with overnight clinical decision support</span></li>
+        <li><span>Complements existing care teams with overnight clinical decision support and reassurance</span></li>
         <li><span>Triage, remote consultation and prescribing where clinically appropriate</span></li>
-        <li><span>Tailored after an introductory conversation to ensure clinical suitability</span></li>
+        <li><span>Governance-led escalation aligned with your existing care model</span></li>
       </ul>
-      <div class="actions"><a class="btn btn-primary" href="/contact/?type=partnership">Partnership enquiry {ARR}</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt">
+  <div class="wrap split flip">
+    <div class="media wide">{img("consult-elderly", "A clinician speaking warmly with an older woman")}</div>
+    <div>
+      {label("Organisational partnerships")}
+      <h2 class="t-2">For family offices and organisations.</h2>
+      <p class="lede">We partner with family offices, leadership teams and small organisations seeking private overnight support for their people and the communities they look after.</p>
     </div>
   </div>
 </section>
 
 <section class="sec">
+  <div class="wrap">
+    <div class="sec-head split">
+      <h2 class="t-2">How partnership fees work.</h2>
+      <p class="lede">Partnership fees are monthly and tailored to your requirements, following an introductory conversation to ensure clinical suitability.</p>
+    </div>
+    <div class="tiles c3">
+      <article class="tile"><span class="t-tag">First</span><h3>Introductory conversation</h3><p>We learn about your setting, your residents or people, and where nights feel stretched.</p></article>
+      <article class="tile"><span class="t-tag">Then</span><h3>Clinical suitability</h3><p>We confirm that our remote overnight model is right for your setting.</p></article>
+      <article class="tile"><span class="t-tag">Monthly</span><h3>Tailored partnership</h3><p>A clear monthly arrangement, reviewed with you over time.</p></article>
+    </div>
+    <p class="note-line">We are currently onboarding a limited number of London partners while our CQC registration is under review.</p>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-panel">
+      <span class="label">Partnerships</span>
+      <h2 class="t-1">Let&rsquo;s talk about your nights.</h2>
+      <p class="lede">Tell us about your organisation and we will arrange an introductory conversation.</p>
+      <div class="actions"><a class="btn btn-light" href="/contact/?type=partnership">Partnership enquiry {ARR}</a></div>
+    </div>
+  </div>
+</section>
+</main>
+""" + footer("night")
+
+
+def about():
+    return head("About | Zinlea Health",
+                "Zinlea Health is a private, clinician-led healthcare company, home to Zinlea Night in London and Zinlea Global across Africa.",
+                "/about/", schema=[ORG, crumbs("About", "/about/")]) + header("about") + f"""
+<main id="main">
+{page_intro("About Zinlea Health", "Clinician-led care, built on calm expertise.", "Zinlea Health is a private healthcare company led by experienced clinicians. We believe healthcare should feel private, professional and unhurried, whatever the hour.")}
+
+<section class="sec" style="padding-top:8px">
+  <div class="wrap split">
+    <div class="media">{img("consult-elderly", "A clinician speaking warmly with an older woman")}</div>
+    <div>
+      {label("Our story")}
+      <h2 class="t-2">We started with the hardest hours.</h2>
+      <p class="lede">Zinlea began with Zinlea Night, bringing calm, expert overnight medical advice to London during the hours when healthcare access can feel uncertain.</p>
+      <p class="lede">Through Zinlea Global, we are now building healthcare partnerships across Africa, working with providers, clinicians and investors as equal partners.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec-lg alt">
+  <div class="wrap">
+    <p class="two-tone">Good healthcare should feel private, professional and unhurried. <span>Whatever the hour, wherever you are.</span></p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head split">
+      <h2 class="t-2">Our principles.</h2>
+      <p class="lede">The same principles guide every Zinlea service.</p>
+    </div>
+    <div class="tiles c3">
+      <article class="tile"><span class="t-tag">How we speak to you</span><h3>Calm expertise</h3><p>Clinical advice delivered thoughtfully and without rush, by experienced clinicians who listen carefully.</p></article>
+      <article class="tile"><span class="t-tag">How we treat your information</span><h3>Discretion</h3><p>Private care with complete respect for confidentiality and personal boundaries.</p></article>
+      <article class="tile"><span class="t-tag">How we stay with you</span><h3>Continuity</h3><p>Relationships built over time, so you are supported consistently.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
   <div class="wrap split flip">
     <div class="media">{img("nurse", "An Advanced Nurse Practitioner in uniform")}</div>
     <div>
       {label("Our clinicians")}
       <h2 class="t-2">Experienced, calm and thorough.</h2>
-      <p class="lede">Zinlea Night is delivered by experienced Advanced Nurse Practitioners with backgrounds across urgent care, primary care and acute services, trained in remote consultation safety and safeguarding.</p>
-      <p class="lede">Zinlea Night is a remote service. We do not provide home visits or in-person examinations, and we guide you to the right service when you need one.</p>
+      <p class="lede">Our clinicians are experienced Advanced Nurse Practitioners with backgrounds across urgent care, primary care and acute services, trained in remote consultation safety, safeguarding and patient experience standards.</p>
       <div class="actions"><a class="arrow-link" href="/clinical-governance/">Clinical governance {ARR}</a></div>
     </div>
   </div>
@@ -495,33 +793,80 @@ def night():
 
 <section class="sec" style="padding-top:0">
   <div class="wrap">
-    <div class="notice">
-      <span class="n-num">999</span>
-      <p><strong>Zinlea Night is not an emergency service.</strong> If you or someone else has chest pain, difficulty breathing, loss of consciousness, severe bleeding or signs of stroke, call 999 immediately or go to your nearest A&amp;E.</p>
-      <a class="arrow-link" href="/clinical-governance/">Read more {ARR}</a>
-    </div>
-  </div>
-</section>
-
-<section class="sec" style="padding-top:0">
-  <div class="wrap">
-    <div class="cta-panel">
-      <span class="label">Founding membership</span>
-      <h2 class="t-1">Overnight clinical care, quietly available.</h2>
-      <p class="lede">Private access to experienced Advanced Nurse Practitioners, 8pm to 8am.</p>
-      <div class="actions"><a class="btn btn-light" href="/contact/?type=member">Request membership {ARR}</a></div>
+    <div class="trust">
+      <div><b>Clinician-led</b><span>Advanced Nurse Practitioners</span></div>
+      <div><b>CQC application submitted</b><span>Registration under review</span></div>
+      <div><b>UK GDPR</b><span>Confidential by design</span></div>
+      <div><b>Safety first</b><span>Clear escalation pathways</span></div>
     </div>
   </div>
 </section>
 
 <section class="sec" style="padding-top:0">
   <div class="wrap xlinks">
-    <a class="xlink" href="/"><span><small>Zinlea Health</small><b>About Zinlea</b></span><span class="circ">{ARR}</span></a>
+    <a class="xlink" href="/night/"><span><small>London, 8pm to 8am</small><b>Zinlea Night</b></span><span class="circ">{ARR}</span></a>
     <a class="xlink" href="/global/"><span><small>Partnerships across Africa</small><b>Zinlea Global</b></span><span class="circ">{ARR}</span></a>
   </div>
 </section>
 </main>
-""" + footer("night")
+""" + footer()
+
+
+FAQ = [
+    ("general", "About Zinlea", [
+        ("What is Zinlea Health?", "Zinlea Health is a private, clinician-led healthcare company. It is home to Zinlea Night, which provides overnight clinical advice in London, and Zinlea Global, which builds healthcare partnerships across Africa."),
+        ("How do I get in touch?", f'Use our <a href="/contact/">contact form</a> or email <a href="mailto:{EMAIL}">{EMAIL}</a>. We reply to every enquiry within 24 hours.'),
+        ("Is Zinlea regulated?", 'Zinlea Night has submitted an application for registration with the Care Quality Commission (CQC), the independent regulator of health and social care in England. While the application is under review, Zinlea Night operates as a clinician-led private healthcare service. Read more on our <a href="/clinical-governance/">clinical governance</a> page.'),
+        ("How do you look after my information?", 'We operate in accordance with UK GDPR, the Data Protection Act 2018 and medical confidentiality standards. Patient information is stored securely, accessed only by authorised clinicians and used solely for care. See our <a href="/privacy/">privacy policy</a>.'),
+    ]),
+    ("night", "Zinlea Night", [
+        ("What is Zinlea Night?", "A private membership providing overnight medical advice in London through experienced Advanced Nurse Practitioners, from 8pm to 8am."),
+        ("Who will I speak to?", "You speak directly with an experienced Advanced Nurse Practitioner, with a background across urgent care, primary care or acute services."),
+        ("How do consultations take place?", "By telephone or video. Zinlea Night is a remote service by design: we do not provide home visits or in-person examinations. When you need in-person care, we guide you to the right service."),
+        ("Can you prescribe medication?", "Yes, where it is clinically appropriate and safe, after proper assessment. Some medications cannot be prescribed remotely, and controlled drugs and high-risk medicines may be restricted. Prescribing decisions remain at the clinician's professional discretion."),
+        ("Is Zinlea Night an emergency service?", "No. If you or someone else has chest pain, difficulty breathing, loss of consciousness, severe bleeding, signs of stroke or any life-threatening symptoms, call 999 immediately or go to your nearest A&amp;E. Zinlea Night cannot dispatch ambulances."),
+        ("Does Zinlea Night replace my GP?", "No. Zinlea Night complements your registered GP, NHS urgent care and hospital services. We encourage members to stay in touch with their GP for ongoing and long-term needs."),
+        ("How much does membership cost?", 'Individual membership starts from &pound;85 a month and Family membership from &pound;225 a month. Partnerships are tailored, and Private Client fees are agreed after a private consultation. See <a href="/night/membership/">membership</a>.'),
+        ("How do I become a member?", 'Request membership through our <a href="/contact/?type=member">enquiry form</a>. We reply within 24 hours, then arrange a brief onboarding call to understand your needs and confirm your membership.'),
+        ("What is Private Client?", 'Our most personal service: a named lead clinician, coordination with specialist consultants and your own doctors, and a care plan built around you. It is arranged individually after a private consultation. <a href="/night/private-client/">Learn more</a>.'),
+        ("Do you work with care homes and organisations?", 'Yes. We partner with a small number of care homes, residences, family offices and organisations to provide overnight escalation support. <a href="/night/partnerships/">About partnerships</a>.'),
+    ]),
+    ("global", "Zinlea Global", [
+        ("What is Zinlea Global?", "Zinlea Global works with healthcare providers, clinicians and investors across Africa to develop new healthcare services together, as equal partners."),
+        ("Is Zinlea Global operating yet?", "Zinlea Global is in development. We are currently speaking with prospective founding partners."),
+        ("Who can partner with Zinlea Global?", 'Hospital groups, private clinics, clinicians and investors. <a href="/contact/?type=global">Register your interest</a> and we will be in touch.'),
+    ]),
+]
+
+
+def faq():
+    def strip(t):
+        return re.sub(r"<[^>]+>", "", t).replace("&amp;", "&").replace("&pound;", "£")
+    schema = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": strip(a)}}
+        for _, _, items in FAQ for q, a in items]}
+    jump = "".join(f'<a class="chip" href="#{gid}">{title}</a>' for gid, title, _ in FAQ)
+    groups = "".join(
+        f'<section class="faq-group" id="{gid}"><h2 class="t-3">{title}</h2>'
+        + "".join(f'<details class="faq"><summary>{q}<span class="pm" aria-hidden="true"></span></summary><div class="faq-a"><p>{a}</p></div></details>' for q, a in items)
+        + "</section>"
+        for gid, title, items in FAQ
+    )
+    return head("FAQ | Zinlea Health", "Answers to common questions about Zinlea Night membership, prescribing, emergencies, Private Client and Zinlea Global.",
+                "/faq/", schema=[schema, crumbs("FAQ", "/faq/")]) + header("faq") + f"""
+<main id="main">
+{page_intro("Questions &amp; answers", "Frequently asked questions.", "Everything you might want to know before getting in touch. If your question isn&rsquo;t here, we are happy to help.", f'<div class="faq-jump">{jump}</div>')}
+<section class="sec" style="padding-top:8px">
+  <div class="wrap faq-wrap">{groups}</div>
+</section>
+<section class="sec" style="padding-top:0">
+  <div class="wrap xlinks">
+    <a class="xlink" href="/contact/"><span><small>We reply within 24 hours</small><b>Ask us a question</b></span><span class="circ">{ARR}</span></a>
+    <a class="xlink" href="/clinical-governance/"><span><small>Regulation and safety</small><b>Clinical governance</b></span><span class="circ">{ARR}</span></a>
+  </div>
+</section>
+</main>
+""" + footer()
 
 
 # --------------------------------------------------------------------------- GLOBAL (first light)
@@ -617,7 +962,7 @@ def global_page():
 def contact():
     pills = "".join(
         f'<span><input type="radio" id="t-{v}" name="inquiry-type" value="{v}" required><label for="t-{v}">{t}</label></span>'
-        for v, t in [("member", "Night membership"), ("partnership", "Night partnership"), ("global", "Zinlea Global"), ("general", "Something else")]
+        for v, t in [("member", "Night membership"), ("private-client", "Private Client"), ("partnership", "Night partnership"), ("global", "Zinlea Global"), ("general", "Something else")]
     )
     return head("Contact | Zinlea Health", "Enquire about Zinlea Night membership, partnerships or Zinlea Global. We reply within 24 hours.",
                 "/contact/", schema=[ORG, crumbs("Contact", "/contact/")]) + header("contact") + f"""
@@ -705,6 +1050,12 @@ def thank_you():
 PAGES = {
     "index.html": home,
     "night/index.html": night,
+    "night/membership/index.html": night_membership,
+    "night/private-client/index.html": night_private_client,
+    "night/how-it-works/index.html": night_how,
+    "night/partnerships/index.html": night_partnerships,
+    "about/index.html": about,
+    "faq/index.html": faq,
     "global/index.html": global_page,
     "contact/index.html": contact,
     "thank-you/index.html": thank_you,

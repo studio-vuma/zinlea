@@ -429,3 +429,70 @@ fieldset.fld{border:0;margin:0;padding:0;min-width:0;}
 .f-base b{color:var(--muted);font-weight:500;}
 
 .alt .tile{background:var(--bg);}
+
+/* ---------- Zinlea Night sub-navigation ---------- */
+.subnav{border-top:1px solid var(--line);}
+.subnav ul{list-style:none;margin:0;padding:0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;}
+.subnav ul::-webkit-scrollbar{display:none;}
+.subnav a{display:inline-block;white-space:nowrap;padding:13px 14px;font-size:14.5px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+.subnav a:hover{color:var(--ink);}
+.subnav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--dot);}
+
+/* ---------- Page intro (inner pages) ---------- */
+.p-intro{padding:56px 0 48px;}
+.p-intro h1{margin:22px 0 22px;max-width:18ch;}
+.p-intro .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;}
+@media (min-width:1000px){ .p-intro{padding:80px 0 64px;} }
+.note-line{margin-top:28px;color:var(--muted);font-size:15.5px;}
+.note-line a{color:var(--ink);text-underline-offset:3px;text-decoration-color:var(--dot);}
+
+/* ---------- Teasers (links to Night sub-pages) ---------- */
+.teasers{display:grid;gap:16px;}
+@media (min-width:860px){ .teasers{grid-template-columns:1fr 1fr;} }
+.teaser{position:relative;display:flex;flex-direction:column;gap:10px;min-height:220px;padding:28px 30px;border-radius:var(--r-lg);background:var(--bg);text-decoration:none;transition:background .3s,transform .4s var(--ease);}
+.teaser:hover{background:var(--surface-2);transform:translateY(-3px);}
+.teaser .t-k{font-size:14px;color:var(--faint);}
+.teaser b{font-size:clamp(1.8rem,2.6vw,2.4rem);font-weight:300;letter-spacing:-.035em;margin-top:auto;}
+.teaser .t-d{color:var(--muted);max-width:40ch;}
+.teaser .circ{position:absolute;top:24px;right:24px;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;}
+.teaser .circ svg{width:16px;height:16px;}
+
+/* ---------- Private Client ---------- */
+.mcard.obsidian{background:radial-gradient(130% 120% at 100% 0%,#2A2F3D 0%,#0A0B0F 55%);color:#E9E4DA;box-shadow:0 30px 60px -28px rgba(0,0,0,.9),inset 0 0 0 1px rgba(233,228,218,.18);}
+.mcard.obsidian .mc-chip{background:linear-gradient(135deg,#E9E4DA,#8E8A82);}
+.mcard.obsidian .mc-tier{opacity:.9;letter-spacing:.02em;}
+.pc-panel{display:grid;gap:32px;align-items:center;margin-top:20px;padding:28px;border-radius:var(--r-xl);background:linear-gradient(180deg,var(--surface-2),var(--surface));text-decoration:none;box-shadow:inset 0 0 0 1px var(--line);transition:transform .4s var(--ease);}
+.pc-panel:hover{transform:translateY(-3px);}
+.pc-panel .t-2{margin:16px 0 18px;}
+.pc-panel .lede{margin-bottom:24px;}
+.pc-card{max-width:420px;width:100%;justify-self:center;}
+@media (min-width:960px){ .pc-panel{grid-template-columns:.8fr 1.2fr;gap:64px;padding:48px;} }
+.pc-hero{padding:56px 0 96px;}
+.pc-hero-grid{display:grid;gap:56px;align-items:center;}
+.pc-hero h1{margin:22px 0 26px;}
+.pc-hero .lede{margin-bottom:34px;}
+.pc-hero .actions{display:flex;flex-wrap:wrap;gap:12px;}
+.pc-note{margin-top:18px;font-size:14.5px;color:var(--faint);}
+.pc-hero-card{max-width:520px;width:100%;justify-self:center;transform:rotate(-4deg);}
+@media (min-width:1000px){ .pc-hero{padding:80px 0 128px;} .pc-hero-grid{grid-template-columns:1.1fr .9fr;gap:80px;} }
+.cta-panel.obsidian{background:radial-gradient(90% 120% at 50% 120%,#2A2F3D 0%,#0A0B0F 65%);}
+
+/* ---------- FAQ ---------- */
+.faq-jump{display:flex;flex-wrap:wrap;gap:8px;}
+.faq-jump .chip{text-decoration:none;transition:border-color .2s,color .2s;}
+.faq-jump .chip:hover{border-color:var(--ink);color:var(--ink);}
+.faq-wrap{display:grid;gap:56px;}
+.faq-wrap > *{max-width:960px;}
+.faq-group{scroll-margin-top:110px;}
+.faq-group h2{margin-bottom:16px;}
+.faq{border-bottom:1px solid var(--line);}
+.faq:first-of-type{border-top:1px solid var(--line);}
+.faq summary{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;cursor:pointer;list-style:none;font-size:clamp(1.08rem,1.5vw,1.25rem);font-weight:400;letter-spacing:-.015em;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq .pm{position:relative;flex-shrink:0;width:34px;height:34px;border-radius:50%;background:var(--surface);transition:background .2s,transform .3s var(--ease);}
+.faq .pm::before,.faq .pm::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%);}
+.faq .pm::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .3s var(--ease);}
+.faq[open] .pm::after{transform:translate(-50%,-50%) rotate(0deg);}
+.faq summary:hover .pm{background:var(--surface-2);}
+.faq-a{padding:0 56px 24px 0;color:var(--muted);max-width:70ch;}
+.faq-a a{color:var(--ink);text-underline-offset:3px;text-decoration-color:var(--dot);}
