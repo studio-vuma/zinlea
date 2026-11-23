@@ -26,6 +26,19 @@ EMAIL = "info@zinlea.com"
 ARR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 
 
+SOCIAL_ICONS = {
+    "instagram": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>',
+    "youtube": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="m10 9.2 5 2.8-5 2.8z" fill="currentColor" stroke="none"/></svg>',
+}
+
+
+def social_links(cls="social"):
+    """Icon links to Zinlea's social profiles (configured in seo.SOCIAL)."""
+    return f'<ul class="{cls}" aria-label="Zinlea on social media">' + "".join(
+        f'<li><a href="{url}" target="_blank" rel="noopener" aria-label="Zinlea Night on {name} (opens in a new tab)">{SOCIAL_ICONS[icon]}</a></li>'
+        for name, url, icon in seo.SOCIAL) + "</ul>"
+
+
 def wordmark(sub="health"):
     return (f'<span class="wm-word" aria-hidden="true">z<span class="wm-i">&#305;</span>nlea</span>'
             f'<span class="wm-sub" aria-hidden="true">{sub}</span>')
@@ -168,6 +181,7 @@ def header(current="", sub="health", cta=("Enquire", "/contact/"), status=True, 
   <div class="drawer-foot">
     <a class="btn btn-primary" href="{cta[1]}">{cta[0]} {ARR}</a>
     <span class="label">{EMAIL}</span>
+    {social_links()}
   </div>
 </div>
 """
@@ -181,6 +195,7 @@ def footer(sub="health"):
         <a class="wm" href="/" aria-label="Zinlea Health, home">{wordmark(sub)}</a>
         <p>Private, clinician-led healthcare. Zinlea Night provides overnight clinical advice in London. Zinlea Global builds healthcare partnerships across Africa.</p>
         <a class="arrow-link" href="mailto:{EMAIL}">{EMAIL} {ARR}</a>
+        {social_links()}
       </div>
       <div class="f-cols">
         <div><h4>Zinlea Night</h4><ul>
@@ -1117,6 +1132,7 @@ def contact():
       <p class="lede">Tell us a little about yourself and a member of our team will reply personally.</p>
       <ul class="c-list">
         <li><span>Email</span><b>{EMAIL}</b></li>
+        <li><span>Instagram</span><b><a href="https://www.instagram.com/zinleanight/" target="_blank" rel="noopener">@zinleanight</a></b></li>
         <li><span>Response time</span><b>Within 24 hours</b></li>
         <li><span>Zinlea Night hours</span><b class="mono">20:00 &ndash; 08:00</b></li>
       </ul>

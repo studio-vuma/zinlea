@@ -518,3 +518,11 @@ picture{display:contents;}
 .trust.two div{border-right:0;border-bottom:1px solid var(--line);}
 .trust.two div:nth-child(odd){border-right:1px solid var(--line);}
 .trust.two div:nth-last-child(-n+2){border-bottom:0;}
+
+/* ---------- Social links ---------- */
+.social{list-style:none;margin:24px 0 0;padding:0;display:flex;gap:10px;}
+.social a{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);color:var(--ink);transition:background .25s,border-color .25s,color .25s;}
+.social a:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);}
+.social svg{width:20px;height:20px;}
+.drawer .social{margin-top:6px;}
+.c-list a{color:var(--ink);text-underline-offset:3px;text-decoration-color:var(--dot);}

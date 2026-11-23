@@ -69,6 +69,13 @@ PAGES = {
         og="og-health", type="WebPage", trail=[HOME], name="Thank you", noindex=True),
 }
 
+# Social profiles. Add YouTube here once the channel exists, e.g.
+# ("YouTube", "https://www.youtube.com/@zinleanight", "youtube")
+SOCIAL = [
+    ("Instagram", "https://www.instagram.com/zinleanight/", "instagram"),
+]
+SAME_AS = [url for _, url, _ in SOCIAL]
+
 ORG_ID = f"{SITE}/#org"
 NIGHT_ID = f"{SITE}/night/#org"
 GLOBAL_ID = f"{SITE}/global/#org"
@@ -87,6 +94,7 @@ ORG = {
     "contactPoint": {"@type": "ContactPoint", "contactType": "customer service", "email": EMAIL,
                      "areaServed": "GB", "availableLanguage": "English"},
     "subOrganization": [{"@id": NIGHT_ID}, {"@id": GLOBAL_ID}],
+    "sameAs": SAME_AS,
 }
 WEBSITE = {
     "@context": "https://schema.org", "@type": "WebSite", "@id": f"{SITE}/#website",
@@ -95,7 +103,7 @@ WEBSITE = {
 NIGHT_ORG = {
     "@context": "https://schema.org", "@type": "MedicalBusiness", "@id": NIGHT_ID,
     "name": "Zinlea Night", "url": f"{SITE}/night/", "email": EMAIL, "parentOrganization": {"@id": ORG_ID},
-    "logo": LOGO, "image": f"{SITE}/assets/og/og-night.jpg", "priceRange": "££",
+    "logo": LOGO, "image": f"{SITE}/assets/og/og-night.jpg", "priceRange": "££", "sameAs": SAME_AS,
     "description": "Private overnight medical advice in London. Experienced Advanced Nurse Practitioners available 8pm–8am by phone or video for reassurance, clinical guidance, remote prescribing where appropriate and escalation support.",
     "address": {"@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB"},
     "areaServed": {"@type": "City", "name": "London"},
