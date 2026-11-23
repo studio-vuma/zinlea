@@ -17,6 +17,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from content_legal import GOVERNANCE, PRIVACY  # noqa: E402
 import seo  # noqa: E402
+import hashlib  # noqa: E402
 from PIL import Image  # noqa: E402
 
 OUT = os.path.dirname(os.path.abspath(__file__))
@@ -70,6 +71,12 @@ def dial(extra_class=""):
 
 
 # --------------------------------------------------------------------------- shell
+def ver(rel):
+    """Short content hash so browsers fetch a new copy whenever the file changes."""
+    with open(os.path.join(OUT, rel), "rb") as f:
+        return hashlib.sha1(f.read()).hexdigest()[:10]
+
+
 PRELOAD = {"/": "night-caring-hands", "/night/partnerships/": "care-home", "/about/": "consult-elderly"}
 
 
@@ -121,7 +128,7 @@ def head(title, desc, path, theme="health", schema=None, noindex=False):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 {pre}<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap">
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/site.css?v={ver('assets/site.css')}">
 {ld}</head>
 <body class="theme-{theme}">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -219,7 +226,7 @@ def footer(sub="health"):
     </div>
   </div>
 </footer>
-<script src="/assets/site.js" defer></script>
+<script src="/assets/site.js?v={ver('assets/site.js')}" defer></script>
 </body>
 </html>
 """
@@ -1407,12 +1414,10 @@ def site_files():
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: SAMEORIGIN
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-/assets/*
+/assets/img/*
   Cache-Control: public, max-age=31536000, immutable
-/assets/site.css
-  Cache-Control: public, max-age=86400
-/assets/site.js
-  Cache-Control: public, max-age=86400
+/assets/og/*
+  Cache-Control: public, max-age=604800
 """)
     write("site.webmanifest", json.dumps({
         "name": "Zinlea Health", "short_name": "Zinlea", "start_url": "/", "display": "standalone",
