@@ -12,7 +12,7 @@ function word(size, ink, dot, halo) {
 }
 
 const OG = {
-  'og-health':  { bg: '#FFFFFF', ink: '#0E1116', sub: '#5A606B', dot: '#2D4A8A', halo: 'rgba(45,74,138,.16)', subname: 'health', line: 'Private clinical care, whatever the hour.', meta: 'Zinlea Night · Zinlea Global' },
+  'og-health':  { bg: '#FFFFFF', ink: '#0E1116', sub: '#5A606B', dot: '#2D4A8A', halo: 'rgba(45,74,138,.16)', subname: 'health', line: 'Private medical care, whatever the hour.', meta: 'Zinlea Night · Zinlea Global' },
   'og-night':   { bg: 'radial-gradient(120% 140% at 80% 120%,#1B2747 0%,#070B17 60%)', ink: '#EEF1F7', sub: 'rgba(238,241,247,.7)', dot: '#CCD9EF', halo: 'rgba(204,217,239,.22)', subname: 'night', line: 'Overnight medical advice in London.', meta: '20:00 — 08:00 · Advanced Nurse Practitioners' },
   'og-global':  { bg: 'radial-gradient(130% 120% at 50% 125%,#F3B78C 0%,#7A5664 24%,#1A2448 50%,#08101F 78%)', ink: '#F4F0EB', sub: 'rgba(244,240,235,.72)', dot: '#F3B78C', halo: 'rgba(243,183,140,.28)', subname: 'global', line: 'Healthcare partnerships, built together.', meta: 'Across Africa' },
   'og-private': { bg: 'radial-gradient(130% 120% at 100% 0%,#2A2F3D 0%,#0A0B0F 55%)', ink: '#E9E4DA', sub: 'rgba(233,228,218,.7)', dot: '#E9E4DA', halo: 'rgba(233,228,218,.16)', subname: 'night', line: 'Private Client. Care that knows you.', meta: 'By private consultation' },

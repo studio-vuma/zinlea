@@ -193,7 +193,7 @@ def footer(sub="health"):
     <div class="f-grid">
       <div class="f-brand">
         <a class="wm" href="/" aria-label="Zinlea Health, home">{wordmark(sub)}</a>
-        <p>Private, clinician-led healthcare. Zinlea Night provides overnight clinical advice in London. Zinlea Global builds healthcare partnerships across Africa.</p>
+        <p>Expert medical advice, when you need it. Zinlea Night provides overnight advice from senior nurses in London. Zinlea Global builds healthcare partnerships across Africa.</p>
         <a class="arrow-link" href="mailto:{EMAIL}">{EMAIL} {ARR}</a>
         {social_links()}
       </div>
@@ -274,15 +274,15 @@ def crumbs(name, path):
 # --------------------------------------------------------------------------- HOME (Zinlea Health, day)
 def home():
     return head("Zinlea Health | Private clinical care, whatever the hour",
-                "Zinlea Health is a private, clinician-led healthcare company. Zinlea Night offers overnight clinical advice in London, 8pm to 8am. Zinlea Global builds healthcare partnerships across Africa.",
+                "Zinlea Health is a private healthcare company. Zinlea Night offers overnight advice in London, 8pm to 8am. Zinlea Global builds healthcare partnerships across Africa.",
                 "/", schema=[ORG]) + header() + f"""
 <main id="main">
 <section class="h-hero">
   <div class="wrap h-hero-grid">
     <div>
       {label("Zinlea Health")}
-      <h1 class="t-hero">Private clinical care, whatever the hour.</h1>
-      <p class="lede">A clinician-led healthcare company. Zinlea Night gives London members calm, expert clinical advice from 8pm to 8am. Zinlea Global builds healthcare partnerships across Africa.</p>
+      <h1 class="t-hero">Private medical care, whatever the hour.</h1>
+      <p class="lede">Private healthcare you can reach when it matters. Zinlea Night gives London members calm, expert advice from senior nurses, 8pm to 8am. Zinlea Global builds healthcare partnerships across Africa.</p>
       <div class="actions">
         <a class="btn btn-primary" href="/night/">Discover Zinlea Night {ARR}</a>
         <a class="btn btn-quiet" href="/global/">Zinlea Global</a>
@@ -303,13 +303,13 @@ def home():
   <div class="wrap who-grid">
     <div>
       {label("Who we are")}
-      <h2 class="t-2">A private healthcare company, led by clinicians.</h2>
+      <h2 class="t-2">Healthcare that&rsquo;s there when you need it.</h2>
     </div>
     <div>
-      <p class="lede">Zinlea Health is led by experienced clinicians who want to make expert healthcare easier to reach at the moments it matters most. We design services around the people who use them: calm, private and unhurried, with clinical safety at the centre of every decision.</p>
+      <p class="lede">Zinlea Health exists to make expert healthcare easier to reach at the moments it matters most. We design services around the people who use them: calm, private and unhurried, with clinical safety at the centre of every decision.</p>
       <p class="lede">Our first service, <a href="/night/">Zinlea Night</a>, gives members in London direct access to experienced Advanced Nurse Practitioners between 8pm and 8am. Through <a href="/global/">Zinlea Global</a>, we are building healthcare partnerships with providers, clinicians and investors across Africa.</p>
       <dl class="who-facts">
-        <div><dt>Led by</dt><dd>Experienced clinicians</dd></div>
+        <div><dt>Care from</dt><dd>Experienced senior nurses</dd></div>
         <div><dt>Based in</dt><dd>The United Kingdom</dd></div>
         <div><dt>Services</dt><dd>Zinlea Night &amp; Zinlea Global</dd></div>
       </dl>
@@ -322,7 +322,7 @@ def home():
   <div class="wrap">
     <div class="sec-head split">
       <h2 class="t-2">Two services, one way of caring.</h2>
-      <p class="lede">Each Zinlea service is led by experienced clinicians and built on the same principles: calm expertise, discretion and continuity.</p>
+      <p class="lede">Each Zinlea service is built on the same principles: calm expertise, discretion and continuity.</p>
     </div>
     <div class="doors">
       <a class="door door-night" href="/night/">
@@ -379,7 +379,7 @@ def home():
 <section class="sec" style="padding-top:0">
   <div class="wrap">
     <div class="trust">
-      <div><b>Clinician-led</b><span>Advanced Nurse Practitioners</span></div>
+      <div><b>Senior nurses</b><span>Advanced Nurse Practitioners</span></div>
       <div><b>CQC application submitted</b><span>Registration under review</span></div>
       <div><b>UK GDPR</b><span>Confidential by design</span></div>
       <div><b>Safety first</b><span>Clear escalation pathways</span></div>
@@ -861,7 +861,7 @@ def night_partnerships():
 def about():
     return head("", "", "/about/", schema=[]) + header("about") + f"""
 <main id="main">
-{page_intro("About Zinlea Health", "Who we are.", "Zinlea Health is a private, clinician-led healthcare company. We create services for the moments when expert care is hardest to reach, and we build them around calm expertise, discretion and continuity.")}
+{page_intro("About Zinlea Health", "Who we are.", "Zinlea Health is a private healthcare company. We create services for the moments when expert care is hardest to reach, and we build them around calm expertise, discretion and continuity.")}
 
 <section class="sec" style="padding-top:8px">
   <div class="wrap split">
@@ -870,7 +870,7 @@ def about():
       {label("Our purpose")}
       <h2 class="t-2">Expert care, without the wait or the worry.</h2>
       <p class="lede">Most healthcare is designed around opening hours. Worry isn&rsquo;t. Zinlea exists so that people can speak to an experienced clinician when they need one, and come away with a clear answer about what to do next.</p>
-      <p class="lede">We are a private company, led by clinicians, and we work alongside the NHS and your own GP rather than replacing them.</p>
+      <p class="lede">We are a private company, and we work alongside the NHS and your own GP rather than replacing them.</p>
     </div>
   </div>
 </section>
@@ -927,11 +927,11 @@ def about():
     <div>
       {label("Regulation and safety")}
       <h2 class="t-2">Transparent about where we are.</h2>
-      <p class="lede">Zinlea Night has submitted an application for registration with the Care Quality Commission (CQC), the independent regulator of health and social care in England. While our application is under review, we operate as a clinician-led private healthcare service, in line with UK clinical guidelines and professional standards.</p>
+      <p class="lede">Zinlea Night has submitted an application for registration with the Care Quality Commission (CQC), the independent regulator of health and social care in England. While our application is under review, we operate as a private healthcare service, in line with UK clinical guidelines and professional standards.</p>
       <div class="actions"><a class="btn btn-quiet" href="/clinical-governance/">Read our clinical governance {ARR}</a></div>
     </div>
     <div class="trust two">
-      <div><b>Clinician-led</b><span>Advanced Nurse Practitioners</span></div>
+      <div><b>Senior nurses</b><span>Advanced Nurse Practitioners</span></div>
       <div><b>CQC application</b><span>Submitted, under review</span></div>
       <div><b>UK GDPR</b><span>Data Protection Act 2018</span></div>
       <div><b>Safeguarding</b><span>Adults and children</span></div>
@@ -955,9 +955,9 @@ def about():
 
 FAQ = [
     ("general", "About Zinlea", [
-        ("What is Zinlea Health?", "Zinlea Health is a private, clinician-led healthcare company. It is home to Zinlea Night, which provides overnight clinical advice in London, and Zinlea Global, which builds healthcare partnerships across Africa."),
+        ("What is Zinlea Health?", "Zinlea Health is a private healthcare company. It is home to Zinlea Night, which provides overnight clinical advice in London, and Zinlea Global, which builds healthcare partnerships across Africa."),
         ("How do I get in touch?", f'Use our <a href="/contact/">contact form</a> or email <a href="mailto:{EMAIL}">{EMAIL}</a>. We reply to every enquiry within 24 hours.'),
-        ("Is Zinlea regulated?", 'Zinlea Night has submitted an application for registration with the Care Quality Commission (CQC), the independent regulator of health and social care in England. While the application is under review, Zinlea Night operates as a clinician-led private healthcare service. Read more on our <a href="/clinical-governance/">clinical governance</a> page.'),
+        ("Is Zinlea regulated?", 'Zinlea Night has submitted an application for registration with the Care Quality Commission (CQC), the independent regulator of health and social care in England. While the application is under review, Zinlea Night operates as a private healthcare service, led by experienced senior nurses. Read more on our <a href="/clinical-governance/">clinical governance</a> page.'),
         ("How do you look after my information?", 'We operate in accordance with UK GDPR, the Data Protection Act 2018 and medical confidentiality standards. Patient information is stored securely, accessed only by authorised clinicians and used solely for care. See our <a href="/privacy/">privacy policy</a>.'),
     ]),
     ("night", "Zinlea Night", [
@@ -1042,7 +1042,7 @@ def global_page():
     <div>
       {label("Why partnership")}
       <h2 class="t-2">Each side brings what it knows best.</h2>
-      <p class="lede">We bring our experience of running a private, clinician-led overnight service. Our partners bring their own expertise, relationships and deep understanding of their markets.</p>
+      <p class="lede">We bring our experience of running a private overnight advice service with senior nurses. Our partners bring their own expertise, relationships and deep understanding of their markets.</p>
       <p class="lede">Together, we can develop services that neither of us could build alone, and learn from each other along the way.</p>
     </div>
   </div>
@@ -1083,13 +1083,13 @@ def global_page():
     <div>
       {label("Who we work with")}
       <h2 class="t-2" style="margin-top:18px">Partners across Africa&rsquo;s healthcare sector.</h2>
-      <p class="lede" style="margin-top:22px">Zinlea Global is in development. We are speaking with prospective founding partners who share our commitment to safe, clinician-led and sustainable care.</p>
+      <p class="lede" style="margin-top:22px">Zinlea Global is in development. We are speaking with prospective founding partners who share our commitment to safe, high-quality and sustainable care.</p>
     </div>
     <ul class="checks">
       <li><span><b>Hospital groups and private clinics</b> developing new services, including out-of-hours and remote clinical support</span></li>
       <li><span><b>Clinicians and clinical leaders</b> interested in shared protocols, training and knowledge exchange</span></li>
       <li><span><b>Investors and development partners</b> backing sustainable models of care</span></li>
-      <li><span><b>Organisations</b> looking for a clinician-led partner with experience of running a private remote service</span></li>
+      <li><span><b>Organisations</b> looking for a healthcare partner with experience of running a private remote service</span></li>
     </ul>
   </div>
 </section>

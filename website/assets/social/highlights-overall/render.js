@@ -52,7 +52,7 @@ const door = (kind, title, sub, meta) => {
 const SETS = {
   about: [
     frame(T.health, at(820, `${h(T.health, 'Meet Zinlea Health', 108)}${p(T.health, 'Who we are, and what we do.', 44, 42)}<div style="margin-top:40px">${arrow(T.health)}</div>`)),
-    frame(T.health, at(620, `${label(T.health, 'Who we are')}${h(T.health, 'A private healthcare company, led by clinicians.', 84)}
+    frame(T.health, at(620, `${label(T.health, 'Who we are')}${h(T.health, 'Healthcare that&rsquo;s there when you need it.', 84)}
       ${p(T.health, 'We make expert healthcare easier to reach at the moments it matters most: calm, private and unhurried, with clinical safety at the centre of every decision.')}`)),
     frame(T.health, at(560, `${label(T.health, 'What we do')}${h(T.health, 'Two services, one way of caring.', 80)}
       <div style="display:flex;gap:24px;margin-top:56px">

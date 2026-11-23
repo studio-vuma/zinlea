@@ -6,10 +6,10 @@ const S = path.join(__dirname, '..');
 const img = f => 'data:image/png;base64,' + fs.readFileSync(path.join(S, f)).toString('base64');
 
 const BIO = [
-  'Private, clinician-led healthcare',
+  'Expert medical advice, when you need it',
   'Night · senior nurses overnight, London 20:00–08:00',
   'Global · healthcare partnerships, Africa',
-  'Membership below ↓',
+  'Membership ↓',
 ];
 const HL = [
   ['About', 'stories2/out/highlight-cover-about-health.png'],

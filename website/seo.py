@@ -14,12 +14,12 @@ NIGHT = ("Zinlea Night", "/night/")
 # path: title, description, social image, page schema type, breadcrumb trail (excluding the page itself)
 PAGES = {
     "/": dict(
-        title="Zinlea Health | Private Clinician-Led Healthcare, London",
-        desc="Private, clinician-led healthcare. Zinlea Night: overnight medical advice in London, 8pm–8am. Zinlea Global: healthcare partnerships across Africa.",
+        title="Zinlea Health | Private Healthcare & Overnight Nurse Advice",
+        desc="Expert medical advice when you need it. Zinlea Night: senior nurses overnight in London, 8pm–8am. Zinlea Global: healthcare partnerships across Africa.",
         og="og-health", type="WebPage", trail=[], name="Zinlea Health"),
     "/about/": dict(
         title="About Zinlea Health | Who We Are",
-        desc="Zinlea Health is a private, clinician-led healthcare company, home to Zinlea Night (overnight medical advice, London) and Zinlea Global (Africa).",
+        desc="Zinlea Health is a private healthcare company, home to Zinlea Night (overnight advice from senior nurses, London) and Zinlea Global (Africa).",
         og="og-health", type="AboutPage", trail=[HOME], name="About"),
     "/night/": dict(
         title="Overnight Medical Advice in London, 8pm–8am | Zinlea Night",
@@ -86,7 +86,7 @@ ORG = {
     "name": "Zinlea Health", "alternateName": "Zinlea", "url": f"{SITE}/", "email": EMAIL,
     "logo": {"@type": "ImageObject", "url": LOGO, "width": 512, "height": 512},
     "image": f"{SITE}/assets/og/og-health.jpg",
-    "description": "Zinlea Health is a private, clinician-led healthcare company. Zinlea Night provides overnight medical advice in London; Zinlea Global builds healthcare partnerships across Africa.",
+    "description": "Zinlea Health is a private healthcare company. Zinlea Night provides overnight medical advice in London; Zinlea Global builds healthcare partnerships across Africa.",
     "address": {"@type": "PostalAddress", "addressCountry": "GB"},
     "areaServed": [{"@type": "City", "name": "London"}, {"@type": "Continent", "name": "Africa"}],
     "knowsAbout": ["Overnight medical advice", "Out-of-hours clinical support", "Remote consultations",
