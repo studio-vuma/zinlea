@@ -66,7 +66,7 @@ const SLIDES = [
       <div style="margin-top:54px;font:400 21px/1.5 'DM Mono';color:#5A606B">Sources: DHSC Adult Social Care Workforce Survey, April 2025.<br>CQC, The State of Health Care and Adult Social Care in England 2025/26.</div>`)}`, 3),
 
   // 4 The human dimension
-  frame('#070B17', DARK.ink, `${photoBg(photo('hands.jpg'), '55% 45%')}${top(DARK, 'Families')}
+  frame('#070B17', DARK.ink, `${photoBg(photo('family.jpg'), '38% 40%')}${top(DARK, 'Families')}
     ${at('bottom:130px', `${H1(DARK, 'And what about the families?', 84)}
       ${P(DARK, 'A late-night telephone call. A sudden change in condition. Questions about what happens next.', 30, 34)}
       ${P(DARK, '<span style="color:#CCD9EF">For families, uncertainty can be as difficult as the wait itself.</span>', 22, 34)}`)}`, 4),
@@ -82,7 +82,7 @@ const SLIDES = [
       </div>`)}`, 5),
 
   // 6 Introducing Zinlea Night
-  frame('#070B17', DARK.ink, `${photoBg(photo('nurse.jpg'), '50% 28%')}${top(DARK, 'Introducing')}
+  frame('#070B17', DARK.ink, `${photoBg(photo('phonedoc.jpg'), '30% 35%')}${top(DARK, 'Introducing')}
     ${at('bottom:130px', `${label(DARK, 'Zinlea Night')}${H1(DARK, 'Clinical support beyond conventional hours.', 80)}
       ${P(DARK, 'Overnight clinical assessment, guidance and escalation from experienced Advanced Nurse Practitioners, 8pm to 8am.', 28, 32)}
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px">${['Supporting care teams', 'Strengthening clinical access', 'Keeping families in mind'].map(x => pill(DARK, x)).join('')}</div>`)}`, 6),
