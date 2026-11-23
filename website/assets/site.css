@@ -526,3 +526,23 @@ picture{display:contents;}
 .social svg{width:20px;height:20px;}
 .drawer .social{margin-top:6px;}
 .c-list a{color:var(--ink);text-underline-offset:3px;text-decoration-color:var(--dot);}
+
+/* ---------- Digital business card (/card/) ---------- */
+.card-page{min-height:100svh;max-width:520px;margin:0 auto;padding:max(28px,env(safe-area-inset-top)) 20px 40px;display:flex;flex-direction:column;gap:18px;}
+.vcard{border-radius:28px;padding:28px 26px 30px;background:radial-gradient(120% 90% at 100% 0%,#24345E 0%,#0B1124 60%);box-shadow:0 30px 60px -30px rgba(0,0,0,.8),inset 0 0 0 1px rgba(204,217,239,.18);}
+.vc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:56px;}
+.vc-hours{font-size:13px;color:var(--muted);}
+.vcard h1{font-size:clamp(1.9rem,8vw,2.4rem);line-height:1.08;margin-bottom:14px;}
+.vcard p{color:var(--muted);font-size:15.5px;}
+.cbtns{display:grid;gap:10px;}
+.cbtn{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:20px;background:var(--surface);text-decoration:none;color:var(--ink);transition:background .2s,transform .2s;}
+.cbtn:hover{background:var(--surface-2);transform:translateY(-1px);}
+.cbtn .ci{width:44px;height:44px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(204,217,239,.1);color:var(--accent);}
+.cbtn .ci svg{width:21px;height:21px;}
+.cbtn b{display:block;font-weight:500;font-size:16.5px;}
+.cbtn small{display:block;color:var(--muted);font-size:14px;margin-top:2px;}
+.cbtn > svg{width:18px;height:18px;margin-left:auto;flex-shrink:0;color:var(--muted);}
+.cbtn.primary{background:var(--accent);color:var(--accent-ink);}
+.cbtn.primary small,.cbtn.primary > svg{color:color-mix(in srgb,var(--accent-ink) 70%,transparent);}
+.cbtn.primary .ci{background:rgba(7,11,23,.1);color:var(--accent-ink);}
+.card-note{text-align:center;color:var(--faint);font-size:13px;margin-top:6px;}

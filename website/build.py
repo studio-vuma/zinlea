@@ -1247,7 +1247,54 @@ def not_found():
 """ + footer()
 
 
+def card():
+    """Digital business card: one-tap email, website, Instagram and save-to-contacts. Linked from the QR code."""
+    insta = seo.SOCIAL[0][1] if seo.SOCIAL else ""
+    def btn(href, icon, text, sub, primary=False, attrs=""):
+        return (f'<a class="cbtn{" primary" if primary else ""}" href="{href}" {attrs}>'
+                f'<span class="ci">{icon}</span><span><b>{text}</b><small>{sub}</small></span>{ARR}</a>')
+    mail = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>'
+    web = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>'
+    save = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0M19 4v5M16.5 6.5h5"/></svg>'
+    return head("", "", "/card/", theme="night") + f"""
+<main id="main" class="card-page">
+  <div class="vcard">
+    <div class="vc-top">
+      <span class="wm" aria-label="Zinlea Health">{wordmark("health")}</span>
+      <span class="mono vc-hours">20:00 &ndash; 08:00</span>
+    </div>
+    <h1>Expert medical advice, when you need it.</h1>
+    <p>Zinlea Night: overnight advice from senior nurses in London. Zinlea Global: healthcare partnerships across Africa.</p>
+  </div>
+  <nav class="cbtns" aria-label="Contact Zinlea">
+    {btn("mailto:" + EMAIL, mail, "Email us", EMAIL, primary=True)}
+    {btn("/", web, "Visit our website", "zinlea.com")}
+    {btn(insta, SOCIAL_ICONS["instagram"], "Instagram", "@zinleanight", attrs='target="_blank" rel="noopener"') if insta else ""}
+    {btn("/card/zinlea.vcf", save, "Save contact", "Add Zinlea to your phone", attrs='download="Zinlea Health.vcf"')}
+  </nav>
+  <p class="card-note">Not an emergency service. In an emergency, call 999.</p>
+</main>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
+"""
+
+
+VCARD = f"""BEGIN:VCARD
+VERSION:3.0
+N:;Zinlea Health;;;
+FN:Zinlea Health
+ORG:Zinlea Health
+TITLE:Zinlea Night · Overnight medical advice, London
+EMAIL;TYPE=WORK,INTERNET:{EMAIL}
+URL:{SITE}/
+X-SOCIALPROFILE;TYPE=instagram:https://www.instagram.com/zinleanight/
+NOTE:Expert medical advice, when you need it. Zinlea Night: senior nurses overnight in London\\, 20:00–08:00.
+END:VCARD
+"""
+
 PAGES["404.html"] = not_found
+PAGES["card/index.html"] = card
 
 # Old zinlea.com addresses -> new pages (301), so existing search rankings and links carry over.
 REDIRECTS = [
@@ -1306,4 +1353,5 @@ if __name__ == "__main__":
             f.write(fn())
         print("wrote", path)
     site_files()
+    write("card/zinlea.vcf", VCARD.replace("\n", "\r\n"))
     print("wrote sitemap.xml, robots.txt, _redirects, _headers, site.webmanifest")
