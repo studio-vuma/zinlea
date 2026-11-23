@@ -61,7 +61,7 @@ const SLIDES = [
     </div>`),
 
   // 3. Common worries (pills)
-  frame(`${photoBg(photo('hands.jpg'), '55% 50%')}
+  frame(`${photoBg(photo('hands2.jpg'), '50% 45%')}
     ${top(brand())}
     <div style="position:absolute;left:${PAD}px;right:${PAD}px;bottom:110px;text-align:center">
       <h2 style="margin:0 auto;font:400 66px/1.08 'Albert Sans';letter-spacing:-.035em;max-width:860px">The worries that tend to arrive after dark</h2>
@@ -79,7 +79,7 @@ const SLIDES = [
     </div>`, '#F3F4F6', '#0E1116'),
 
   // 5. What overnight clinical advice looks like
-  frame(`${photoBg(photo('nurse.jpg'), '50% 30%')}
+  frame(`${photoBg(photo('videocall.jpg'), '58% 35%')}
     ${top(brand())}
     <div style="position:absolute;left:${PAD}px;right:${PAD}px;bottom:110px">
       <h2 style="margin:0;font:400 70px/1.05 'Albert Sans';letter-spacing:-.035em">What good overnight clinical advice looks like</h2>
@@ -112,7 +112,7 @@ const SLIDES = [
 
 (async () => {
   const b = await chromium.launch();
-  const pg = await b.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
+  const pg = await b.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 2 });
   for (let i = 0; i < SLIDES.length; i++) {
     await pg.setContent(SLIDES[i]);
     await pg.evaluate(() => document.fonts.ready);

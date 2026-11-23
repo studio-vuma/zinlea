@@ -71,7 +71,7 @@ const SLIDES = [
       </div>`)}`, 4),
 
   // 5 Clinicians
-  frame('#070B17', DARK.ink, `${photoBg(photo('nurse.jpg'), '50% 28%')}${top(DARK, 'Our clinicians')}
+  frame('#070B17', DARK.ink, `${photoBg(photo('nursephone.jpg'), '58% 30%')}${top(DARK, 'Our clinicians')}
     ${at('bottom:130px', `${H1(DARK, 'Delivered by Advanced Nurse Practitioners.', 78)}
       ${P(DARK, 'Experienced senior nurses with backgrounds across urgent care, primary care and acute services, trained in remote consultation safety and safeguarding.')}`)}`, 5),
 
