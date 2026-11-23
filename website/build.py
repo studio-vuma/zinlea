@@ -1248,24 +1248,41 @@ def not_found():
 
 
 def card():
-    """Digital business card: one-tap email, website, Instagram and save-to-contacts. Linked from the QR code."""
+    """Digital business card: a 3D card that flips (tap) and turns (drag/tilt), plus one-tap contact actions.
+    Linked from the QR code and shared as zinlea.com/card."""
     insta = seo.SOCIAL[0][1] if seo.SOCIAL else ""
+
     def btn(href, icon, text, sub, primary=False, attrs=""):
         return (f'<a class="cbtn{" primary" if primary else ""}" href="{href}" {attrs}>'
                 f'<span class="ci">{icon}</span><span><b>{text}</b><small>{sub}</small></span>{ARR}</a>')
     mail = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>'
     web = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>'
     save = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0M19 4v5M16.5 6.5h5"/></svg>'
+    arcs = "".join(f'<circle cx="0" cy="100%" r="{70 + k * 34}" fill="none" stroke="#CCD9EF" stroke-opacity="{.18 - k * .04:.2f}" stroke-width="{2.2 if k == 0 else 1}"/>' for k in range(4))
     return head("", "", "/card/", theme="night") + f"""
 <main id="main" class="card-page">
-  <div class="vcard">
-    <div class="vc-top">
-      <span class="wm" aria-label="Zinlea Health">{wordmark("health")}</span>
-      <span class="mono vc-hours">20:00 &ndash; 08:00</span>
+  <h1 class="vh">Zinlea Health contact card</h1>
+  <div class="stage" id="stage">
+    <div class="card3d" id="card3d" role="button" tabindex="0" aria-label="Zinlea Health business card. Press to turn it over." aria-pressed="false">
+      <div class="face front">
+        <svg class="f-arcs" width="100%" height="100%" aria-hidden="true">{arcs}</svg>
+        <div class="f-top"><span class="wm" aria-hidden="true">{wordmark("health")}</span><span class="mono">20:00 &ndash; 08:00</span></div>
+        <p class="f-line">Expert medical advice, <span>when you need it.</span></p>
+        <div class="f-foot"><span>Zinlea Night &middot; London</span><span>Zinlea Global &middot; Africa</span></div>
+        <span class="sheen" aria-hidden="true"></span>
+      </div>
+      <div class="face back">
+        <div class="b-info">
+          <span class="wm" aria-hidden="true">{wordmark("health")}</span>
+          <ul><li>{EMAIL}</li><li>zinlea.com</li><li>@zinleanight</li></ul>
+          <span class="mono b-hint">Scan to save our contact</span>
+        </div>
+        <img class="b-qr" src="/assets/brand/qr/zinlea-qr.png" alt="QR code linking to zinlea.com/card" width="300" height="300">
+        <span class="sheen" aria-hidden="true"></span>
+      </div>
     </div>
-    <h1>Expert medical advice, when you need it.</h1>
-    <p>Zinlea Night: overnight advice from senior nurses in London. Zinlea Global: healthcare partnerships across Africa.</p>
   </div>
+  <p class="turn-hint" id="turnHint">Tap to turn over &middot; drag to spin</p>
   <nav class="cbtns" aria-label="Contact Zinlea">
     {btn("mailto:" + EMAIL, mail, "Email us", EMAIL, primary=True)}
     {btn("/", web, "Visit our website", "zinlea.com")}
@@ -1274,7 +1291,66 @@ def card():
   </nav>
   <p class="card-note">Not an emergency service. In an emergency, call 999.</p>
 </main>
-<script src="/assets/site.js" defer></script>
+<script>
+(function () {{
+  var card = document.getElementById('card3d'), stage = document.getElementById('stage');
+  if (!card) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rotY = 0, rotX = 0, flipped = false, dragging = false, startX = 0, startY = 0, baseY = 0, moved = false;
+  function apply(anim) {{
+    card.style.transition = anim ? 'transform .9s cubic-bezier(.2,.8,.2,1)' : 'none';
+    card.style.transform = 'rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg)';
+    var face = ((Math.round(rotY / 180) % 2) + 2) % 2;   // 0 = front, 1 = back
+    card.setAttribute('aria-pressed', String(face === 1));
+  }}
+  function sheen(x, y) {{
+    card.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+    card.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+  }}
+  function flip() {{ flipped = !flipped; rotY = Math.round(rotY / 180) * 180 + 180; rotX = 0; apply(true); }}
+  function hideHint() {{ var h = document.getElementById('turnHint'); if (h) h.classList.add('done'); }}
+
+  // Drag to spin; a tap (no movement) flips.
+  card.addEventListener('pointerdown', function (e) {{
+    dragging = true; moved = false; startX = e.clientX; startY = e.clientY; baseY = rotY;
+    card.setPointerCapture(e.pointerId);
+  }});
+  card.addEventListener('pointermove', function (e) {{
+    var r = card.getBoundingClientRect();
+    sheen((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
+    if (!dragging) {{
+      if (e.pointerType === 'mouse' && !reduce) {{       // gentle hover tilt on desktop
+        var px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+        card.style.transition = 'transform .25s ease-out';
+        card.style.transform = 'rotateX(' + (-py * 14) + 'deg) rotateY(' + (rotY + px * 18) + 'deg)';
+      }}
+      return;
+    }}
+    var dx = e.clientX - startX, dy = e.clientY - startY;
+    if (Math.abs(dx) > 6 || Math.abs(dy) > 6) moved = true;
+    rotY = baseY + dx * 0.6; rotX = Math.max(-20, Math.min(20, -dy * 0.2)); apply(false);
+  }});
+  function end() {{
+    if (!dragging) return; dragging = false;
+    if (!moved) {{ flip(); }} else {{ rotY = Math.round(rotY / 180) * 180; rotX = 0; apply(true); }}
+    hideHint();
+  }}
+  card.addEventListener('pointerup', end);
+  card.addEventListener('pointercancel', end);
+  card.addEventListener('mouseleave', function () {{ if (!dragging) apply(true); }});
+  card.addEventListener('keydown', function (e) {{ if (e.key === 'Enter' || e.key === ' ') {{ e.preventDefault(); flip(); hideHint(); }} }});
+
+  // Arrival: one slow turn to show both sides, unless reduced motion is on.
+  if (!reduce) {{
+    rotY = -200; rotX = 10; apply(false);
+    requestAnimationFrame(function () {{ setTimeout(function () {{
+      card.style.transition = 'transform 1.8s cubic-bezier(.16,.9,.2,1)'; rotY = 0; rotX = 0;
+      card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    }}, 120); }});
+  }}
+  sheen(.3, .2);
+}})();
+</script>
 </body>
 </html>
 """

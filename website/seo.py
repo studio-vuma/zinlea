@@ -62,9 +62,9 @@ PAGES = {
         desc="How Zinlea Health and Zinlea Night collect, use and protect your personal and health information under UK GDPR.",
         og="og-health", type="WebPage", trail=[HOME], name="Privacy policy"),
     "/card/": dict(
-        title="Zinlea Health | Contact Card",
+        title="Zinlea Health | Digital Card",
         desc="Contact Zinlea Health: email info@zinlea.com, visit zinlea.com or save our contact details to your phone.",
-        og="og-health", type="ContactPage", trail=[], name="Contact card", noindex=True),
+        og="og-card", type="ContactPage", trail=[], name="Contact card", noindex=True),
     "/404.html": dict(
         title="Page Not Found | Zinlea Health", desc="This page could not be found.",
         og="og-health", type="WebPage", trail=[], name="Not found", noindex=True),
